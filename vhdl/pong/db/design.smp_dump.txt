@@ -1,0 +1,52 @@
+
+State Machine - |design|LCD_Display:inst2|state
+Name state.display_clear state.display_off state.reset3 state.reset2 state.hold state.drop_lcd_e state.return_home state.line2 state.print_string state.mode_set state.display_on state.func_set state.reset1 
+state.reset1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.func_set 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.display_on 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.mode_set 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.print_string 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.line2 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.return_home 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.drop_lcd_e 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.hold 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.reset2 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.reset3 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.display_off 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.display_clear 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |design|LCD_Display:inst2|next_command
+Name next_command.display_clear next_command.display_off next_command.reset3 next_command.hold next_command.reset1 next_command.drop_lcd_e next_command.return_home next_command.line2 next_command.print_string next_command.mode_set next_command.display_on next_command.func_set next_command.reset2 
+next_command.reset2 0 0 0 0 0 0 0 0 0 0 0 0 0 
+next_command.func_set 0 0 0 0 0 0 0 0 0 0 0 1 1 
+next_command.display_on 0 0 0 0 0 0 0 0 0 0 1 0 1 
+next_command.mode_set 0 0 0 0 0 0 0 0 0 1 0 0 1 
+next_command.print_string 0 0 0 0 0 0 0 0 1 0 0 0 1 
+next_command.line2 0 0 0 0 0 0 0 1 0 0 0 0 1 
+next_command.return_home 0 0 0 0 0 0 1 0 0 0 0 0 1 
+next_command.drop_lcd_e 0 0 0 0 0 1 0 0 0 0 0 0 1 
+next_command.reset1 0 0 0 0 1 0 0 0 0 0 0 0 1 
+next_command.hold 0 0 0 1 0 0 0 0 0 0 0 0 1 
+next_command.reset3 0 0 1 0 0 0 0 0 0 0 0 0 1 
+next_command.display_off 0 1 0 0 0 0 0 0 0 0 0 0 1 
+next_command.display_clear 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |design|FINAL:inst|PING:U3|STATE
+Name STATE.idle_state_2 STATE.idle_state_1 STATE.score_inc_2 STATE.score_inc_1 STATE.loop_state_2 STATE.loop_state_1 STATE.position_state_2 STATE.position_state_1 STATE.step_decide_state_2 STATE.step_decide_state_1 STATE.serve_decide 
+STATE.serve_decide 0 0 0 0 0 0 0 0 0 0 0 
+STATE.step_decide_state_1 0 0 0 0 0 0 0 0 0 1 1 
+STATE.step_decide_state_2 0 0 0 0 0 0 0 0 1 0 1 
+STATE.position_state_1 0 0 0 0 0 0 0 1 0 0 1 
+STATE.position_state_2 0 0 0 0 0 0 1 0 0 0 1 
+STATE.loop_state_1 0 0 0 0 0 1 0 0 0 0 1 
+STATE.loop_state_2 0 0 0 0 1 0 0 0 0 0 1 
+STATE.score_inc_1 0 0 0 1 0 0 0 0 0 0 1 
+STATE.score_inc_2 0 0 1 0 0 0 0 0 0 0 1 
+STATE.idle_state_1 0 1 0 0 0 0 0 0 0 0 1 
+STATE.idle_state_2 1 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |design|FINAL:inst|bat:U1|state
+Name state.wait_ready state.read_data state.read_low 
+state.read_low 0 0 0 
+state.read_data 0 1 1 
+state.wait_ready 1 0 1 

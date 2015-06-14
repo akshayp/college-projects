@@ -1,0 +1,1683 @@
+Version 7.1 Build 156 04/30/2007 SJ Full Version
+36
+2079
+OFF
+OFF
+OFF
+OFF
+ON
+ON
+OFF
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+altsyncram
+# storage
+db|MIPS.(2).cnf
+db|MIPS.(2).cnf
+# case_insensitive
+# source_file
+c:|appl|altera|71|quartus|libraries|megafunctions|altsyncram.tdf
+b69478c2691550fb7f5ef3923da937a
+6
+# user_parameter {
+BYTE_SIZE_BLOCK
+8
+PARAMETER_UNKNOWN
+DEF
+AUTO_CARRY_CHAINS
+ON
+AUTO_CARRY
+USR
+IGNORE_CARRY_BUFFERS
+OFF
+IGNORE_CARRY
+USR
+AUTO_CASCADE_CHAINS
+ON
+AUTO_CASCADE
+USR
+IGNORE_CASCADE_BUFFERS
+OFF
+IGNORE_CASCADE
+USR
+WIDTH_BYTEENA
+1
+PARAMETER_UNKNOWN
+DEF
+OPERATION_MODE
+ROM
+PARAMETER_UNKNOWN
+USR
+WIDTH_A
+32
+PARAMETER_SIGNED_DEC
+USR
+WIDTHAD_A
+8
+PARAMETER_SIGNED_DEC
+USR
+NUMWORDS_A
+0
+PARAMETER_SIGNED_DEC
+USR
+OUTDATA_REG_A
+UNREGISTERED
+PARAMETER_UNKNOWN
+USR
+ADDRESS_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+OUTDATA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+USR
+WRCONTROL_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+INDATA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+BYTEENA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+WIDTH_B
+1
+PARAMETER_SIGNED_DEC
+USR
+WIDTHAD_B
+1
+PARAMETER_SIGNED_DEC
+USR
+NUMWORDS_B
+0
+PARAMETER_SIGNED_DEC
+USR
+INDATA_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+WRCONTROL_WRADDRESS_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+RDCONTROL_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+ADDRESS_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+OUTDATA_REG_B
+UNREGISTERED
+PARAMETER_UNKNOWN
+USR
+BYTEENA_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+INDATA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+WRCONTROL_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+ADDRESS_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+OUTDATA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+RDCONTROL_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+BYTEENA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+WIDTH_BYTEENA_A
+1
+PARAMETER_SIGNED_DEC
+USR
+WIDTH_BYTEENA_B
+1
+PARAMETER_SIGNED_DEC
+USR
+RAM_BLOCK_TYPE
+AUTO
+PARAMETER_UNKNOWN
+USR
+BYTE_SIZE
+8
+PARAMETER_SIGNED_DEC
+USR
+READ_DURING_WRITE_MODE_MIXED_PORTS
+DONT_CARE
+PARAMETER_UNKNOWN
+USR
+READ_DURING_WRITE_MODE_PORT_A
+NEW_DATA_NO_NBE_READ
+PARAMETER_UNKNOWN
+USR
+READ_DURING_WRITE_MODE_PORT_B
+NEW_DATA_NO_NBE_READ
+PARAMETER_UNKNOWN
+USR
+INIT_FILE
+program.mif
+PARAMETER_UNKNOWN
+USR
+INIT_FILE_LAYOUT
+PORT_A
+PARAMETER_UNKNOWN
+USR
+MAXIMUM_DEPTH
+0
+PARAMETER_SIGNED_DEC
+USR
+CLOCK_ENABLE_INPUT_A
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_INPUT_B
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_OUTPUT_A
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_OUTPUT_B
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_CORE_A
+USE_INPUT_CLKEN
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_CORE_B
+USE_INPUT_CLKEN
+PARAMETER_UNKNOWN
+USR
+ENABLE_ECC
+FALSE
+PARAMETER_UNKNOWN
+USR
+DEVICE_FAMILY
+Cyclone
+PARAMETER_UNKNOWN
+USR
+CBXI_PARAMETER
+altsyncram_7me3
+PARAMETER_UNKNOWN
+USR
+}
+# used_port {
+q_a9
+-1
+3
+q_a8
+-1
+3
+q_a7
+-1
+3
+q_a6
+-1
+3
+q_a5
+-1
+3
+q_a4
+-1
+3
+q_a31
+-1
+3
+q_a30
+-1
+3
+q_a3
+-1
+3
+q_a29
+-1
+3
+q_a28
+-1
+3
+q_a27
+-1
+3
+q_a26
+-1
+3
+q_a25
+-1
+3
+q_a24
+-1
+3
+q_a23
+-1
+3
+q_a22
+-1
+3
+q_a21
+-1
+3
+q_a20
+-1
+3
+q_a2
+-1
+3
+q_a19
+-1
+3
+q_a18
+-1
+3
+q_a17
+-1
+3
+q_a16
+-1
+3
+q_a15
+-1
+3
+q_a14
+-1
+3
+q_a13
+-1
+3
+q_a12
+-1
+3
+q_a11
+-1
+3
+q_a10
+-1
+3
+q_a1
+-1
+3
+q_a0
+-1
+3
+clock0
+-1
+3
+address_a7
+-1
+3
+address_a6
+-1
+3
+address_a5
+-1
+3
+address_a4
+-1
+3
+address_a3
+-1
+3
+address_a2
+-1
+3
+address_a1
+-1
+3
+address_a0
+-1
+3
+}
+# include_file {
+c:|appl|altera|71|quartus|libraries|megafunctions|lpm_mux.inc
+c22bfd353214c01495b560fc34e47d79
+c:|appl|altera|71|quartus|libraries|megafunctions|lpm_decode.inc
+bd0e2f5e01c1bd360461dceb53d48
+c:|appl|altera|71|quartus|libraries|megafunctions|stratix_ram_block.inc
+2263a3bdfffeb150af977ee13902f70
+c:|appl|altera|71|quartus|libraries|megafunctions|aglobal71.inc
+80b63f71158cd1a01acf29ef94ccd6
+c:|appl|altera|71|quartus|libraries|megafunctions|a_rdenreg.inc
+60d229340bc3c24acb0a137b4849830
+c:|appl|altera|71|quartus|libraries|megafunctions|altrom.inc
+d4e3a69a331d3a99d3281790d99a1ebd
+c:|appl|altera|71|quartus|libraries|megafunctions|altram.inc
+e66a83eccf6717bed97c99d891ad085
+c:|appl|altera|71|quartus|libraries|megafunctions|altdpram.inc
+99d442b5b66c88db4daf94d99c6e4e77
+c:|appl|altera|71|quartus|libraries|megafunctions|altqpram.inc
+74e08939f96a7ea8e7a4d59a5b01fe7
+}
+# hierarchies {
+Ifetch:IFE|altsyncram:inst_memory
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|
+d41d8cd98f0b24e980998ecf8427e
+# macro_sequence
+
+# end
+# entity
+altsyncram
+# storage
+db|MIPS.(8).cnf
+db|MIPS.(8).cnf
+# case_insensitive
+# source_file
+c:|appl|altera|71|quartus|libraries|megafunctions|altsyncram.tdf
+b69478c2691550fb7f5ef3923da937a
+6
+# user_parameter {
+BYTE_SIZE_BLOCK
+8
+PARAMETER_UNKNOWN
+DEF
+AUTO_CARRY_CHAINS
+ON
+AUTO_CARRY
+USR
+IGNORE_CARRY_BUFFERS
+OFF
+IGNORE_CARRY
+USR
+AUTO_CASCADE_CHAINS
+ON
+AUTO_CASCADE
+USR
+IGNORE_CASCADE_BUFFERS
+OFF
+IGNORE_CASCADE
+USR
+WIDTH_BYTEENA
+1
+PARAMETER_UNKNOWN
+DEF
+OPERATION_MODE
+SINGLE_PORT
+PARAMETER_UNKNOWN
+USR
+WIDTH_A
+32
+PARAMETER_SIGNED_DEC
+USR
+WIDTHAD_A
+8
+PARAMETER_SIGNED_DEC
+USR
+NUMWORDS_A
+0
+PARAMETER_SIGNED_DEC
+USR
+OUTDATA_REG_A
+UNREGISTERED
+PARAMETER_UNKNOWN
+USR
+ADDRESS_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+OUTDATA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+USR
+WRCONTROL_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+INDATA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+BYTEENA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+WIDTH_B
+1
+PARAMETER_SIGNED_DEC
+USR
+WIDTHAD_B
+1
+PARAMETER_SIGNED_DEC
+USR
+NUMWORDS_B
+0
+PARAMETER_SIGNED_DEC
+USR
+INDATA_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+WRCONTROL_WRADDRESS_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+RDCONTROL_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+ADDRESS_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+OUTDATA_REG_B
+UNREGISTERED
+PARAMETER_UNKNOWN
+USR
+BYTEENA_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+USR
+INDATA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+WRCONTROL_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+ADDRESS_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+OUTDATA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+RDCONTROL_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+BYTEENA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+USR
+WIDTH_BYTEENA_A
+1
+PARAMETER_SIGNED_DEC
+USR
+WIDTH_BYTEENA_B
+1
+PARAMETER_SIGNED_DEC
+USR
+RAM_BLOCK_TYPE
+AUTO
+PARAMETER_UNKNOWN
+USR
+BYTE_SIZE
+8
+PARAMETER_SIGNED_DEC
+USR
+READ_DURING_WRITE_MODE_MIXED_PORTS
+DONT_CARE
+PARAMETER_UNKNOWN
+USR
+READ_DURING_WRITE_MODE_PORT_A
+NEW_DATA_NO_NBE_READ
+PARAMETER_UNKNOWN
+USR
+READ_DURING_WRITE_MODE_PORT_B
+NEW_DATA_NO_NBE_READ
+PARAMETER_UNKNOWN
+USR
+INIT_FILE
+dmemory.mif
+PARAMETER_UNKNOWN
+USR
+INIT_FILE_LAYOUT
+PORT_A
+PARAMETER_UNKNOWN
+USR
+MAXIMUM_DEPTH
+0
+PARAMETER_SIGNED_DEC
+USR
+CLOCK_ENABLE_INPUT_A
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_INPUT_B
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_OUTPUT_A
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_OUTPUT_B
+NORMAL
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_CORE_A
+USE_INPUT_CLKEN
+PARAMETER_UNKNOWN
+USR
+CLOCK_ENABLE_CORE_B
+USE_INPUT_CLKEN
+PARAMETER_UNKNOWN
+USR
+ENABLE_ECC
+FALSE
+PARAMETER_UNKNOWN
+USR
+DEVICE_FAMILY
+Cyclone
+PARAMETER_UNKNOWN
+USR
+CBXI_PARAMETER
+altsyncram_qpg3
+PARAMETER_UNKNOWN
+USR
+}
+# used_port {
+wren_a
+-1
+3
+q_a9
+-1
+3
+q_a8
+-1
+3
+q_a7
+-1
+3
+q_a6
+-1
+3
+q_a5
+-1
+3
+q_a4
+-1
+3
+q_a31
+-1
+3
+q_a30
+-1
+3
+q_a3
+-1
+3
+q_a29
+-1
+3
+q_a28
+-1
+3
+q_a27
+-1
+3
+q_a26
+-1
+3
+q_a25
+-1
+3
+q_a24
+-1
+3
+q_a23
+-1
+3
+q_a22
+-1
+3
+q_a21
+-1
+3
+q_a20
+-1
+3
+q_a2
+-1
+3
+q_a19
+-1
+3
+q_a18
+-1
+3
+q_a17
+-1
+3
+q_a16
+-1
+3
+q_a15
+-1
+3
+q_a14
+-1
+3
+q_a13
+-1
+3
+q_a12
+-1
+3
+q_a11
+-1
+3
+q_a10
+-1
+3
+q_a1
+-1
+3
+q_a0
+-1
+3
+data_a9
+-1
+3
+data_a8
+-1
+3
+data_a7
+-1
+3
+data_a6
+-1
+3
+data_a5
+-1
+3
+data_a4
+-1
+3
+data_a31
+-1
+3
+data_a30
+-1
+3
+data_a3
+-1
+3
+data_a29
+-1
+3
+data_a28
+-1
+3
+data_a27
+-1
+3
+data_a26
+-1
+3
+data_a25
+-1
+3
+data_a24
+-1
+3
+data_a23
+-1
+3
+data_a22
+-1
+3
+data_a21
+-1
+3
+data_a20
+-1
+3
+data_a2
+-1
+3
+data_a19
+-1
+3
+data_a18
+-1
+3
+data_a17
+-1
+3
+data_a16
+-1
+3
+data_a15
+-1
+3
+data_a14
+-1
+3
+data_a13
+-1
+3
+data_a12
+-1
+3
+data_a11
+-1
+3
+data_a10
+-1
+3
+data_a1
+-1
+3
+data_a0
+-1
+3
+clock0
+-1
+3
+address_a7
+-1
+3
+address_a6
+-1
+3
+address_a5
+-1
+3
+address_a4
+-1
+3
+address_a3
+-1
+3
+address_a2
+-1
+3
+address_a1
+-1
+3
+address_a0
+-1
+3
+}
+# include_file {
+c:|appl|altera|71|quartus|libraries|megafunctions|lpm_mux.inc
+c22bfd353214c01495b560fc34e47d79
+c:|appl|altera|71|quartus|libraries|megafunctions|lpm_decode.inc
+bd0e2f5e01c1bd360461dceb53d48
+c:|appl|altera|71|quartus|libraries|megafunctions|stratix_ram_block.inc
+2263a3bdfffeb150af977ee13902f70
+c:|appl|altera|71|quartus|libraries|megafunctions|aglobal71.inc
+80b63f71158cd1a01acf29ef94ccd6
+c:|appl|altera|71|quartus|libraries|megafunctions|a_rdenreg.inc
+60d229340bc3c24acb0a137b4849830
+c:|appl|altera|71|quartus|libraries|megafunctions|altrom.inc
+d4e3a69a331d3a99d3281790d99a1ebd
+c:|appl|altera|71|quartus|libraries|megafunctions|altram.inc
+e66a83eccf6717bed97c99d891ad085
+c:|appl|altera|71|quartus|libraries|megafunctions|altdpram.inc
+99d442b5b66c88db4daf94d99c6e4e77
+c:|appl|altera|71|quartus|libraries|megafunctions|altqpram.inc
+74e08939f96a7ea8e7a4d59a5b01fe7
+}
+# hierarchies {
+dmemory:MEM|altsyncram:data_memory
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|
+d41d8cd98f0b24e980998ecf8427e
+# macro_sequence
+
+# end
+# entity
+Ifetch
+# storage
+db|MIPS.(1).cnf
+db|MIPS.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|IFETCH.VHD
+a065f471c6fd1ccb9785991678266d39
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(instruction)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc_plus_4_out)
+9 downto 0
+PARAMETER_STRING
+USR
+ constraint(add_result)
+7 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc_out)
+9 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Ifetch:IFE
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+Idecode
+# storage
+db|MIPS.(4).cnf
+db|MIPS.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|IDECODE.VHD
+da11e27ac18c569dcac0c372317dae0
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(read_data_1)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_data_2_ex)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_data_2_mem)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(instruction)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_data)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(sign_extend)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(alu_result_mem)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(alu_result_wb)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(alu_result_ex)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_register_1_address_out)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_register_2_address_out)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(d_read_register_1_address_out)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(d_read_register_2_address_out)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(d_write_register_address_out)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(dd_write_register_address_out)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(write_register_address_out)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(write_register_address_ex)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(write_register_address_mem)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(write_register_address_wb)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(write_data_out)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(add_result)
+7 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc_plus_4)
+9 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Idecode:ID
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+control
+# storage
+db|MIPS.(5).cnf
+db|MIPS.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|CONTROL.VHD
+3e8b939816face28fd7b067f55ba8
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(opcode)
+5 downto 0
+PARAMETER_STRING
+USR
+ constraint(aluop)
+1 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+control:CTL
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+Execute
+# storage
+db|MIPS.(6).cnf
+db|MIPS.(6).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|execute.vhd
+9a30a081de2a79c679b6f27a3d9b306f
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(read_data_1)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_data_2)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(sign_extend)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(function_opcode)
+5 downto 0
+PARAMETER_STRING
+USR
+ constraint(aluop)
+1 downto 0
+PARAMETER_STRING
+USR
+ constraint(alu_result_mem)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(alu_result_wb)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(alu_result_ex)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(pc_plus_4)
+9 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_register_1_address)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(read_register_2_address)
+4 downto 0
+PARAMETER_STRING
+USR
+ constraint(write_data)
+31 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Execute:EXE
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+dmemory
+# storage
+db|MIPS.(7).cnf
+db|MIPS.(7).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|DMEMORY.VHD
+344cd53e8b78f5cf294d52934087ac43
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(read_data)
+31 downto 0
+PARAMETER_STRING
+USR
+ constraint(address)
+7 downto 0
+PARAMETER_STRING
+USR
+ constraint(write_data)
+31 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+dmemory:MEM
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+altsyncram_qpg3
+# storage
+db|MIPS.(9).cnf
+db|MIPS.(9).cnf
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|db|altsyncram_qpg3.tdf
+15ac9361e27ce98239f075766cb06a91
+6
+# user_parameter {
+PORT_A_ADDRESS_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_A_BYTE_ENABLE_MASK_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_A_DATA_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_B_ADDRESS_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_B_BYTE_ENABLE_MASK_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_B_DATA_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+}
+# used_port {
+wren_a
+-1
+3
+q_a9
+-1
+3
+q_a8
+-1
+3
+q_a7
+-1
+3
+q_a6
+-1
+3
+q_a5
+-1
+3
+q_a4
+-1
+3
+q_a31
+-1
+3
+q_a30
+-1
+3
+q_a3
+-1
+3
+q_a29
+-1
+3
+q_a28
+-1
+3
+q_a27
+-1
+3
+q_a26
+-1
+3
+q_a25
+-1
+3
+q_a24
+-1
+3
+q_a23
+-1
+3
+q_a22
+-1
+3
+q_a21
+-1
+3
+q_a20
+-1
+3
+q_a2
+-1
+3
+q_a19
+-1
+3
+q_a18
+-1
+3
+q_a17
+-1
+3
+q_a16
+-1
+3
+q_a15
+-1
+3
+q_a14
+-1
+3
+q_a13
+-1
+3
+q_a12
+-1
+3
+q_a11
+-1
+3
+q_a10
+-1
+3
+q_a1
+-1
+3
+q_a0
+-1
+3
+data_a9
+-1
+3
+data_a8
+-1
+3
+data_a7
+-1
+3
+data_a6
+-1
+3
+data_a5
+-1
+3
+data_a4
+-1
+3
+data_a31
+-1
+3
+data_a30
+-1
+3
+data_a3
+-1
+3
+data_a29
+-1
+3
+data_a28
+-1
+3
+data_a27
+-1
+3
+data_a26
+-1
+3
+data_a25
+-1
+3
+data_a24
+-1
+3
+data_a23
+-1
+3
+data_a22
+-1
+3
+data_a21
+-1
+3
+data_a20
+-1
+3
+data_a2
+-1
+3
+data_a19
+-1
+3
+data_a18
+-1
+3
+data_a17
+-1
+3
+data_a16
+-1
+3
+data_a15
+-1
+3
+data_a14
+-1
+3
+data_a13
+-1
+3
+data_a12
+-1
+3
+data_a11
+-1
+3
+data_a10
+-1
+3
+data_a1
+-1
+3
+data_a0
+-1
+3
+clock0
+-1
+3
+address_a7
+-1
+3
+address_a6
+-1
+3
+address_a5
+-1
+3
+address_a4
+-1
+3
+address_a3
+-1
+3
+address_a2
+-1
+3
+address_a1
+-1
+3
+address_a0
+-1
+3
+}
+# memory_file {
+dmemory.mif
+fcc9692dea10c6a2ffb9cb5adafd11
+}
+# hierarchies {
+dmemory:MEM|altsyncram:data_memory|altsyncram_qpg3:auto_generated
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|
+d41d8cd98f0b24e980998ecf8427e
+# macro_sequence
+
+# end
+# entity
+MIPS
+# storage
+db|MIPS.(0).cnf
+db|MIPS.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|MIPS.vhd
+bfa954d85d7f8dffb85781572655c2bf
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# hierarchies {
+|
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+altsyncram_7me3
+# storage
+db|MIPS.(3).cnf
+db|MIPS.(3).cnf
+# case_insensitive
+# source_file
+||coe.gt.buzz|ECE_Root|Users|Students|gth708n|Profile|Desktop|3055|Lab 3|Lab 3-2 proper|db|altsyncram_7me3.tdf
+2268ae5f326d4f916a192c0dc52b0a4
+6
+# user_parameter {
+PORT_A_ADDRESS_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_A_BYTE_ENABLE_MASK_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_A_DATA_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_B_ADDRESS_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_B_BYTE_ENABLE_MASK_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+PORT_B_DATA_WIDTH
+1
+PARAMETER_UNKNOWN
+DEF
+}
+# used_port {
+q_a9
+-1
+3
+q_a8
+-1
+3
+q_a7
+-1
+3
+q_a6
+-1
+3
+q_a5
+-1
+3
+q_a4
+-1
+3
+q_a31
+-1
+3
+q_a30
+-1
+3
+q_a3
+-1
+3
+q_a29
+-1
+3
+q_a28
+-1
+3
+q_a27
+-1
+3
+q_a26
+-1
+3
+q_a25
+-1
+3
+q_a24
+-1
+3
+q_a23
+-1
+3
+q_a22
+-1
+3
+q_a21
+-1
+3
+q_a20
+-1
+3
+q_a2
+-1
+3
+q_a19
+-1
+3
+q_a18
+-1
+3
+q_a17
+-1
+3
+q_a16
+-1
+3
+q_a15
+-1
+3
+q_a14
+-1
+3
+q_a13
+-1
+3
+q_a12
+-1
+3
+q_a11
+-1
+3
+q_a10
+-1
+3
+q_a1
+-1
+3
+q_a0
+-1
+3
+clock0
+-1
+3
+address_a7
+-1
+3
+address_a6
+-1
+3
+address_a5
+-1
+3
+address_a4
+-1
+3
+address_a3
+-1
+3
+address_a2
+-1
+3
+address_a1
+-1
+3
+address_a0
+-1
+3
+}
+# memory_file {
+program.mif
+76eea55f292f13a0a7fd9989565ed73e
+}
+# hierarchies {
+Ifetch:IFE|altsyncram:inst_memory|altsyncram_7me3:auto_generated
+}
+# lmf
+c:|appl|altera|71|quartus|lmf|
+d41d8cd98f0b24e980998ecf8427e
+# macro_sequence
+
+# end
+# complete
+

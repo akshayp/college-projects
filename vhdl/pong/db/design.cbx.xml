@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="design">
+		<CBX_INST_ENTRY INSTANCE_NAME="|design|FINAL:inst|display:U4|altsyncram:RGB_rtl_0" CBX_FILE_NAME="altsyncram_uuj.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

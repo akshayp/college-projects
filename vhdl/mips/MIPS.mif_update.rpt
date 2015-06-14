@@ -1,0 +1,72 @@
+MIF/HEX Update report for MIPS
+Tue Mar 10 19:55:52 2009
+Quartus II Version 7.1 Build 156 04/30/2007 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. MIF/HEX Update Summary
+  3. MIF/HEX Update Processed Files
+  4. MIF/HEX Update Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2007 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------+
+; MIF/HEX Update Summary                                        ;
++-----------------------+---------------------------------------+
+; MIF/HEX Update Status ; Successful - Tue Mar 10 19:55:52 2009 ;
+; Revision Name         ; MIPS                                  ;
+; Top-level Entity Name ; MIPS                                  ;
+; Family                ; Cyclone                               ;
+; Device                ; EP1C20F400C6                          ;
++-----------------------+---------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; MIF/HEX Update Processed Files                                                                      ;
++-----------------------------------------------------------------------------------------------------+
+; File Name                                                                                           ;
++-----------------------------------------------------------------------------------------------------+
+; //coe.gt.buzz/ECE_Root/Users/Students/gth708n/Profile/Desktop/3055/Lab 3/Lab 3-2 proper/dmemory.mif ;
+; //coe.gt.buzz/ECE_Root/Users/Students/gth708n/Profile/Desktop/3055/Lab 3/Lab 3-2 proper/program.mif ;
++-----------------------------------------------------------------------------------------------------+
+
+
++-------------------------+
+; MIF/HEX Update Messages ;
++-------------------------+
+Info: *******************************************************************
+Info: Running Quartus II MIF/HEX Update
+    Info: Version 7.1 Build 156 04/30/2007 SJ Full Version
+    Info: Processing started: Tue Mar 10 19:55:50 2009
+Info: Command: quartus_cdb MIPS -c MIPS --update_mif
+Info: Processed the following Memory Initialization File(s)
+    Info: Processed Memory Initialization File //coe.gt.buzz/ECE_Root/Users/Students/gth708n/Profile/Desktop/3055/Lab 3/Lab 3-2 proper/dmemory.mif
+    Info: Processed Memory Initialization File //coe.gt.buzz/ECE_Root/Users/Students/gth708n/Profile/Desktop/3055/Lab 3/Lab 3-2 proper/program.mif
+Info: Quartus II MIF/HEX Update was successful. 0 errors, 0 warnings
+    Info: Allocated 111 megabytes of memory during processing
+    Info: Processing ended: Tue Mar 10 19:55:52 2009
+    Info: Elapsed time: 00:00:02
+
+

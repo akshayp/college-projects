@@ -1,0 +1,13 @@
+Flow Status : In progress - Tue Dec 14 22:33:51 2004
+Quartus II Version : 4.2 Build 156 11/29/2004 SJ Web Edition
+Revision Name : MIPS
+Top-level Entity Name : MIPS
+Family : Cyclone
+Device : EP1C20F400C8
+Timing Models : Final
+Met timing requirements : Yes
+Total logic elements : 1,775 / 20,060 ( 8 % )
+Total pins : 174 / 301 ( 57 % )
+Total virtual pins : 0
+Total memory bits : 16,384 / 294,912 ( 5 % )
+Total PLLs : 0 / 2 ( 0 % )

@@ -1,0 +1,120 @@
+Partition Merge report for MIPS
+Mon Jul 25 12:58:39 2005
+Version 5.0 Build 168 06/22/2005 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Partition Merge Summary
+  3. Partition Merge Netlist Types Used
+  4. Partition Merge Partition Statistics
+  5. Partition Merge Resource Usage Summary
+  6. Partition Merge RAM Summary
+  7. Partition Merge Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2005 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic       
+functions, and any output files any of the foregoing           
+(including device programming or simulation files), and any    
+associated documentation or information are expressly subject  
+to the terms and conditions of the Altera Program License      
+Subscription Agreement, Altera MegaCore Function License       
+Agreement, or other applicable license agreement, including,   
+without limitation, that your use is for the sole purpose of   
+programming logic devices manufactured by Altera and sold by   
+Altera or its authorized distributors.  Please refer to the    
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------+
+; Partition Merge Summary                                               ;
++------------------------+----------------------------------------------+
+; Partition Merge Status ; Successful - Mon Jul 25 12:58:39 2005        ;
+; Quartus II Version     ; 5.0 Build 168 06/22/2005 SP 1 SJ Web Edition ;
+; Revision Name          ; MIPS                                         ;
+; Top-level Entity Name  ; MIPS                                         ;
+; Family                 ; Cyclone                                      ;
+; Total logic elements   ; 2,762                                        ;
+; Total pins             ; 176                                          ;
+; Total virtual pins     ; 0                                            ;
+; Total memory bits      ; 16,384                                       ;
+; Total PLLs             ; 0                                            ;
++------------------------+----------------------------------------------+
+
+
++--------------------------------------------------------------+
+; Partition Merge Netlist Types Used                           ;
++----------------+------------------------+--------------------+
+; Partition Name ; Netlist Type Used      ; Partition Contents ;
++----------------+------------------------+--------------------+
+; Top            ; Post-Synthesis Netlist ;                    ;
++----------------+------------------------+--------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Partition Statistics                                                                                                                                                      ;
++----------------+----------------+-------------+--------------+------------------------+-------------------------+-------------------------+--------------------------+--------------------+
+; Partition Name ; Logic Elements ; Input Ports ; Output Ports ; Registered Input Ports ; Registered Output Ports ; Unconnected Input Ports ; Unconnected Output Ports ; Partition Contents ;
++----------------+----------------+-------------+--------------+------------------------+-------------------------+-------------------------+--------------------------+--------------------+
+; Top            ; 2762           ; 2           ; 174          ; 0                      ; 8                       ; N/A                     ; N/A                      ;                    ;
++----------------+----------------+-------------+--------------+------------------------+-------------------------+-------------------------+--------------------------+--------------------+
+
+
++-------------------------------------------+
+; Partition Merge Resource Usage Summary    ;
++-----------------------------------+-------+
+; Resource                          ; Usage ;
++-----------------------------------+-------+
+; Total logic elements              ; 2762  ;
+; Total combinational functions     ; 1735  ;
+;     -- Total 4-input functions    ; 1491  ;
+;     -- Total 3-input functions    ; 152   ;
+;     -- Total 2-input functions    ; 81    ;
+;     -- Total 1-input functions    ; 10    ;
+;     -- Total 0-input functions    ; 1     ;
+; Combinational cells for routing   ; 0     ;
+; Total registers                   ; 1032  ;
+; Total logic cells in carry chains ; 49    ;
+; I/O pins                          ; 176   ;
+; Total memory bits                 ; 16384 ;
+; Maximum fan-out node              ; clock ;
+; Maximum fan-out                   ; 1096  ;
+; Total fan-out                     ; 10535 ;
+; Average fan-out                   ; 3.51  ;
++-----------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge RAM Summary                                                                                                                                                        ;
++------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
+; Name                                                                         ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF         ;
++------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
+; Ifetch:IFE|altsyncram:inst_memory|altsyncram_cai2:auto_generated|ALTSYNCRAM  ; AUTO ; ROM         ; 256          ; 32           ; --           ; --           ; 8192 ; program.mif ;
+; dmemory:MEM|altsyncram:data_memory|altsyncram_vdk2:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 256          ; 32           ; --           ; --           ; 8192 ; dmemory.mif ;
++------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
+
+
++--------------------------+
+; Partition Merge Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Partition Merge
+    Info: Version 5.0 Build 168 06/22/2005 Service Pack 1 SJ Web Edition
+    Info: Processing started: Mon Jul 25 12:58:38 2005
+Info: Command: quartus_cdb MIPS -c MIPS --merge=on
+Info: Using synthesis netlist for partition "Top"
+Info: Netlist merging resolved 1 partition(s) out of the 1 partition(s) found
+Info: Quartus II Partition Merge was successful. 0 errors, 0 warnings
+    Info: Processing ended: Mon Jul 25 12:58:39 2005
+    Info: Elapsed time: 00:00:01
+
+

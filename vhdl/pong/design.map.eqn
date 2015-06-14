@@ -1,0 +1,6951 @@
+-- Copyright (C) 1991-2005 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+--K1_Horiz_sync is FINAL:inst|display:U4|Horiz_sync
+--operation mode is normal
+
+K1_Horiz_sync_lut_out = K1L773 # K1L873 & K1L57 # !K1L973;
+K1_Horiz_sync = DFFEAS(K1_Horiz_sync_lut_out, P1__clk0, VCC, , , , , , );
+
+
+--K1_Vert_sync is FINAL:inst|display:U4|Vert_sync
+--operation mode is normal
+
+K1_Vert_sync_lut_out = K1L083 # K1_Vert_Count[0] $ !K1_Vert_Count[1] # !K1L183;
+K1_Vert_sync = DFFEAS(K1_Vert_sync_lut_out, P1__clk0, VCC, , K1L683, , , , );
+
+
+--C1_LCD_RS is LCD_Display:inst2|LCD_RS
+--operation mode is normal
+
+C1_LCD_RS_lut_out = C1_state.print_string # C1_LCD_RS & (C1_state.drop_lcd_e # C1_state.hold);
+C1_LCD_RS = DFFEAS(C1_LCD_RS_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_LCD_E is LCD_Display:inst2|LCD_E
+--operation mode is normal
+
+C1_LCD_E_lut_out = C1_state.drop_lcd_e;
+C1_LCD_E = DFFEAS(C1_LCD_E_lut_out, CLK48, RESETN, , C1L96, , , , );
+
+
+--C1_LCD_RW is LCD_Display:inst2|LCD_RW
+--operation mode is normal
+
+C1_LCD_RW_lut_out = VCC;
+C1_LCD_RW = DFFEAS(C1_LCD_RW_lut_out, CLK48, RESETN, , C1L27, , , , );
+
+
+--K1_Horiz_Count[6] is FINAL:inst|display:U4|Horiz_Count[6]
+--operation mode is arithmetic
+
+K1_Horiz_Count[6]_carry_eqn = K1L56;
+K1_Horiz_Count[6]_lut_out = K1_Horiz_Count[6] $ (!K1_Horiz_Count[6]_carry_eqn);
+K1_Horiz_Count[6] = DFFEAS(K1_Horiz_Count[6]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L76 is FINAL:inst|display:U4|Horiz_Count[6]~322
+--operation mode is arithmetic
+
+K1L76 = CARRY(K1_Horiz_Count[6] & (!K1L56));
+
+
+--K1_Horiz_Count[4] is FINAL:inst|display:U4|Horiz_Count[4]
+--operation mode is arithmetic
+
+K1_Horiz_Count[4]_carry_eqn = K1L16;
+K1_Horiz_Count[4]_lut_out = K1_Horiz_Count[4] $ (!K1_Horiz_Count[4]_carry_eqn);
+K1_Horiz_Count[4] = DFFEAS(K1_Horiz_Count[4]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L36 is FINAL:inst|display:U4|Horiz_Count[4]~326
+--operation mode is arithmetic
+
+K1L36 = CARRY(K1_Horiz_Count[4] & (!K1L16));
+
+
+--K1_Horiz_Count[5] is FINAL:inst|display:U4|Horiz_Count[5]
+--operation mode is arithmetic
+
+K1_Horiz_Count[5]_carry_eqn = K1L36;
+K1_Horiz_Count[5]_lut_out = K1_Horiz_Count[5] $ (K1_Horiz_Count[5]_carry_eqn);
+K1_Horiz_Count[5] = DFFEAS(K1_Horiz_Count[5]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L56 is FINAL:inst|display:U4|Horiz_Count[5]~330
+--operation mode is arithmetic
+
+K1L56 = CARRY(!K1L36 # !K1_Horiz_Count[5]);
+
+
+--K1L673 is FINAL:inst|display:U4|VIDEO_DISPLAY~533
+--operation mode is normal
+
+K1L673 = K1_Horiz_Count[4] & K1_Horiz_Count[5];
+
+
+--K1_Horiz_Count[3] is FINAL:inst|display:U4|Horiz_Count[3]
+--operation mode is arithmetic
+
+K1_Horiz_Count[3]_carry_eqn = K1L95;
+K1_Horiz_Count[3]_lut_out = K1_Horiz_Count[3] $ (K1_Horiz_Count[3]_carry_eqn);
+K1_Horiz_Count[3] = DFFEAS(K1_Horiz_Count[3]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L16 is FINAL:inst|display:U4|Horiz_Count[3]~334
+--operation mode is arithmetic
+
+K1L16 = CARRY(!K1L95 # !K1_Horiz_Count[3]);
+
+
+--K1_Horiz_Count[2] is FINAL:inst|display:U4|Horiz_Count[2]
+--operation mode is arithmetic
+
+K1_Horiz_Count[2]_carry_eqn = K1L75;
+K1_Horiz_Count[2]_lut_out = K1_Horiz_Count[2] $ (!K1_Horiz_Count[2]_carry_eqn);
+K1_Horiz_Count[2] = DFFEAS(K1_Horiz_Count[2]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L95 is FINAL:inst|display:U4|Horiz_Count[2]~338
+--operation mode is arithmetic
+
+K1L95 = CARRY(K1_Horiz_Count[2] & (!K1L75));
+
+
+--K1L773 is FINAL:inst|display:U4|VIDEO_DISPLAY~534
+--operation mode is normal
+
+K1L773 = K1_Horiz_Count[6] & K1L673 & (K1_Horiz_Count[3] # K1_Horiz_Count[2]);
+
+
+--K1_Horiz_Count[0] is FINAL:inst|display:U4|Horiz_Count[0]
+--operation mode is arithmetic
+
+K1_Horiz_Count[0]_lut_out = !K1_Horiz_Count[0];
+K1_Horiz_Count[0] = DFFEAS(K1_Horiz_Count[0]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L55 is FINAL:inst|display:U4|Horiz_Count[0]~342
+--operation mode is arithmetic
+
+K1L55 = CARRY(K1_Horiz_Count[0]);
+
+
+--K1_Horiz_Count[1] is FINAL:inst|display:U4|Horiz_Count[1]
+--operation mode is arithmetic
+
+K1_Horiz_Count[1]_carry_eqn = K1L55;
+K1_Horiz_Count[1]_lut_out = K1_Horiz_Count[1] $ (K1_Horiz_Count[1]_carry_eqn);
+K1_Horiz_Count[1] = DFFEAS(K1_Horiz_Count[1]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L75 is FINAL:inst|display:U4|Horiz_Count[1]~346
+--operation mode is arithmetic
+
+K1L75 = CARRY(!K1L55 # !K1_Horiz_Count[1]);
+
+
+--K1L47 is FINAL:inst|display:U4|LessThan~1146
+--operation mode is normal
+
+K1L47 = K1_Horiz_Count[0] & K1_Horiz_Count[1];
+
+
+--K1L873 is FINAL:inst|display:U4|VIDEO_DISPLAY~535
+--operation mode is normal
+
+K1L873 = !K1_Horiz_Count[3] & !K1_Horiz_Count[2] & !K1L47 # !K1_Horiz_Count[4];
+
+
+--K1L57 is FINAL:inst|display:U4|LessThan~1147
+--operation mode is normal
+
+K1L57 = !K1_Horiz_Count[6] & !K1_Horiz_Count[5];
+
+
+--K1_Horiz_Count[9] is FINAL:inst|display:U4|Horiz_Count[9]
+--operation mode is normal
+
+K1_Horiz_Count[9]_carry_eqn = K1L17;
+K1_Horiz_Count[9]_lut_out = K1_Horiz_Count[9] $ (K1_Horiz_Count[9]_carry_eqn);
+K1_Horiz_Count[9] = DFFEAS(K1_Horiz_Count[9]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+
+--K1_Horiz_Count[7] is FINAL:inst|display:U4|Horiz_Count[7]
+--operation mode is arithmetic
+
+K1_Horiz_Count[7]_carry_eqn = K1L76;
+K1_Horiz_Count[7]_lut_out = K1_Horiz_Count[7] $ (K1_Horiz_Count[7]_carry_eqn);
+K1_Horiz_Count[7] = DFFEAS(K1_Horiz_Count[7]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L96 is FINAL:inst|display:U4|Horiz_Count[7]~354
+--operation mode is arithmetic
+
+K1L96 = CARRY(!K1L76 # !K1_Horiz_Count[7]);
+
+
+--K1_Horiz_Count[8] is FINAL:inst|display:U4|Horiz_Count[8]
+--operation mode is arithmetic
+
+K1_Horiz_Count[8]_carry_eqn = K1L96;
+K1_Horiz_Count[8]_lut_out = K1_Horiz_Count[8] $ (!K1_Horiz_Count[8]_carry_eqn);
+K1_Horiz_Count[8] = DFFEAS(K1_Horiz_Count[8]_lut_out, P1__clk0, VCC, , , , , K1L97, );
+
+--K1L17 is FINAL:inst|display:U4|Horiz_Count[8]~358
+--operation mode is arithmetic
+
+K1L17 = CARRY(K1_Horiz_Count[8] & (!K1L96));
+
+
+--K1L973 is FINAL:inst|display:U4|VIDEO_DISPLAY~536
+--operation mode is normal
+
+K1L973 = K1_Horiz_Count[9] & K1_Horiz_Count[7] & (!K1_Horiz_Count[8]);
+
+
+--P1__clk0 is VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component|_clk0
+P1__clk0 = PLL.CLK0(.FBIN(), .ENA(), .CLKSWITCH(), .ARESET(), .PFDENA(), .SCANCLK(), .SCANACLR(), .SCANDATA(), .COMPARATOR(), .INCLK(CLK48), .INCLK(), .CLKENA(), .CLKENA(), .CLKENA(), .CLKENA(), .CLKENA(), .CLKENA(), .EXTCLKENA(), .EXTCLKENA(), .EXTCLKENA(), .EXTCLKENA());
+
+
+--K1_Vert_Count[9] is FINAL:inst|display:U4|Vert_Count[9]
+--operation mode is normal
+
+K1_Vert_Count[9]_carry_eqn = K1L373;
+K1_Vert_Count[9]_lut_out = K1_Vert_Count[9] $ (K1_Vert_Count[9]_carry_eqn);
+K1_Vert_Count[9] = DFFEAS(K1_Vert_Count[9]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+
+--K1_Vert_Count[4] is FINAL:inst|display:U4|Vert_Count[4]
+--operation mode is arithmetic
+
+K1_Vert_Count[4]_carry_eqn = K1L363;
+K1_Vert_Count[4]_lut_out = K1_Vert_Count[4] $ (!K1_Vert_Count[4]_carry_eqn);
+K1_Vert_Count[4] = DFFEAS(K1_Vert_Count[4]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L563 is FINAL:inst|display:U4|Vert_Count[4]~246
+--operation mode is arithmetic
+
+K1L563 = CARRY(K1_Vert_Count[4] & (!K1L363));
+
+
+--K1_Vert_Count[5] is FINAL:inst|display:U4|Vert_Count[5]
+--operation mode is arithmetic
+
+K1_Vert_Count[5]_carry_eqn = K1L563;
+K1_Vert_Count[5]_lut_out = K1_Vert_Count[5] $ (K1_Vert_Count[5]_carry_eqn);
+K1_Vert_Count[5] = DFFEAS(K1_Vert_Count[5]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L763 is FINAL:inst|display:U4|Vert_Count[5]~250
+--operation mode is arithmetic
+
+K1L763 = CARRY(!K1L563 # !K1_Vert_Count[5]);
+
+
+--K1_Vert_Count[6] is FINAL:inst|display:U4|Vert_Count[6]
+--operation mode is arithmetic
+
+K1_Vert_Count[6]_carry_eqn = K1L763;
+K1_Vert_Count[6]_lut_out = K1_Vert_Count[6] $ (!K1_Vert_Count[6]_carry_eqn);
+K1_Vert_Count[6] = DFFEAS(K1_Vert_Count[6]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L963 is FINAL:inst|display:U4|Vert_Count[6]~254
+--operation mode is arithmetic
+
+K1L963 = CARRY(K1_Vert_Count[6] & (!K1L763));
+
+
+--K1_Vert_Count[7] is FINAL:inst|display:U4|Vert_Count[7]
+--operation mode is arithmetic
+
+K1_Vert_Count[7]_carry_eqn = K1L963;
+K1_Vert_Count[7]_lut_out = K1_Vert_Count[7] $ (K1_Vert_Count[7]_carry_eqn);
+K1_Vert_Count[7] = DFFEAS(K1_Vert_Count[7]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L173 is FINAL:inst|display:U4|Vert_Count[7]~258
+--operation mode is arithmetic
+
+K1L173 = CARRY(!K1L963 # !K1_Vert_Count[7]);
+
+
+--K1_Vert_Count[8] is FINAL:inst|display:U4|Vert_Count[8]
+--operation mode is arithmetic
+
+K1_Vert_Count[8]_carry_eqn = K1L173;
+K1_Vert_Count[8]_lut_out = K1_Vert_Count[8] $ (!K1_Vert_Count[8]_carry_eqn);
+K1_Vert_Count[8] = DFFEAS(K1_Vert_Count[8]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L373 is FINAL:inst|display:U4|Vert_Count[8]~262
+--operation mode is arithmetic
+
+K1L373 = CARRY(K1_Vert_Count[8] & (!K1L173));
+
+
+--K1L67 is FINAL:inst|display:U4|LessThan~1148
+--operation mode is normal
+
+K1L67 = K1_Vert_Count[6] & K1_Vert_Count[7] & K1_Vert_Count[8];
+
+
+--K1L083 is FINAL:inst|display:U4|VIDEO_DISPLAY~538
+--operation mode is normal
+
+K1L083 = K1_Vert_Count[9] # K1_Vert_Count[4] # !K1L67 # !K1_Vert_Count[5];
+
+
+--K1_Vert_Count[0] is FINAL:inst|display:U4|Vert_Count[0]
+--operation mode is arithmetic
+
+K1_Vert_Count[0]_lut_out = K1_Vert_Count[0] $ !K1L58;
+K1_Vert_Count[0] = DFFEAS(K1_Vert_Count[0]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L753 is FINAL:inst|display:U4|Vert_Count[0]~266
+--operation mode is arithmetic
+
+K1L753 = CARRY(K1_Vert_Count[0] & !K1L58);
+
+
+--K1_Vert_Count[1] is FINAL:inst|display:U4|Vert_Count[1]
+--operation mode is arithmetic
+
+K1_Vert_Count[1]_carry_eqn = K1L753;
+K1_Vert_Count[1]_lut_out = K1_Vert_Count[1] $ (K1_Vert_Count[1]_carry_eqn);
+K1_Vert_Count[1] = DFFEAS(K1_Vert_Count[1]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L953 is FINAL:inst|display:U4|Vert_Count[1]~270
+--operation mode is arithmetic
+
+K1L953 = CARRY(!K1L753 # !K1_Vert_Count[1]);
+
+
+--K1_Vert_Count[2] is FINAL:inst|display:U4|Vert_Count[2]
+--operation mode is arithmetic
+
+K1_Vert_Count[2]_carry_eqn = K1L953;
+K1_Vert_Count[2]_lut_out = K1_Vert_Count[2] $ (!K1_Vert_Count[2]_carry_eqn);
+K1_Vert_Count[2] = DFFEAS(K1_Vert_Count[2]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L163 is FINAL:inst|display:U4|Vert_Count[2]~274
+--operation mode is arithmetic
+
+K1L163 = CARRY(K1_Vert_Count[2] & (!K1L953));
+
+
+--K1_Vert_Count[3] is FINAL:inst|display:U4|Vert_Count[3]
+--operation mode is arithmetic
+
+K1_Vert_Count[3]_carry_eqn = K1L163;
+K1_Vert_Count[3]_lut_out = K1_Vert_Count[3] $ (K1_Vert_Count[3]_carry_eqn);
+K1_Vert_Count[3] = DFFEAS(K1_Vert_Count[3]_lut_out, P1__clk0, VCC, , , , , !K1L683, );
+
+--K1L363 is FINAL:inst|display:U4|Vert_Count[3]~278
+--operation mode is arithmetic
+
+K1L363 = CARRY(!K1L163 # !K1_Vert_Count[3]);
+
+
+--K1L183 is FINAL:inst|display:U4|VIDEO_DISPLAY~539
+--operation mode is normal
+
+K1L183 = K1_Vert_Count[2] & K1_Vert_Count[3];
+
+
+--K1L283 is FINAL:inst|display:U4|VIDEO_DISPLAY~541
+--operation mode is normal
+
+K1L283 = !K1_Horiz_Count[2] & !K1L47 # !K1L673 # !K1_Horiz_Count[3];
+
+
+--K1L383 is FINAL:inst|display:U4|VIDEO_DISPLAY~542
+--operation mode is normal
+
+K1L383 = !K1_Horiz_Count[8] & (K1L283 & !K1_Horiz_Count[6] # !K1_Horiz_Count[7]);
+
+
+--K1L483 is FINAL:inst|display:U4|VIDEO_DISPLAY~543
+--operation mode is normal
+
+K1L483 = !K1_Vert_Count[6] & !K1_Vert_Count[7] & !K1_Vert_Count[8];
+
+
+--K1L583 is FINAL:inst|display:U4|VIDEO_DISPLAY~544
+--operation mode is normal
+
+K1L583 = K1L483 & !K1_Vert_Count[5] & !K1_Vert_Count[4] & !K1L183;
+
+
+--K1L683 is FINAL:inst|display:U4|VIDEO_DISPLAY~545
+--operation mode is normal
+
+K1L683 = K1L383 # K1L583 # !K1_Vert_Count[9] # !K1_Horiz_Count[9];
+
+
+--K1_row_address[6] is FINAL:inst|display:U4|row_address[6]
+--operation mode is normal
+
+K1_row_address[6]_lut_out = K1L3;
+K1_row_address[6] = DFFEAS(K1_row_address[6]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1_row_address[7] is FINAL:inst|display:U4|row_address[7]
+--operation mode is normal
+
+K1_row_address[7]_lut_out = K1L5;
+K1_row_address[7] = DFFEAS(K1_row_address[7]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1L001 is FINAL:inst|display:U4|reduce_nor~1513
+--operation mode is normal
+
+K1L001 = !K1_row_address[6] & !K1_row_address[7];
+
+
+--K1_row_address[1] is FINAL:inst|display:U4|row_address[1]
+--operation mode is normal
+
+K1_row_address[1]_lut_out = K1L8;
+K1_row_address[1] = DFFEAS(K1_row_address[1]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1_row_address[0] is FINAL:inst|display:U4|row_address[0]
+--operation mode is normal
+
+K1_row_address[0]_lut_out = K1L11;
+K1_row_address[0] = DFFEAS(K1_row_address[0]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1_row_address[3] is FINAL:inst|display:U4|row_address[3]
+--operation mode is normal
+
+K1_row_address[3]_lut_out = K1L41;
+K1_row_address[3] = DFFEAS(K1_row_address[3]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1_row_address[2] is FINAL:inst|display:U4|row_address[2]
+--operation mode is normal
+
+K1_row_address[2]_lut_out = K1L71;
+K1_row_address[2] = DFFEAS(K1_row_address[2]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1L261 is FINAL:inst|display:U4|RGB~7986
+--operation mode is normal
+
+K1L261 = !K1_row_address[3] & !K1_row_address[2] & (!K1_row_address[0] # !K1_row_address[1]);
+
+
+--K1L101 is FINAL:inst|display:U4|reduce_nor~1514
+--operation mode is normal
+
+K1L101 = K1_row_address[1] & K1_row_address[0] & K1_row_address[3] & K1_row_address[2];
+
+
+--K1_row_address[4] is FINAL:inst|display:U4|row_address[4]
+--operation mode is normal
+
+K1_row_address[4]_lut_out = K1L02;
+K1_row_address[4] = DFFEAS(K1_row_address[4]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1_row_address[5] is FINAL:inst|display:U4|row_address[5]
+--operation mode is normal
+
+K1_row_address[5]_lut_out = K1L32;
+K1_row_address[5] = DFFEAS(K1_row_address[5]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1L361 is FINAL:inst|display:U4|RGB~7987
+--operation mode is normal
+
+K1L361 = K1_row_address[4] & (K1L261 # !K1_row_address[5]) # !K1_row_address[4] & (K1L101 # K1_row_address[5]);
+
+
+--K1_col_address[3] is FINAL:inst|display:U4|col_address[3]
+--operation mode is arithmetic
+
+K1_col_address[3]_carry_eqn = K1L13;
+K1_col_address[3]_lut_out = K1_col_address[3] $ (K1_col_address[3]_carry_eqn);
+K1_col_address[3] = DFFEAS(K1_col_address[3]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+--K1L33 is FINAL:inst|display:U4|col_address[3]~601
+--operation mode is arithmetic
+
+K1L33 = CARRY(!K1L13 # !K1_col_address[3]);
+
+
+--K1_col_address[0] is FINAL:inst|display:U4|col_address[0]
+--operation mode is arithmetic
+
+K1_col_address[0]_lut_out = K1L38 $ !K1_col_address[0];
+K1_col_address[0] = DFFEAS(K1_col_address[0]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+--K1L72 is FINAL:inst|display:U4|col_address[0]~605
+--operation mode is arithmetic
+
+K1L72 = CARRY(!K1L38 & K1_col_address[0]);
+
+
+--K1_col_address[2] is FINAL:inst|display:U4|col_address[2]
+--operation mode is arithmetic
+
+K1_col_address[2]_carry_eqn = K1L92;
+K1_col_address[2]_lut_out = K1_col_address[2] $ (!K1_col_address[2]_carry_eqn);
+K1_col_address[2] = DFFEAS(K1_col_address[2]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+--K1L13 is FINAL:inst|display:U4|col_address[2]~609
+--operation mode is arithmetic
+
+K1L13 = CARRY(K1_col_address[2] & (!K1L92));
+
+
+--K1_col_address[1] is FINAL:inst|display:U4|col_address[1]
+--operation mode is arithmetic
+
+K1_col_address[1]_carry_eqn = K1L72;
+K1_col_address[1]_lut_out = K1_col_address[1] $ (K1_col_address[1]_carry_eqn);
+K1_col_address[1] = DFFEAS(K1_col_address[1]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+--K1L92 is FINAL:inst|display:U4|col_address[1]~613
+--operation mode is arithmetic
+
+K1L92 = CARRY(!K1L72 # !K1_col_address[1]);
+
+
+--K1L461 is FINAL:inst|display:U4|RGB~7988
+--operation mode is normal
+
+K1L461 = !K1_col_address[2] & !K1_col_address[1];
+
+
+--K1_col_address[5] is FINAL:inst|display:U4|col_address[5]
+--operation mode is arithmetic
+
+K1_col_address[5]_carry_eqn = K1L53;
+K1_col_address[5]_lut_out = K1_col_address[5] $ (K1_col_address[5]_carry_eqn);
+K1_col_address[5] = DFFEAS(K1_col_address[5]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+--K1L73 is FINAL:inst|display:U4|col_address[5]~617
+--operation mode is arithmetic
+
+K1L73 = CARRY(!K1L53 # !K1_col_address[5]);
+
+
+--K1_col_address[4] is FINAL:inst|display:U4|col_address[4]
+--operation mode is arithmetic
+
+K1_col_address[4]_carry_eqn = K1L33;
+K1_col_address[4]_lut_out = K1_col_address[4] $ (!K1_col_address[4]_carry_eqn);
+K1_col_address[4] = DFFEAS(K1_col_address[4]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+--K1L53 is FINAL:inst|display:U4|col_address[4]~621
+--operation mode is arithmetic
+
+K1L53 = CARRY(K1_col_address[4] & (!K1L33));
+
+
+--K1_col_address[6] is FINAL:inst|display:U4|col_address[6]
+--operation mode is arithmetic
+
+K1_col_address[6]_carry_eqn = K1L73;
+K1_col_address[6]_lut_out = K1_col_address[6] $ (!K1_col_address[6]_carry_eqn);
+K1_col_address[6] = DFFEAS(K1_col_address[6]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+--K1L93 is FINAL:inst|display:U4|col_address[6]~625
+--operation mode is arithmetic
+
+K1L93 = CARRY(K1_col_address[6] & (!K1L73));
+
+
+--K1_col_address[7] is FINAL:inst|display:U4|col_address[7]
+--operation mode is normal
+
+K1_col_address[7]_carry_eqn = K1L93;
+K1_col_address[7]_lut_out = K1_col_address[7] $ (K1_col_address[7]_carry_eqn);
+K1_col_address[7] = DFFEAS(K1_col_address[7]_lut_out, P1__clk0, VCC, , K1L683, , , K1L28, );
+
+
+--K1L201 is FINAL:inst|display:U4|reduce_nor~1515
+--operation mode is normal
+
+K1L201 = K1_col_address[5] & K1_col_address[4] & !K1_col_address[6] & !K1_col_address[7];
+
+
+--K1L69 is FINAL:inst|display:U4|reduce_nor~72
+--operation mode is normal
+
+K1L69 = K1_col_address[3] # !K1L201 # !K1L461 # !K1_col_address[0];
+
+
+--K1L561 is FINAL:inst|display:U4|RGB~7989
+--operation mode is normal
+
+K1L561 = !K1_col_address[5] & !K1_col_address[4];
+
+
+--K1L661 is FINAL:inst|display:U4|RGB~7990
+--operation mode is normal
+
+K1L661 = !K1_col_address[6] & !K1_col_address[7];
+
+
+--K1L14 is FINAL:inst|display:U4|col_address[7]~632
+--operation mode is normal
+
+K1L14 = K1_col_address[2] & K1_col_address[0] & K1_col_address[1];
+
+
+--K1L78 is FINAL:inst|display:U4|reduce_nor~7
+--operation mode is normal
+
+K1L78 = !K1L14 # !K1L661 # !K1L561 # !K1_col_address[3];
+
+
+--K1L761 is FINAL:inst|display:U4|RGB~7991
+--operation mode is normal
+
+K1L761 = K1L001 & K1L361 & (!K1L78 # !K1L69);
+
+
+--K1L861 is FINAL:inst|display:U4|RGB~7992
+--operation mode is normal
+
+K1L861 = K1_col_address[2] & K1_col_address[0] & K1_col_address[3] & K1_col_address[1];
+
+
+--K1L961 is FINAL:inst|display:U4|RGB~7993
+--operation mode is normal
+
+K1L961 = K1_col_address[4] & !K1L461 & K1_col_address[3] # !K1_col_address[4] & (K1L861);
+
+
+--K1L071 is FINAL:inst|display:U4|RGB~7994
+--operation mode is normal
+
+K1L071 = K1_col_address[6] & !K1_col_address[5] & (!K1L961 # !K1_col_address[4]) # !K1_col_address[6] & (K1_col_address[5] # K1_col_address[4] # K1L961);
+
+
+--K1L68 is FINAL:inst|display:U4|reduce_nor~4
+--operation mode is normal
+
+K1L68 = K1L001 & K1L101 & !K1_row_address[4] & !K1_row_address[5];
+
+
+--K1L301 is FINAL:inst|display:U4|reduce_nor~1516
+--operation mode is normal
+
+K1L301 = !K1_row_address[3] & !K1_row_address[2];
+
+
+--K1L401 is FINAL:inst|display:U4|reduce_nor~1517
+--operation mode is normal
+
+K1L401 = K1_row_address[4] & (!K1_row_address[6] & !K1_row_address[7]);
+
+
+--K1L501 is FINAL:inst|display:U4|reduce_nor~1518
+--operation mode is normal
+
+K1L501 = K1_row_address[5] & K1L301 & K1L401 & !K1_row_address[1];
+
+
+--K1L171 is FINAL:inst|display:U4|RGB~7995
+--operation mode is normal
+
+K1L171 = K1L071 & (K1L68 # K1_row_address[0] & K1L501);
+
+
+--K1L601 is FINAL:inst|display:U4|reduce_nor~1519
+--operation mode is normal
+
+K1L601 = K1_row_address[1] & K1_row_address[0] & K1_row_address[2];
+
+
+--K1L29 is FINAL:inst|display:U4|reduce_nor~36
+--operation mode is normal
+
+K1L29 = K1_row_address[3] & K1L601 & K1L401 & !K1_row_address[5];
+
+
+--K1L701 is FINAL:inst|display:U4|reduce_nor~1520
+--operation mode is normal
+
+K1L701 = K1_row_address[0] & (!K1_row_address[1]);
+
+
+--K1L09 is FINAL:inst|display:U4|reduce_nor~32
+--operation mode is normal
+
+K1L09 = K1_row_address[3] & K1_row_address[2] & K1L021;
+
+
+--K1L801 is FINAL:inst|display:U4|reduce_nor~1521
+--operation mode is normal
+
+K1L801 = K1_row_address[1] & K1L401 & !K1_row_address[0] & !K1_row_address[5];
+
+
+--K1L19 is FINAL:inst|display:U4|reduce_nor~34
+--operation mode is normal
+
+K1L19 = K1_row_address[3] & K1_row_address[2] & K1L801;
+
+
+--K1L271 is FINAL:inst|display:U4|RGB~7996
+--operation mode is normal
+
+K1L271 = !K1L29 & !K1L09 & !K1L19;
+
+
+--K1L371 is FINAL:inst|display:U4|RGB~7997
+--operation mode is normal
+
+K1L371 = K1_col_address[3] & K1L661 & !K1_col_address[5] & !K1_col_address[4];
+
+
+--K1L471 is FINAL:inst|display:U4|RGB~7998
+--operation mode is normal
+
+K1L471 = !K1_col_address[2] & !K1_col_address[0] & K1_col_address[1] & K1L371;
+
+
+--K1L901 is FINAL:inst|display:U4|reduce_nor~1522
+--operation mode is normal
+
+K1L901 = K1_row_address[5] & !K1_row_address[4] & !K1_row_address[6] & !K1_row_address[7];
+
+
+--K1L39 is FINAL:inst|display:U4|reduce_nor~38
+--operation mode is normal
+
+K1L39 = K1L301 & K1L901 & !K1_row_address[1] & !K1_row_address[0];
+
+
+--K1L571 is FINAL:inst|display:U4|RGB~7999
+--operation mode is normal
+
+K1L571 = !K1L39 & !K1L49 & !K1L29;
+
+
+--J1L713Q is FINAL:inst|PING:U3|SCORE11[0]~reg0
+--operation mode is normal
+
+J1L713Q_lut_out = !J1L713Q;
+J1L713Q = DFFEAS(J1L713Q_lut_out, E1_clock_10Hz, RESETN, , J1_STATE.score_inc_1, , , , );
+
+
+--J1L813Q is FINAL:inst|PING:U3|SCORE11[1]~reg0
+--operation mode is normal
+
+J1L813Q_lut_out = J1L713Q $ J1L813Q;
+J1L813Q = DFFEAS(J1L813Q_lut_out, E1_clock_10Hz, RESETN, , J1_STATE.score_inc_1, , , , );
+
+
+--J1L023Q is FINAL:inst|PING:U3|SCORE11[2]~reg0
+--operation mode is normal
+
+J1L023Q_lut_out = !J1L023Q;
+J1L023Q = DFFEAS(J1L023Q_lut_out, E1_clock_10Hz, RESETN, , J1L913, , , , );
+
+
+--K1L671 is FINAL:inst|display:U4|RGB~8000
+--operation mode is normal
+
+K1L671 = J1L713Q & !J1L813Q & J1L023Q & K1L571 # !J1L713Q & J1L813Q & (J1L023Q $ !K1L571);
+
+
+--K1L771 is FINAL:inst|display:U4|RGB~8001
+--operation mode is normal
+
+K1L771 = K1L271 & (K1L571 # K1L671) # !K1L271 & K1L571 & K1L671 # !K1L471;
+
+
+--J1L223Q is FINAL:inst|PING:U3|SCORE11[3]~reg0
+--operation mode is normal
+
+J1L223Q_lut_out = !J1L223Q;
+J1L223Q = DFFEAS(J1L223Q_lut_out, E1_clock_10Hz, RESETN, , J1L123, , , , );
+
+
+--J1L752 is FINAL:inst|PING:U3|OUT1[1]~158
+--operation mode is normal
+
+J1L752 = !J1L223Q & (J1L713Q & (J1L813Q # !J1L023Q) # !J1L713Q & J1L813Q & !J1L023Q);
+
+
+--J1L323Q is FINAL:inst|PING:U3|SCORE22[0]~reg0
+--operation mode is normal
+
+J1L323Q_lut_out = !J1L323Q;
+J1L323Q = DFFEAS(J1L323Q_lut_out, E1_clock_10Hz, RESETN, , J1_STATE.score_inc_2, , , , );
+
+
+--J1L423Q is FINAL:inst|PING:U3|SCORE22[1]~reg0
+--operation mode is normal
+
+J1L423Q_lut_out = J1L323Q $ J1L423Q;
+J1L423Q = DFFEAS(J1L423Q_lut_out, E1_clock_10Hz, RESETN, , J1_STATE.score_inc_2, , , , );
+
+
+--J1L623Q is FINAL:inst|PING:U3|SCORE22[2]~reg0
+--operation mode is normal
+
+J1L623Q_lut_out = !J1L623Q;
+J1L623Q = DFFEAS(J1L623Q_lut_out, E1_clock_10Hz, RESETN, , J1L523, , , , );
+
+
+--K1L99 is FINAL:inst|display:U4|reduce_nor~110
+--operation mode is normal
+
+K1L99 = K1_col_address[0] # !K1L201 # !K1L461 # !K1_col_address[3];
+
+
+--K1L871 is FINAL:inst|display:U4|RGB~8002
+--operation mode is normal
+
+K1L871 = !K1L99 & (J1L323Q $ !J1L423Q # !J1L623Q);
+
+
+--K1L971 is FINAL:inst|display:U4|RGB~8003
+--operation mode is normal
+
+K1L971 = K1L271 # !K1L871 & (K1L79 # J1L752);
+
+
+--J1L823Q is FINAL:inst|PING:U3|SCORE22[3]~reg0
+--operation mode is normal
+
+J1L823Q_lut_out = !J1L823Q;
+J1L823Q = DFFEAS(J1L823Q_lut_out, E1_clock_10Hz, RESETN, , J1L723, , , , );
+
+
+--J1L952 is FINAL:inst|PING:U3|OUT2[0]~158
+--operation mode is normal
+
+J1L952 = J1L823Q # J1L423Q & (!J1L623Q # !J1L323Q) # !J1L423Q & (J1L623Q);
+
+
+--K1L081 is FINAL:inst|display:U4|RGB~8004
+--operation mode is normal
+
+K1L081 = K1L49 & (J1L423Q & (!J1L323Q # !J1L623Q) # !J1L423Q & (J1L623Q $ !J1L323Q));
+
+
+--K1L24 is FINAL:inst|display:U4|col_address[7]~633
+--operation mode is normal
+
+K1L24 = K1_col_address[5] & K1_col_address[4] & K1L661 & !K1_col_address[3];
+
+
+--K1L89 is FINAL:inst|display:U4|reduce_nor~108
+--operation mode is normal
+
+K1L89 = K1_col_address[0] # !K1L24 # !K1_col_address[1] # !K1_col_address[2];
+
+
+--K1L751 is FINAL:inst|display:U4|RGB~385
+--operation mode is normal
+
+K1L751 = K1L24 & K1L14 # !K1L89 # !K1L99;
+
+
+--K1L181 is FINAL:inst|display:U4|RGB~8005
+--operation mode is normal
+
+K1L181 = !K1L081 & (!J1L952 # !K1L29) # !K1L751;
+
+
+--K1L281 is FINAL:inst|display:U4|RGB~8006
+--operation mode is normal
+
+K1L281 = J1L323Q & (K1L99) # !J1L323Q & (J1L423Q & !J1L623Q & !K1L99 # !J1L423Q & J1L623Q & K1L99);
+
+
+--K1L381 is FINAL:inst|display:U4|RGB~8007
+--operation mode is normal
+
+K1L381 = K1L571 # K1L89 & (K1L99 # K1L281) # !K1L89 & K1L99 & K1L281;
+
+
+--J1L162 is FINAL:inst|PING:U3|OUT2[6]~159
+--operation mode is normal
+
+J1L162 = !J1L423Q & !J1L823Q & (J1L323Q $ J1L623Q);
+
+
+--K1L481 is FINAL:inst|display:U4|RGB~8008
+--operation mode is normal
+
+K1L481 = K1L381 & (J1L162 # !K1L751 # !K1L09);
+
+
+--K1L581 is FINAL:inst|display:U4|RGB~8009
+--operation mode is normal
+
+K1L581 = !J1L713Q & !K1L79 & (J1L813Q # !J1L023Q);
+
+
+--J1L062 is FINAL:inst|PING:U3|OUT2[1]~160
+--operation mode is normal
+
+J1L062 = !J1L823Q & (J1L323Q & (J1L423Q # !J1L623Q) # !J1L323Q & J1L423Q & !J1L623Q);
+
+
+--K1L851 is FINAL:inst|display:U4|RGB~401
+--operation mode is normal
+
+K1L851 = !K1L271 & !K1L89 & !J1L062;
+
+
+--K1L681 is FINAL:inst|display:U4|RGB~8010
+--operation mode is normal
+
+K1L681 = K1L481 & !K1L851 & (K1L571 # !K1L581);
+
+
+--J1L852 is FINAL:inst|PING:U3|OUT1[6]~159
+--operation mode is normal
+
+J1L852 = !J1L813Q & !J1L223Q & (J1L713Q $ J1L023Q);
+
+
+--J1L652 is FINAL:inst|PING:U3|OUT1[0]~160
+--operation mode is normal
+
+J1L652 = J1L223Q # J1L813Q & (!J1L023Q # !J1L713Q) # !J1L813Q & (J1L023Q);
+
+
+--K1L781 is FINAL:inst|display:U4|RGB~8011
+--operation mode is normal
+
+K1L781 = K1L101 & K1L401 & J1L652 & !K1_row_address[5];
+
+
+--K1L881 is FINAL:inst|display:U4|RGB~8012
+--operation mode is normal
+
+K1L881 = K1L371 & !K1_col_address[2] & (!K1_col_address[1] # !K1_col_address[0]);
+
+
+--K1L981 is FINAL:inst|display:U4|RGB~8013
+--operation mode is normal
+
+K1L981 = !K1L781 & (J1L852 # !K1L09) # !K1L881;
+
+
+--K1L091 is FINAL:inst|display:U4|RGB~8014
+--operation mode is normal
+
+K1L091 = K1L49 & (J1L813Q & (!J1L023Q # !J1L713Q) # !J1L813Q & (J1L713Q $ !J1L023Q));
+
+
+--K1L191 is FINAL:inst|display:U4|RGB~8015
+--operation mode is normal
+
+K1L191 = K1L681 & K1L981 & (!K1L091 # !K1L881);
+
+
+--K1L291 is FINAL:inst|display:U4|RGB~8016
+--operation mode is normal
+
+K1L291 = K1L771 & K1L971 & K1L181 & K1L191;
+
+
+--J1_CURRENT_ROW[1] is FINAL:inst|PING:U3|CURRENT_ROW[1]
+--operation mode is normal
+
+J1_CURRENT_ROW[1]_lut_out = !J1_STATE.step_decide_state_2 & (J1_STATE.position_state_2 & J1L971 # !J1_STATE.position_state_2 & (J1L923));
+J1_CURRENT_ROW[1] = DFFEAS(J1_CURRENT_ROW[1]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--J1_CURRENT_COLUMN[2] is FINAL:inst|PING:U3|CURRENT_COLUMN[2]
+--operation mode is normal
+
+J1_CURRENT_COLUMN[2]_lut_out = J1L033 & (J1L861 & J1L03 # !J1L861 & (J1L23));
+J1_CURRENT_COLUMN[2] = DFFEAS(J1_CURRENT_COLUMN[2]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--K1L391 is FINAL:inst|display:U4|RGB~8017
+--operation mode is normal
+
+K1L391 = K1_col_address[2] & J1_CURRENT_COLUMN[2] & (K1_row_address[1] $ !J1_CURRENT_ROW[1]) # !K1_col_address[2] & !J1_CURRENT_COLUMN[2] & (K1_row_address[1] $ !J1_CURRENT_ROW[1]);
+
+
+--J1_CURRENT_ROW[0] is FINAL:inst|PING:U3|CURRENT_ROW[0]
+--operation mode is normal
+
+J1_CURRENT_ROW[0]_lut_out = J1_STATE.step_decide_state_2 # J1_STATE.position_state_2 & J1L091 # !J1_STATE.position_state_2 & (J1L133);
+J1_CURRENT_ROW[0] = DFFEAS(J1_CURRENT_ROW[0]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--J1_CURRENT_COLUMN[5] is FINAL:inst|PING:U3|CURRENT_COLUMN[5]
+--operation mode is normal
+
+J1_CURRENT_COLUMN[5]_lut_out = !J1L233 & !J1L333 & (J1L513 # J1_CURRENT_COLUMN[5]);
+J1_CURRENT_COLUMN[5] = DFFEAS(J1_CURRENT_COLUMN[5]_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--K1L491 is FINAL:inst|display:U4|RGB~8018
+--operation mode is normal
+
+K1L491 = K1_row_address[0] & J1_CURRENT_ROW[0] & (K1_col_address[5] $ J1_CURRENT_COLUMN[5]) # !K1_row_address[0] & !J1_CURRENT_ROW[0] & (K1_col_address[5] $ J1_CURRENT_COLUMN[5]);
+
+
+--J1_CURRENT_ROW[4] is FINAL:inst|PING:U3|CURRENT_ROW[4]
+--operation mode is normal
+
+J1_CURRENT_ROW[4]_lut_out = J1L433 # J1L533 # J1L033 & J1L791;
+J1_CURRENT_ROW[4] = DFFEAS(J1_CURRENT_ROW[4]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--J1_CURRENT_COLUMN[0] is FINAL:inst|PING:U3|CURRENT_COLUMN[0]
+--operation mode is normal
+
+J1_CURRENT_COLUMN[0]_lut_out = J1L033 & (J1L861 & J1L84 # !J1L861 & (J1L05));
+J1_CURRENT_COLUMN[0] = DFFEAS(J1_CURRENT_COLUMN[0]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--K1L591 is FINAL:inst|display:U4|RGB~8019
+--operation mode is normal
+
+K1L591 = K1_col_address[0] & J1_CURRENT_COLUMN[0] & (K1_row_address[4] $ !J1_CURRENT_ROW[4]) # !K1_col_address[0] & !J1_CURRENT_COLUMN[0] & (K1_row_address[4] $ !J1_CURRENT_ROW[4]);
+
+
+--J1_CURRENT_ROW[2] is FINAL:inst|PING:U3|CURRENT_ROW[2]
+--operation mode is normal
+
+J1_CURRENT_ROW[2]_lut_out = J1L833 # J1L033 & J1L933 & J1L202;
+J1_CURRENT_ROW[2] = DFFEAS(J1_CURRENT_ROW[2]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--J1_CURRENT_ROW[3] is FINAL:inst|PING:U3|CURRENT_ROW[3]
+--operation mode is normal
+
+J1_CURRENT_ROW[3]_lut_out = J1L043 # J1L033 & J1L933 & J1L702;
+J1_CURRENT_ROW[3] = DFFEAS(J1_CURRENT_ROW[3]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--K1L691 is FINAL:inst|display:U4|RGB~8020
+--operation mode is normal
+
+K1L691 = K1_row_address[3] & J1_CURRENT_ROW[3] & (K1_row_address[2] $ !J1_CURRENT_ROW[2]) # !K1_row_address[3] & !J1_CURRENT_ROW[3] & (K1_row_address[2] $ !J1_CURRENT_ROW[2]);
+
+
+--K1L791 is FINAL:inst|display:U4|RGB~8021
+--operation mode is normal
+
+K1L791 = K1L391 & K1L491 & K1L591 & K1L691;
+
+
+--J1_CURRENT_COLUMN[6] is FINAL:inst|PING:U3|CURRENT_COLUMN[6]
+--operation mode is normal
+
+J1_CURRENT_COLUMN[6]_lut_out = J1L033 & (J1L861 & J1L46 # !J1L861 & (J1L56));
+J1_CURRENT_COLUMN[6] = DFFEAS(J1_CURRENT_COLUMN[6]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--J1_CURRENT_COLUMN[3] is FINAL:inst|PING:U3|CURRENT_COLUMN[3]
+--operation mode is normal
+
+J1_CURRENT_COLUMN[3]_lut_out = J1L033 & (J1L861 & J1L66 # !J1L861 & (J1L86));
+J1_CURRENT_COLUMN[3] = DFFEAS(J1_CURRENT_COLUMN[3]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--K1L891 is FINAL:inst|display:U4|RGB~8022
+--operation mode is normal
+
+K1L891 = K1_col_address[3] & J1_CURRENT_COLUMN[3] & (K1_col_address[6] $ !J1_CURRENT_COLUMN[6]) # !K1_col_address[3] & !J1_CURRENT_COLUMN[3] & (K1_col_address[6] $ !J1_CURRENT_COLUMN[6]);
+
+
+--J1_CURRENT_ROW[6] is FINAL:inst|PING:U3|CURRENT_ROW[6]
+--operation mode is normal
+
+J1_CURRENT_ROW[6]_lut_out = J1L143 # J1L243 # J1L212 & !J1L072;
+J1_CURRENT_ROW[6] = DFFEAS(J1_CURRENT_ROW[6]_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1_CURRENT_COLUMN[1] is FINAL:inst|PING:U3|CURRENT_COLUMN[1]
+--operation mode is normal
+
+J1_CURRENT_COLUMN[1]_lut_out = J1L033 & (J1L861 & J1L87 # !J1L861 & (J1L08));
+J1_CURRENT_COLUMN[1] = DFFEAS(J1_CURRENT_COLUMN[1]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--K1L991 is FINAL:inst|display:U4|RGB~8023
+--operation mode is normal
+
+K1L991 = K1_col_address[1] & J1_CURRENT_COLUMN[1] & (K1_row_address[6] $ !J1_CURRENT_ROW[6]) # !K1_col_address[1] & !J1_CURRENT_COLUMN[1] & (K1_row_address[6] $ !J1_CURRENT_ROW[6]);
+
+
+--J1_CURRENT_COLUMN[4] is FINAL:inst|PING:U3|CURRENT_COLUMN[4]
+--operation mode is normal
+
+J1_CURRENT_COLUMN[4]_lut_out = J1L861 & J1L28 # !J1L861 & (J1L48) # !J1L033;
+J1_CURRENT_COLUMN[4] = DFFEAS(J1_CURRENT_COLUMN[4]_lut_out, E1_clock_10Hz, RESETN, , J1L513, , , , );
+
+
+--J1_CURRENT_ROW[5] is FINAL:inst|PING:U3|CURRENT_ROW[5]
+--operation mode is normal
+
+J1_CURRENT_ROW[5]_lut_out = !J1L343 & J1L443 & (J1L072 # !J1L412);
+J1_CURRENT_ROW[5] = DFFEAS(J1_CURRENT_ROW[5]_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--K1L002 is FINAL:inst|display:U4|RGB~8024
+--operation mode is normal
+
+K1L002 = K1_col_address[4] & J1_CURRENT_COLUMN[4] & (K1_row_address[5] $ J1_CURRENT_ROW[5]) # !K1_col_address[4] & !J1_CURRENT_COLUMN[4] & (K1_row_address[5] $ J1_CURRENT_ROW[5]);
+
+
+--K1L102 is FINAL:inst|display:U4|RGB~8025
+--operation mode is normal
+
+K1L102 = K1L002 & (!K1_col_address[7] & !K1_row_address[7]);
+
+
+--K1L651 is FINAL:inst|display:U4|RGB~358
+--operation mode is normal
+
+K1L651 = K1L791 & K1L891 & K1L991 & K1L102;
+
+
+--K1L202 is FINAL:inst|display:U4|RGB~8026
+--operation mode is normal
+
+K1L202 = K1L291 & (!K1L651);
+
+
+--K1L302 is FINAL:inst|display:U4|RGB~8027
+--operation mode is normal
+
+K1L302 = K1L761 # K1L171 & !K1_col_address[7] # !K1L202;
+
+
+--K1L88 is FINAL:inst|display:U4|reduce_nor~20
+--operation mode is normal
+
+K1L88 = K1L601 & K1L401 & !K1_row_address[3] & !K1_row_address[5];
+
+
+--K1L011 is FINAL:inst|display:U4|reduce_nor~1523
+--operation mode is normal
+
+K1L011 = K1L401 & !K1_row_address[1] & !K1_row_address[0] & !K1_row_address[5];
+
+
+--K1L111 is FINAL:inst|display:U4|reduce_nor~1524
+--operation mode is normal
+
+K1L111 = K1_row_address[2] & !K1_row_address[3] & K1L011;
+
+
+--K1L402 is FINAL:inst|display:U4|RGB~8028
+--operation mode is normal
+
+K1L402 = K1_row_address[3] # !K1L021 & !K1L801 # !K1_row_address[2];
+
+
+--G1_paddle_2[2] is FINAL:inst|bat:U1|paddle_2[2]
+--operation mode is normal
+
+G1_paddle_2[2]_lut_out = G1L1;
+G1_paddle_2[2] = DFFEAS(G1_paddle_2[2]_lut_out, E1_clock_100Hz, VCC, , G1L44, G1L05, G1L15, , );
+
+
+--G1_paddle_2[4] is FINAL:inst|bat:U1|paddle_2[4]
+--operation mode is normal
+
+G1_paddle_2[4]_lut_out = G1L3;
+G1_paddle_2[4] = DFFEAS(G1_paddle_2[4]_lut_out, E1_clock_100Hz, VCC, , G1L44, G1L25, G1L15, , );
+
+
+--G1_paddle_2[5] is FINAL:inst|bat:U1|paddle_2[5]
+--operation mode is normal
+
+G1_paddle_2[5]_lut_out = G1L5;
+G1_paddle_2[5] = DFFEAS(G1_paddle_2[5]_lut_out, E1_clock_100Hz, VCC, , G1L44, G1L35, G1L15, , );
+
+
+--K1L502 is FINAL:inst|display:U4|RGB~8029
+--operation mode is normal
+
+K1L502 = G1_paddle_2[4] & (!K1L69 & !G1_paddle_2[5]);
+
+
+--G1_paddle_2[3] is FINAL:inst|bat:U1|paddle_2[3]
+--operation mode is normal
+
+G1_paddle_2[3]_lut_out = G1L6;
+G1_paddle_2[3] = DFFEAS(G1_paddle_2[3]_lut_out, E1_clock_100Hz, VCC, , G1L44, G1L45, G1L15, , );
+
+
+--K1L602 is FINAL:inst|display:U4|RGB~8030
+--operation mode is normal
+
+K1L602 = G1_paddle_2[2] & K1L502 & (!G1_paddle_2[3]);
+
+
+--G1_paddle_2[1] is FINAL:inst|bat:U1|paddle_2[1]
+--operation mode is normal
+
+G1_paddle_2[1]_lut_out = G1L8;
+G1_paddle_2[1] = DFFEAS(G1_paddle_2[1]_lut_out, E1_clock_100Hz, VCC, , G1L44, G1L55, G1L15, , );
+
+
+--G1_paddle_2[0] is FINAL:inst|bat:U1|paddle_2[0]
+--operation mode is normal
+
+G1_paddle_2[0]_lut_out = G1L01;
+G1_paddle_2[0] = DFFEAS(G1_paddle_2[0]_lut_out, E1_clock_100Hz, VCC, , G1L44, G1L65, G1L15, , );
+
+
+--K1L702 is FINAL:inst|display:U4|RGB~8031
+--operation mode is normal
+
+K1L702 = G1_paddle_2[1] & (!G1_paddle_2[0]);
+
+
+--K1L211 is FINAL:inst|display:U4|reduce_nor~1525
+--operation mode is normal
+
+K1L211 = K1_row_address[3] & !K1_row_address[2] & K1L901;
+
+
+--K1L311 is FINAL:inst|display:U4|reduce_nor~1526
+--operation mode is normal
+
+K1L311 = K1_row_address[3] & K1_row_address[2] & K1L901;
+
+
+--K1L141 is FINAL:inst|display:U4|RGB~244
+--operation mode is normal
+
+K1L141 = K1_row_address[1] & K1L211 # !K1_row_address[1] & (K1L311);
+
+
+--K1L802 is FINAL:inst|display:U4|RGB~8032
+--operation mode is normal
+
+K1L802 = !G1_paddle_2[0] & !G1_paddle_2[1];
+
+
+--K1L902 is FINAL:inst|display:U4|RGB~8033
+--operation mode is normal
+
+K1L902 = G1_paddle_2[5] & (!K1L69 & !G1_paddle_2[4]);
+
+
+--K1L012 is FINAL:inst|display:U4|RGB~8034
+--operation mode is normal
+
+K1L012 = G1_paddle_2[2] & G1_paddle_2[3];
+
+
+--K1L551 is FINAL:inst|display:U4|RGB~347
+--operation mode is normal
+
+K1L551 = K1L141 & K1L802 & K1L902 & K1L012;
+
+
+--K1L112 is FINAL:inst|display:U4|RGB~8035
+--operation mode is normal
+
+K1L112 = !K1L551 & (!K1L702 # !K1L602 # !K1L721);
+
+
+--K1L212 is FINAL:inst|display:U4|RGB~8036
+--operation mode is normal
+
+K1L212 = K1_row_address[1] & K1_row_address[0] & K1L401 & !K1_row_address[5];
+
+
+--K1L312 is FINAL:inst|display:U4|RGB~8037
+--operation mode is normal
+
+K1L312 = K1_row_address[2] & !K1_row_address[3] & (K1L021 # K1L011);
+
+
+--K1L412 is FINAL:inst|display:U4|RGB~8038
+--operation mode is normal
+
+K1L412 = K1L312 # K1L301 & (K1L801 # K1L212);
+
+
+--K1L512 is FINAL:inst|display:U4|RGB~8039
+--operation mode is normal
+
+K1L512 = K1_row_address[2] & G1_paddle_2[5] & !G1_paddle_2[4];
+
+
+--K1L612 is FINAL:inst|display:U4|RGB~8040
+--operation mode is normal
+
+K1L612 = K1L901 & K1L702 & !K1L69 & K1L723;
+
+
+--K1L712 is FINAL:inst|display:U4|RGB~8041
+--operation mode is normal
+
+K1L712 = !K1L612 & (!K1L412 # !K1L602 # !K1L802);
+
+
+--K1L421 is FINAL:inst|display:U4|RGB~94
+--operation mode is normal
+
+K1L421 = K1L111 # K1L301 & K1L021 # !K1L823;
+
+
+--K1L812 is FINAL:inst|display:U4|RGB~8042
+--operation mode is normal
+
+K1L812 = K1L502 & (!G1_paddle_2[2] & !G1_paddle_2[3]);
+
+
+--K1L912 is FINAL:inst|display:U4|RGB~8043
+--operation mode is normal
+
+K1L912 = G1_paddle_2[0] & G1_paddle_2[1];
+
+
+--K1L022 is FINAL:inst|display:U4|RGB~8044
+--operation mode is normal
+
+K1L022 = K1L301 & (K1L021 # K1L801 # K1L011);
+
+
+--K1L221 is FINAL:inst|display:U4|RGB~82
+--operation mode is normal
+
+K1L221 = K1L68 # K1L022;
+
+
+--K1L122 is FINAL:inst|display:U4|RGB~8045
+--operation mode is normal
+
+K1L122 = !G1_paddle_2[2] & !G1_paddle_2[3] & G1_paddle_2[0];
+
+
+--K1L222 is FINAL:inst|display:U4|RGB~8046
+--operation mode is normal
+
+K1L222 = K1L502 & !G1_paddle_2[1] & K1L221 & K1L122;
+
+
+--K1L322 is FINAL:inst|display:U4|RGB~8047
+--operation mode is normal
+
+K1L322 = !K1L222 & (!K1L912 # !K1L812 # !K1L421);
+
+
+--G1_paddle_1[5] is FINAL:inst|bat:U1|paddle_1[5]
+--operation mode is normal
+
+G1_paddle_1[5]_lut_out = G1L21;
+G1_paddle_1[5] = DFFEAS(G1_paddle_1[5]_lut_out, E1_clock_100Hz, VCC, , G1L82, G1L53, G1L63, , );
+
+
+--G1_paddle_1[0] is FINAL:inst|bat:U1|paddle_1[0]
+--operation mode is normal
+
+G1_paddle_1[0]_lut_out = G1L31;
+G1_paddle_1[0] = DFFEAS(G1_paddle_1[0]_lut_out, E1_clock_100Hz, VCC, , G1L82, G1L73, G1L63, , );
+
+
+--G1_paddle_1[1] is FINAL:inst|bat:U1|paddle_1[1]
+--operation mode is normal
+
+G1_paddle_1[1]_lut_out = G1L51;
+G1_paddle_1[1] = DFFEAS(G1_paddle_1[1]_lut_out, E1_clock_100Hz, VCC, , G1L82, G1L83, G1L63, , );
+
+
+--K1L422 is FINAL:inst|display:U4|RGB~8048
+--operation mode is normal
+
+K1L422 = !G1_paddle_1[0] & !G1_paddle_1[1];
+
+
+--G1_paddle_1[4] is FINAL:inst|bat:U1|paddle_1[4]
+--operation mode is normal
+
+G1_paddle_1[4]_lut_out = G1L71;
+G1_paddle_1[4] = DFFEAS(G1_paddle_1[4]_lut_out, E1_clock_100Hz, VCC, , G1L82, G1L93, G1L63, , );
+
+
+--K1L522 is FINAL:inst|display:U4|RGB~8049
+--operation mode is normal
+
+K1L522 = G1_paddle_1[5] & K1L422 & !K1L78 & !G1_paddle_1[4];
+
+
+--G1_paddle_1[2] is FINAL:inst|bat:U1|paddle_1[2]
+--operation mode is normal
+
+G1_paddle_1[2]_lut_out = G1L91;
+G1_paddle_1[2] = DFFEAS(G1_paddle_1[2]_lut_out, E1_clock_100Hz, VCC, , G1L82, G1L04, G1L63, , );
+
+
+--G1_paddle_1[3] is FINAL:inst|bat:U1|paddle_1[3]
+--operation mode is normal
+
+G1_paddle_1[3]_lut_out = G1L12;
+G1_paddle_1[3] = DFFEAS(G1_paddle_1[3]_lut_out, E1_clock_100Hz, VCC, , G1L82, G1L14, G1L63, , );
+
+
+--K1L622 is FINAL:inst|display:U4|RGB~8050
+--operation mode is normal
+
+K1L622 = G1_paddle_1[2] & G1_paddle_1[3];
+
+
+--K1L722 is FINAL:inst|display:U4|RGB~8051
+--operation mode is normal
+
+K1L722 = K1L371 & K1L14 & G1_paddle_1[5] & !G1_paddle_1[4];
+
+
+--K1L931 is FINAL:inst|display:U4|RGB~238
+--operation mode is normal
+
+K1L931 = K1_row_address[1] & K1L211 # !K1_row_address[1] & (K1_row_address[0] & K1L211 # !K1_row_address[0] & (K1L311));
+
+
+--K1L822 is FINAL:inst|display:U4|RGB~8052
+--operation mode is normal
+
+K1L822 = G1_paddle_1[0] & G1_paddle_1[1];
+
+
+--K1L922 is FINAL:inst|display:U4|RGB~8053
+--operation mode is normal
+
+K1L922 = G1_paddle_1[3] & (!G1_paddle_1[2]);
+
+
+--K1L041 is FINAL:inst|display:U4|RGB~239
+--operation mode is normal
+
+K1L041 = K1L722 & K1L931 & K1L822 & K1L922;
+
+
+--K1L032 is FINAL:inst|display:U4|RGB~8054
+--operation mode is normal
+
+K1L032 = !K1L041 & (!K1L622 # !K1L522 # !K1L141);
+
+
+--K1L132 is FINAL:inst|display:U4|RGB~8055
+--operation mode is normal
+
+K1L132 = K1L112 & K1L712 & K1L322 & K1L032;
+
+
+--K1L232 is FINAL:inst|display:U4|RGB~8056
+--operation mode is normal
+
+K1L232 = G1_paddle_2[2] & (!G1_paddle_2[3]);
+
+
+--K1L332 is FINAL:inst|display:U4|RGB~8057
+--operation mode is normal
+
+K1L332 = K1_row_address[3] & (K1_row_address[2] # K1_row_address[1] # K1_row_address[0]) # !K1_row_address[3] & K1_row_address[2] & (K1_row_address[1] $ K1_row_address[0]);
+
+
+--K1L432 is FINAL:inst|display:U4|RGB~8058
+--operation mode is normal
+
+K1L432 = K1L901 & (K1_row_address[3] & (!K1L332) # !K1_row_address[3] & (K1L601 # K1L332));
+
+
+--K1L532 is FINAL:inst|display:U4|RGB~8059
+--operation mode is normal
+
+K1L532 = G1_paddle_2[5] & K1L912 & !K1L69 & !G1_paddle_2[4];
+
+
+--K1L632 is FINAL:inst|display:U4|RGB~8060
+--operation mode is normal
+
+K1L632 = K1_row_address[2] & !K1_row_address[3];
+
+
+--K1L732 is FINAL:inst|display:U4|RGB~8061
+--operation mode is normal
+
+K1L732 = K1_row_address[1] & K1_row_address[0];
+
+
+--K1L832 is FINAL:inst|display:U4|RGB~8062
+--operation mode is normal
+
+K1L832 = K1L901 & (K1L732 & K1L301 # !K1L732 & (K1L632));
+
+
+--K1L932 is FINAL:inst|display:U4|RGB~8063
+--operation mode is normal
+
+K1L932 = G1_paddle_1[0] & !G1_paddle_1[4] & !G1_paddle_1[3];
+
+
+--K1L042 is FINAL:inst|display:U4|RGB~8064
+--operation mode is normal
+
+K1L042 = !G1_paddle_1[1] & G1_paddle_1[5] & G1_paddle_1[2];
+
+
+--K1L142 is FINAL:inst|display:U4|RGB~8065
+--operation mode is normal
+
+K1L142 = !K1L78 & K1L832 & K1L932 & K1L042;
+
+
+--K1L242 is FINAL:inst|display:U4|RGB~8066
+--operation mode is normal
+
+K1L242 = !K1L142 & (!K1L532 # !K1L432 # !K1L232);
+
+
+--K1L241 is FINAL:inst|display:U4|RGB~250
+--operation mode is normal
+
+K1L241 = K1_row_address[1] & (K1_row_address[0] & K1L211 # !K1_row_address[0] & (K1L311)) # !K1_row_address[1] & (K1L311);
+
+
+--K1L342 is FINAL:inst|display:U4|RGB~8067
+--operation mode is normal
+
+K1L342 = G1_paddle_2[0] & (!G1_paddle_2[1]);
+
+
+--K1L442 is FINAL:inst|display:U4|RGB~8068
+--operation mode is normal
+
+K1L442 = G1_paddle_2[5] & K1L342 & !K1L69 & !G1_paddle_2[4];
+
+
+--K1L542 is FINAL:inst|display:U4|RGB~8069
+--operation mode is normal
+
+K1L542 = G1_paddle_2[2] & G1_paddle_2[3] & K1L502;
+
+
+--K1L642 is FINAL:inst|display:U4|RGB~8070
+--operation mode is normal
+
+K1L642 = K1_row_address[2] & K1L011 # !K1_row_address[2] & (K1L801);
+
+
+--K1L742 is FINAL:inst|display:U4|RGB~8071
+--operation mode is normal
+
+K1L742 = !K1L642 & (K1_row_address[2] # !K1L212) # !K1_row_address[3];
+
+
+--K1L841 is FINAL:inst|display:U4|RGB~299
+--operation mode is normal
+
+K1L841 = K1L802 & K1L542 & (K1L09 # !K1L742);
+
+
+--K1L842 is FINAL:inst|display:U4|RGB~8072
+--operation mode is normal
+
+K1L842 = !K1L841 & (!K1L442 # !K1L241 # !K1L012);
+
+
+--K1L942 is FINAL:inst|display:U4|RGB~8073
+--operation mode is normal
+
+K1L942 = K1_row_address[2] & (K1L801) # !K1_row_address[2] & (K1L021 # K1L011);
+
+
+--K1L052 is FINAL:inst|display:U4|RGB~8074
+--operation mode is normal
+
+K1L052 = K1L88 # K1L942 & (K1_row_address[3] $ K1_row_address[2]);
+
+
+--K1L152 is FINAL:inst|display:U4|RGB~8075
+--operation mode is normal
+
+K1L152 = G1_paddle_2[3] & (!G1_paddle_2[2]);
+
+
+--K1L252 is FINAL:inst|display:U4|RGB~8076
+--operation mode is normal
+
+K1L252 = G1_paddle_2[4] & K1L152 & !K1L69 & !G1_paddle_2[5];
+
+
+--K1L352 is FINAL:inst|display:U4|RGB~8077
+--operation mode is normal
+
+K1L352 = !K1_row_address[0] & K1L211 & K1_row_address[1];
+
+
+--K1L452 is FINAL:inst|display:U4|RGB~8078
+--operation mode is normal
+
+K1L452 = K1L352 # K1L901 & K1L923;
+
+
+--K1L451 is FINAL:inst|display:U4|RGB~338
+--operation mode is normal
+
+K1L451 = K1L902 & K1L342 & K1L452 & K1L152;
+
+
+--K1L552 is FINAL:inst|display:U4|RGB~8079
+--operation mode is normal
+
+K1L552 = !K1L451 & (!K1L252 # !K1L052 # !K1L802);
+
+
+--K1L411 is FINAL:inst|display:U4|reduce_nor~1527
+--operation mode is normal
+
+K1L411 = K1_row_address[3] & K1L901;
+
+
+--K1L652 is FINAL:inst|display:U4|RGB~8080
+--operation mode is normal
+
+K1L652 = G1_paddle_1[5] & (!G1_paddle_1[4]);
+
+
+--K1L752 is FINAL:inst|display:U4|RGB~8081
+--operation mode is normal
+
+K1L752 = K1L652 & G1_paddle_1[1] & !K1L78 & !G1_paddle_1[0];
+
+
+--K1L441 is FINAL:inst|display:U4|RGB~257
+--operation mode is normal
+
+K1L441 = K1L341 & G1_paddle_1[2] & G1_paddle_1[3] & K1L752;
+
+
+--K1L852 is FINAL:inst|display:U4|RGB~8082
+--operation mode is normal
+
+K1L852 = !K1L441 & (!K1L442 # !K1L832 # !K1L232);
+
+
+--K1L952 is FINAL:inst|display:U4|RGB~8083
+--operation mode is normal
+
+K1L952 = K1L242 & K1L842 & K1L552 & K1L852;
+
+
+--K1L98 is FINAL:inst|display:U4|reduce_nor~30
+--operation mode is normal
+
+K1L98 = K1_row_address[3] & K1_row_address[2] & K1L011;
+
+
+--K1L511 is FINAL:inst|display:U4|reduce_nor~1528
+--operation mode is normal
+
+K1L511 = K1_row_address[0] & K1_row_address[3] & !K1_row_address[2];
+
+
+--K1L611 is FINAL:inst|display:U4|reduce_nor~1529
+--operation mode is normal
+
+K1L611 = K1_row_address[1] & K1L401 & !K1_row_address[5] & K1L511;
+
+
+--K1L231 is FINAL:inst|display:U4|RGB~154
+--operation mode is normal
+
+K1L231 = K1L09 # K1L19 # K1L98 # K1L611;
+
+
+--K1L062 is FINAL:inst|display:U4|RGB~8084
+--operation mode is normal
+
+K1L062 = !K1L033 & (!K1L231 # !K1L342) # !K1L542;
+
+
+--K1L162 is FINAL:inst|display:U4|RGB~8085
+--operation mode is normal
+
+K1L162 = !K1_row_address[1] & !K1_row_address[0] # !K1L411 # !K1_row_address[2];
+
+
+--K1L541 is FINAL:inst|display:U4|RGB~262
+--operation mode is normal
+
+K1L541 = K1L501 & !K1_row_address[0] # !K1L162;
+
+
+--K1L641 is FINAL:inst|display:U4|RGB~263
+--operation mode is normal
+
+K1L641 = K1L722 & K1L622 & K1L822 & K1L541;
+
+
+--K1L262 is FINAL:inst|display:U4|RGB~8086
+--operation mode is normal
+
+K1L262 = K1_row_address[3] & (K1_row_address[1] # K1_row_address[2]) # !K1_row_address[3] & K1_row_address[1] & !K1_row_address[0] & K1_row_address[2];
+
+
+--K1L362 is FINAL:inst|display:U4|RGB~8087
+--operation mode is normal
+
+K1L362 = K1L901 & (K1_row_address[3] & (!K1L262) # !K1_row_address[3] & (K1L601 # K1L262));
+
+
+--K1L351 is FINAL:inst|display:U4|RGB~335
+--operation mode is normal
+
+K1L351 = K1L802 & K1L902 & K1L152 & K1L362;
+
+
+--K1L941 is FINAL:inst|display:U4|RGB~308
+--operation mode is normal
+
+K1L941 = K1L912 & K1L542 & (K1L39 # !K1L271);
+
+
+--K1L462 is FINAL:inst|display:U4|RGB~8088
+--operation mode is normal
+
+K1L462 = K1L062 & !K1L641 & !K1L351 & !K1L941;
+
+
+--K1L562 is FINAL:inst|display:U4|RGB~8089
+--operation mode is normal
+
+K1L562 = K1L901 & (K1L533 # K1L301 & K1_row_address[1]);
+
+
+--K1L662 is FINAL:inst|display:U4|RGB~8090
+--operation mode is normal
+
+K1L662 = G1_paddle_1[2] & !G1_paddle_1[3] & K1L522 & K1L562;
+
+
+--K1L762 is FINAL:inst|display:U4|RGB~8091
+--operation mode is normal
+
+K1L762 = !K1L662 & (!K1L152 # !K1L532 # !K1L931);
+
+
+--K1L711 is FINAL:inst|display:U4|reduce_nor~1530
+--operation mode is normal
+
+K1L711 = K1_row_address[1] & (!K1_row_address[0]);
+
+
+--K1L531 is FINAL:inst|display:U4|RGB~178
+--operation mode is normal
+
+K1L531 = K1L301 & K1L901 & K1L711 # !K1L571;
+
+
+--K1L862 is FINAL:inst|display:U4|RGB~8092
+--operation mode is normal
+
+K1L862 = K1L902 & (!G1_paddle_2[2] & !G1_paddle_2[3]);
+
+
+--K1L962 is FINAL:inst|display:U4|RGB~8093
+--operation mode is normal
+
+K1L962 = G1_paddle_1[2] & (!G1_paddle_1[3]);
+
+
+--K1L731 is FINAL:inst|display:U4|RGB~215
+--operation mode is normal
+
+K1L731 = K1L722 & K1L822 & K1L432 & K1L962;
+
+
+--K1L072 is FINAL:inst|display:U4|RGB~8094
+--operation mode is normal
+
+K1L072 = !K1L731 & (!K1L862 # !K1L531 # !K1L342);
+
+
+--K1L172 is FINAL:inst|display:U4|RGB~8095
+--operation mode is normal
+
+K1L172 = K1L952 & K1L462 & K1L762 & K1L072;
+
+
+--K1L821 is FINAL:inst|display:U4|RGB~118
+--operation mode is normal
+
+K1L821 = K1L88 # K1L121 & K1L011 # !K1L402;
+
+
+--K1L151 is FINAL:inst|display:U4|RGB~323
+--operation mode is normal
+
+K1L151 = K1L802 & K1L902 & K1L232 & K1L562;
+
+
+--K1L272 is FINAL:inst|display:U4|RGB~8096
+--operation mode is normal
+
+K1L272 = !K1L151 & (!K1L821 # !K1L912 # !K1L602);
+
+
+--K1L372 is FINAL:inst|display:U4|RGB~8097
+--operation mode is normal
+
+K1L372 = K1L901 & K1L962 & K1L752 & K1L633;
+
+
+--K1L472 is FINAL:inst|display:U4|RGB~8098
+--operation mode is normal
+
+K1L472 = G1_paddle_1[0] & !G1_paddle_1[5] & G1_paddle_1[2];
+
+
+--K1L572 is FINAL:inst|display:U4|RGB~8099
+--operation mode is normal
+
+K1L572 = !G1_paddle_1[1] & G1_paddle_1[4] & G1_paddle_1[3] & K1L472;
+
+
+--K1L672 is FINAL:inst|display:U4|RGB~8100
+--operation mode is normal
+
+K1L672 = !K1L372 & (K1L78 # !K1L572 # !K1L231);
+
+
+--K1L772 is FINAL:inst|display:U4|RGB~8101
+--operation mode is normal
+
+K1L772 = G1_paddle_1[0] & (!G1_paddle_1[1]);
+
+
+--K1L621 is FINAL:inst|display:U4|RGB~106
+--operation mode is normal
+
+K1L621 = K1L111 # K1L301 & K1L212 # !K1L402;
+
+
+--K1L872 is FINAL:inst|display:U4|RGB~8102
+--operation mode is normal
+
+K1L872 = G1_paddle_1[4] & (!K1L78 & !G1_paddle_1[5]);
+
+
+--K1L972 is FINAL:inst|display:U4|RGB~8103
+--operation mode is normal
+
+K1L972 = G1_paddle_1[2] & K1L872 & (!G1_paddle_1[3]);
+
+
+--K1L082 is FINAL:inst|display:U4|RGB~8104
+--operation mode is normal
+
+K1L082 = K1L133 & (K1_row_address[0] & K1L301 # !K1_row_address[0] & (K1L233));
+
+
+--K1L182 is FINAL:inst|display:U4|RGB~8105
+--operation mode is normal
+
+K1L182 = !K1L082 & (!K1L972 # !K1L621 # !K1L772);
+
+
+--K1L282 is FINAL:inst|display:U4|RGB~8106
+--operation mode is normal
+
+K1L282 = G1_paddle_1[5] & K1L772 & !K1L78 & !G1_paddle_1[4];
+
+
+--K1L051 is FINAL:inst|display:U4|RGB~311
+--operation mode is normal
+
+K1L051 = K1L802 & K1L862 & (K1L19 # !K1L571);
+
+
+--K1L382 is FINAL:inst|display:U4|RGB~8107
+--operation mode is normal
+
+K1L382 = !K1L051 & (!K1L241 # !K1L282 # !K1L622);
+
+
+--K1L482 is FINAL:inst|display:U4|RGB~8108
+--operation mode is normal
+
+K1L482 = K1L272 & K1L672 & K1L182 & K1L382;
+
+
+--K1L582 is FINAL:inst|display:U4|RGB~8109
+--operation mode is normal
+
+K1L582 = !K1L831 & (!K1L362 # !K1L922 # !K1L522);
+
+
+--K1L682 is FINAL:inst|display:U4|RGB~8110
+--operation mode is normal
+
+K1L682 = G1_paddle_1[2] & G1_paddle_1[3] & K1L872;
+
+
+--K1L131 is FINAL:inst|display:U4|RGB~149
+--operation mode is normal
+
+K1L131 = K1L422 & K1L682 & (K1L09 # !K1L742);
+
+
+--K1L782 is FINAL:inst|display:U4|RGB~8111
+--operation mode is normal
+
+K1L782 = !K1L131 & (!K1L541 # !K1L532 # !K1L012);
+
+
+--K1L921 is FINAL:inst|display:U4|RGB~130
+--operation mode is normal
+
+K1L921 = K1L88 # K1L801 & K1L121 # !K1L733;
+
+
+--K1L882 is FINAL:inst|display:U4|RGB~8112
+--operation mode is normal
+
+K1L882 = G1_paddle_1[4] & K1L922 & !K1L78 & !G1_paddle_1[5];
+
+
+--K1L982 is FINAL:inst|display:U4|RGB~8113
+--operation mode is normal
+
+K1L982 = G1_paddle_1[1] & !G1_paddle_1[0] & G1_paddle_1[2] & G1_paddle_1[3];
+
+
+--K1L092 is FINAL:inst|display:U4|RGB~8114
+--operation mode is normal
+
+K1L092 = K1L872 & K1L982 & (K1L98 # !K1L271);
+
+
+--K1L192 is FINAL:inst|display:U4|RGB~8115
+--operation mode is normal
+
+K1L192 = !K1L092 & (!K1L882 # !K1L921 # !K1L772);
+
+
+--K1L292 is FINAL:inst|display:U4|RGB~8116
+--operation mode is normal
+
+K1L292 = !K1L741 & (!K1L031 # !K1L882 # !K1L822);
+
+
+--K1L392 is FINAL:inst|display:U4|RGB~8117
+--operation mode is normal
+
+K1L392 = K1L582 & K1L782 & K1L192 & K1L292;
+
+
+--K1L492 is FINAL:inst|display:U4|RGB~8118
+--operation mode is normal
+
+K1L492 = K1L652 & !K1L78 & !G1_paddle_1[2] & !G1_paddle_1[3];
+
+
+--K1L431 is FINAL:inst|display:U4|RGB~173
+--operation mode is normal
+
+K1L431 = K1L422 & K1L492 & (K1L19 # !K1L571);
+
+
+--K1L592 is FINAL:inst|display:U4|RGB~8119
+--operation mode is normal
+
+K1L592 = !K1L431 & (!K1L621 # !K1L342 # !K1L602);
+
+
+--K1L692 is FINAL:inst|display:U4|RGB~8120
+--operation mode is normal
+
+K1L692 = K1L872 & (!G1_paddle_1[2] & !G1_paddle_1[3]);
+
+
+--K1L792 is FINAL:inst|display:U4|RGB~8121
+--operation mode is normal
+
+K1L792 = !K1L521 & (!K1L692 # !K1L772 # !K1L221);
+
+
+--K1L892 is FINAL:inst|display:U4|RGB~8122
+--operation mode is normal
+
+K1L892 = !G1_paddle_1[2] & !G1_paddle_1[3] & K1L901;
+
+
+--K1L992 is FINAL:inst|display:U4|RGB~8123
+--operation mode is normal
+
+K1L992 = K1L333 & (K1_row_address[0] & K1L301 # !K1_row_address[0] & (K1L233));
+
+
+--K1L003 is FINAL:inst|display:U4|RGB~8124
+--operation mode is normal
+
+K1L003 = !K1L992 & (!K1L972 # !K1L821) # !K1L822;
+
+
+--K1L103 is FINAL:inst|display:U4|RGB~8125
+--operation mode is normal
+
+K1L103 = K1L003 & (!K1L692 # !K1L822 # !K1L421);
+
+
+--K1L203 is FINAL:inst|display:U4|RGB~8126
+--operation mode is normal
+
+K1L203 = !K1L631 & (!K1L031 # !K1L252 # !K1L912);
+
+
+--K1L303 is FINAL:inst|display:U4|RGB~8127
+--operation mode is normal
+
+K1L303 = K1L592 & K1L792 & K1L103 & K1L203;
+
+
+--K1L403 is FINAL:inst|display:U4|RGB~8128
+--operation mode is normal
+
+K1L403 = G1_paddle_1[1] & (!G1_paddle_1[0]);
+
+
+--K1L503 is FINAL:inst|display:U4|RGB~8129
+--operation mode is normal
+
+K1L503 = G1_paddle_2[5] & K1L702 & !K1L69 & !G1_paddle_2[4];
+
+
+--K1L59 is FINAL:inst|display:U4|reduce_nor~52
+--operation mode is normal
+
+K1L59 = K1L901 & K1L601 & (!K1_row_address[3]);
+
+
+--K1L811 is FINAL:inst|display:U4|reduce_nor~1531
+--operation mode is normal
+
+K1L811 = K1_row_address[2] & (!K1_row_address[3]);
+
+
+--K1L603 is FINAL:inst|display:U4|RGB~8130
+--operation mode is normal
+
+K1L603 = K1_row_address[1] & K1_row_address[0] # !K1L811 # !K1L901;
+
+
+--K1L251 is FINAL:inst|display:U4|RGB~329
+--operation mode is normal
+
+K1L251 = K1L232 & K1L503 & (K1L59 # !K1L603);
+
+
+--K1L703 is FINAL:inst|display:U4|RGB~8131
+--operation mode is normal
+
+K1L703 = !K1L251 & (!K1L972 # !K1L403 # !K1L721);
+
+
+--K1L331 is FINAL:inst|display:U4|RGB~167
+--operation mode is normal
+
+K1L331 = K1L822 & K1L682 & (K1L39 # !K1L271);
+
+
+--K1L803 is FINAL:inst|display:U4|RGB~8132
+--operation mode is normal
+
+K1L803 = !K1L331 & (!K1L882 # !K1L052 # !K1L422);
+
+
+--K1L903 is FINAL:inst|display:U4|RGB~8133
+--operation mode is normal
+
+K1L903 = !K1L433 & (!K1L211 # !K1L152 # !K1L503);
+
+
+--K1L321 is FINAL:inst|display:U4|RGB~88
+--operation mode is normal
+
+K1L321 = K1L301 & (K1L021 # K1L011) # !K1L823;
+
+
+--K1L013 is FINAL:inst|display:U4|RGB~8134
+--operation mode is normal
+
+K1L013 = K1L502 & K1L702 & K1L152 & K1L833;
+
+
+--K1L113 is FINAL:inst|display:U4|RGB~8135
+--operation mode is normal
+
+K1L113 = !K1L013 & (!K1L321 # !K1L812 # !K1L702);
+
+
+--K1L213 is FINAL:inst|display:U4|RGB~8136
+--operation mode is normal
+
+K1L213 = !K1_row_address[1] & !K1_row_address[0] # !K1L901 # !K1L301;
+
+
+--K1L313 is FINAL:inst|display:U4|RGB~8137
+--operation mode is normal
+
+K1L313 = K1L702 & K1L862 & (K1L39 # !K1L213);
+
+
+--K1L413 is FINAL:inst|display:U4|RGB~8138
+--operation mode is normal
+
+K1L413 = !K1L313 & (!K1L321 # !K1L692 # !K1L403);
+
+
+--K1L513 is FINAL:inst|display:U4|RGB~8139
+--operation mode is normal
+
+K1L513 = K1L403 & K1L492 & (K1L39 # !K1L213);
+
+
+--K1L613 is FINAL:inst|display:U4|RGB~8140
+--operation mode is normal
+
+K1L613 = !K1L513 & (!K1L833 # !K1L882 # !K1L403);
+
+
+--K1L713 is FINAL:inst|display:U4|RGB~8141
+--operation mode is normal
+
+K1L713 = K1L903 & K1L113 & K1L413 & K1L613;
+
+
+--K1L813 is FINAL:inst|display:U4|RGB~8142
+--operation mode is normal
+
+K1L813 = K1L303 & K1L703 & K1L803 & K1L713;
+
+
+--K1L913 is FINAL:inst|display:U4|RGB~8143
+--operation mode is normal
+
+K1L913 = K1_col_address[5] & (K1L461 & !K1_col_address[3] # !K1_col_address[4]) # !K1_col_address[5] & (K1_col_address[4]);
+
+
+--K1L023 is FINAL:inst|display:U4|RGB~8144
+--operation mode is normal
+
+K1L023 = K1L661 & (K1L913 # K1L861 & !K1_col_address[5]);
+
+
+--K1L123 is FINAL:inst|display:U4|RGB~8145
+--operation mode is normal
+
+K1L123 = !K1L68 & (!K1L501 # !K1_row_address[0]) # !K1L023;
+
+
+--K1L223 is FINAL:inst|display:U4|RGB~8146
+--operation mode is normal
+
+K1L223 = K1L482 & K1L392 & K1L813 & K1L123;
+
+
+--K1L323 is FINAL:inst|display:U4|RGB~8147
+--operation mode is normal
+
+K1L323 = K1L202 & K1L132 & K1L172 & K1L223;
+
+
+--K1_RED is FINAL:inst|display:U4|RED
+--operation mode is normal
+
+K1_RED = !K1L323 & (K1_RED # K1L302);
+
+
+--K1L951 is FINAL:inst|display:U4|RGB~488
+--operation mode is normal
+
+K1L951 = K1L302 # K1L323;
+
+
+--K1_GREEN is FINAL:inst|display:U4|GREEN
+--operation mode is normal
+
+K1_GREEN = K1L15 & (K1_GREEN & !K1L951 # !K1L74);
+
+
+--M1_q_a[8] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[8]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[8]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[8]_PORT_A_address_reg = DFFE(M1_q_a[8]_PORT_A_address, M1_q_a[8]_clock_0, , , M1_q_a[8]_clock_enable_0);
+M1_q_a[8]_clock_0 = P1__clk0;
+M1_q_a[8]_clock_enable_0 = K1L053;
+M1_q_a[8]_PORT_A_data_out = MEMORY(, , M1_q_a[8]_PORT_A_address_reg, , , , , , M1_q_a[8]_clock_0, , M1_q_a[8]_clock_enable_0, , , );
+M1_q_a[8] = M1_q_a[8]_PORT_A_data_out[0];
+
+
+--M1_q_a[0] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[0]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[0]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[0]_PORT_A_address_reg = DFFE(M1_q_a[0]_PORT_A_address, M1_q_a[0]_clock_0, , , M1_q_a[0]_clock_enable_0);
+M1_q_a[0]_clock_0 = P1__clk0;
+M1_q_a[0]_clock_enable_0 = K1L053;
+M1_q_a[0]_PORT_A_data_out = MEMORY(, , M1_q_a[0]_PORT_A_address_reg, , , , , , M1_q_a[0]_clock_0, , M1_q_a[0]_clock_enable_0, , , );
+M1_q_a[0] = M1_q_a[0]_PORT_A_data_out[0];
+
+
+--M1_q_a[1] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[1]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[1]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[1]_PORT_A_address_reg = DFFE(M1_q_a[1]_PORT_A_address, M1_q_a[1]_clock_0, , , M1_q_a[1]_clock_enable_0);
+M1_q_a[1]_clock_0 = P1__clk0;
+M1_q_a[1]_clock_enable_0 = K1L053;
+M1_q_a[1]_PORT_A_data_out = MEMORY(, , M1_q_a[1]_PORT_A_address_reg, , , , , , M1_q_a[1]_clock_0, , M1_q_a[1]_clock_enable_0, , , );
+M1_q_a[1] = M1_q_a[1]_PORT_A_data_out[0];
+
+
+--M1_q_a[2] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[2]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[2]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[2]_PORT_A_address_reg = DFFE(M1_q_a[2]_PORT_A_address, M1_q_a[2]_clock_0, , , M1_q_a[2]_clock_enable_0);
+M1_q_a[2]_clock_0 = P1__clk0;
+M1_q_a[2]_clock_enable_0 = K1L053;
+M1_q_a[2]_PORT_A_data_out = MEMORY(, , M1_q_a[2]_PORT_A_address_reg, , , , , , M1_q_a[2]_clock_0, , M1_q_a[2]_clock_enable_0, , , );
+M1_q_a[2] = M1_q_a[2]_PORT_A_data_out[0];
+
+
+--M1_q_a[3] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[3]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[3]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[3]_PORT_A_address_reg = DFFE(M1_q_a[3]_PORT_A_address, M1_q_a[3]_clock_0, , , M1_q_a[3]_clock_enable_0);
+M1_q_a[3]_clock_0 = P1__clk0;
+M1_q_a[3]_clock_enable_0 = K1L053;
+M1_q_a[3]_PORT_A_data_out = MEMORY(, , M1_q_a[3]_PORT_A_address_reg, , , , , , M1_q_a[3]_clock_0, , M1_q_a[3]_clock_enable_0, , , );
+M1_q_a[3] = M1_q_a[3]_PORT_A_data_out[0];
+
+
+--K1L423 is FINAL:inst|display:U4|RGB~8148
+--operation mode is normal
+
+K1L423 = M1_q_a[0] # M1_q_a[1] # M1_q_a[2] # M1_q_a[3];
+
+
+--M1_q_a[4] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[4]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[4]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[4]_PORT_A_address_reg = DFFE(M1_q_a[4]_PORT_A_address, M1_q_a[4]_clock_0, , , M1_q_a[4]_clock_enable_0);
+M1_q_a[4]_clock_0 = P1__clk0;
+M1_q_a[4]_clock_enable_0 = K1L053;
+M1_q_a[4]_PORT_A_data_out = MEMORY(, , M1_q_a[4]_PORT_A_address_reg, , , , , , M1_q_a[4]_clock_0, , M1_q_a[4]_clock_enable_0, , , );
+M1_q_a[4] = M1_q_a[4]_PORT_A_data_out[0];
+
+
+--M1_q_a[5] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[5]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[5]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[5]_PORT_A_address_reg = DFFE(M1_q_a[5]_PORT_A_address, M1_q_a[5]_clock_0, , , M1_q_a[5]_clock_enable_0);
+M1_q_a[5]_clock_0 = P1__clk0;
+M1_q_a[5]_clock_enable_0 = K1L053;
+M1_q_a[5]_PORT_A_data_out = MEMORY(, , M1_q_a[5]_PORT_A_address_reg, , , , , , M1_q_a[5]_clock_0, , M1_q_a[5]_clock_enable_0, , , );
+M1_q_a[5] = M1_q_a[5]_PORT_A_data_out[0];
+
+
+--M1_q_a[6] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[6]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[6]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[6]_PORT_A_address_reg = DFFE(M1_q_a[6]_PORT_A_address, M1_q_a[6]_clock_0, , , M1_q_a[6]_clock_enable_0);
+M1_q_a[6]_clock_0 = P1__clk0;
+M1_q_a[6]_clock_enable_0 = K1L053;
+M1_q_a[6]_PORT_A_data_out = MEMORY(, , M1_q_a[6]_PORT_A_address_reg, , , , , , M1_q_a[6]_clock_0, , M1_q_a[6]_clock_enable_0, , , );
+M1_q_a[6] = M1_q_a[6]_PORT_A_data_out[0];
+
+
+--M1_q_a[7] is FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|q_a[7]
+--RAM Block Operation Mode: ROM
+--Port A Depth: 256, Port A Width: 1
+--Port A Logical Depth: 256, Port A Logical Width: 9
+--Port A Input: Registered, Port A Output: Un-registered
+M1_q_a[7]_PORT_A_address = BUS(K1L5, K1L3, K1L32, K1L02, K1L41, K1L71, K1L8, K1L11);
+M1_q_a[7]_PORT_A_address_reg = DFFE(M1_q_a[7]_PORT_A_address, M1_q_a[7]_clock_0, , , M1_q_a[7]_clock_enable_0);
+M1_q_a[7]_clock_0 = P1__clk0;
+M1_q_a[7]_clock_enable_0 = K1L053;
+M1_q_a[7]_PORT_A_data_out = MEMORY(, , M1_q_a[7]_PORT_A_address_reg, , , , , , M1_q_a[7]_clock_0, , M1_q_a[7]_clock_enable_0, , , );
+M1_q_a[7] = M1_q_a[7]_PORT_A_data_out[0];
+
+
+--K1L523 is FINAL:inst|display:U4|RGB~8149
+--operation mode is normal
+
+K1L523 = M1_q_a[4] # M1_q_a[5] # M1_q_a[6] # M1_q_a[7];
+
+
+--K1L623 is FINAL:inst|display:U4|RGB~8150
+--operation mode is normal
+
+K1L623 = !K1L69 & (K1L221 # K1L423 # K1L523);
+
+
+--K1L84 is FINAL:inst|display:U4|comb~59
+--operation mode is normal
+
+K1L84 = K1L651 # !K1L623 & (K1L78 # !M1_q_a[8]);
+
+
+--K1L94 is FINAL:inst|display:U4|comb~60
+--operation mode is normal
+
+K1L94 = K1L323 # K1L291 & K1L84 # !K1L302;
+
+
+--K1L05 is FINAL:inst|display:U4|comb~61
+--operation mode is normal
+
+K1L05 = !K1L323 & (!K1L84 # !K1L302 # !K1L291);
+
+
+--K1_BLUE is FINAL:inst|display:U4|BLUE
+--operation mode is normal
+
+K1_BLUE = K1L05 & (K1_BLUE & !K1L951 # !K1L94);
+
+
+--C1_state.print_string is LCD_Display:inst2|state.print_string
+--operation mode is normal
+
+C1_state.print_string_lut_out = C1_state.hold & C1_next_command.print_string;
+C1_state.print_string = DFFEAS(C1_state.print_string_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_state.drop_lcd_e is LCD_Display:inst2|state.drop_lcd_e
+--operation mode is normal
+
+C1_state.drop_lcd_e_lut_out = !C1L801;
+C1_state.drop_lcd_e = DFFEAS(C1_state.drop_lcd_e_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_state.hold is LCD_Display:inst2|state.hold
+--operation mode is normal
+
+C1_state.hold_lut_out = C1_state.drop_lcd_e;
+C1_state.hold = DFFEAS(C1_state.hold_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_CLK_400HZ_Enable is LCD_Display:inst2|CLK_400HZ_Enable
+--operation mode is normal
+
+C1_CLK_400HZ_Enable_lut_out = !C1L81 & (RESETN);
+C1_CLK_400HZ_Enable = DFFEAS(C1_CLK_400HZ_Enable_lut_out, CLK48, VCC, , , , , , );
+
+
+--C1L96 is LCD_Display:inst2|LCD_E~11
+--operation mode is normal
+
+C1L96 = C1_CLK_400HZ_Enable & (!C1_state.hold);
+
+
+--C1L27 is LCD_Display:inst2|LCD_RW_INT~0
+--operation mode is normal
+
+C1L27 = C1_CLK_400HZ_Enable & (!C1_state.drop_lcd_e & !C1_state.hold);
+
+
+--C1_DATA_BUS_VALUE[7] is LCD_Display:inst2|DATA_BUS_VALUE[7]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[7]_lut_out = C1_state.line2 # C1_state.return_home # C1L801 & C1_DATA_BUS_VALUE[7];
+C1_DATA_BUS_VALUE[7] = DFFEAS(C1_DATA_BUS_VALUE[7]_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_DATA_BUS_VALUE[6] is LCD_Display:inst2|DATA_BUS_VALUE[6]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[6]_lut_out = C1L901 # C1_state.print_string & (C1L59 # C1L66);
+C1_DATA_BUS_VALUE[6] = DFFEAS(C1_DATA_BUS_VALUE[6]_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_DATA_BUS_VALUE[5] is LCD_Display:inst2|DATA_BUS_VALUE[5]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[5]_lut_out = !C1L211 & (!C1L311 & C1L56 # !C1_state.print_string);
+C1_DATA_BUS_VALUE[5] = DFFEAS(C1_DATA_BUS_VALUE[5]_lut_out, CLK48, RESETN, , C1L27, , , , );
+
+
+--C1_DATA_BUS_VALUE[4] is LCD_Display:inst2|DATA_BUS_VALUE[4]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[4]_lut_out = !C1L211 & (!C1L09 & !C1L411 # !C1_state.print_string);
+C1_DATA_BUS_VALUE[4] = DFFEAS(C1_DATA_BUS_VALUE[4]_lut_out, CLK48, RESETN, , C1L27, , , , );
+
+
+--C1_DATA_BUS_VALUE[3] is LCD_Display:inst2|DATA_BUS_VALUE[3]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[3]_lut_out = !C1L611 & (C1L76 # !C1L88 # !C1_state.print_string);
+C1_DATA_BUS_VALUE[3] = DFFEAS(C1_DATA_BUS_VALUE[3]_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_DATA_BUS_VALUE[2] is LCD_Display:inst2|DATA_BUS_VALUE[2]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[2]_lut_out = C1_state.mode_set # C1_state.display_on # C1L811 # C1L911;
+C1_DATA_BUS_VALUE[2] = DFFEAS(C1_DATA_BUS_VALUE[2]_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_DATA_BUS_VALUE[1] is LCD_Display:inst2|DATA_BUS_VALUE[1]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[1]_lut_out = C1_state.mode_set # C1L021 # C1L801 & C1_DATA_BUS_VALUE[1];
+C1_DATA_BUS_VALUE[1] = DFFEAS(C1_DATA_BUS_VALUE[1]_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_DATA_BUS_VALUE[0] is LCD_Display:inst2|DATA_BUS_VALUE[0]
+--operation mode is normal
+
+C1_DATA_BUS_VALUE[0]_lut_out = C1L121 # C1_state.print_string & (C1L76 $ C1L08);
+C1_DATA_BUS_VALUE[0] = DFFEAS(C1_DATA_BUS_VALUE[0]_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--K1L77 is FINAL:inst|display:U4|LessThan~1149
+--operation mode is normal
+
+K1L77 = !K1_Horiz_Count[8] # !K1_Horiz_Count[9];
+
+
+--K1L87 is FINAL:inst|display:U4|LessThan~1150
+--operation mode is normal
+
+K1L87 = !K1L47 # !K1_Horiz_Count[2] # !K1_Horiz_Count[3] # !K1_Horiz_Count[4];
+
+
+--K1L97 is FINAL:inst|display:U4|LessThan~1151
+--operation mode is normal
+
+K1L97 = !K1L77 & (K1_Horiz_Count[7] # !K1L87 # !K1L57);
+
+
+--K1L843 is FINAL:inst|display:U4|row_address[7]~227
+--operation mode is normal
+
+K1L843 = K1_Horiz_Count[0] & K1L973 & !K1_Horiz_Count[2] & !K1_Horiz_Count[6];
+
+
+--K1L58 is FINAL:inst|display:U4|reduce_nor~0
+--operation mode is normal
+
+K1L58 = !K1L843 # !K1L673 # !K1_Horiz_Count[1] # !K1_Horiz_Count[3];
+
+
+--K1L1 is FINAL:inst|display:U4|add~1020
+--operation mode is arithmetic
+
+K1L1_carry_eqn = K1L22;
+K1L1 = K1_row_address[6] $ (!K1L1_carry_eqn);
+
+--K1L2 is FINAL:inst|display:U4|add~1022
+--operation mode is arithmetic
+
+K1L2 = CARRY(K1_row_address[6] & (!K1L22));
+
+
+--K1L08 is FINAL:inst|display:U4|LessThan~1152
+--operation mode is normal
+
+K1L08 = !K1L183 # !K1_Vert_Count[4] # !K1_Vert_Count[1] # !K1_Vert_Count[0];
+
+
+--K1L18 is FINAL:inst|display:U4|LessThan~1153
+--operation mode is normal
+
+K1L18 = !K1_Vert_Count[9] & (K1L08 & !K1_Vert_Count[5] # !K1L67);
+
+
+--K1L3 is FINAL:inst|display:U4|add~1025
+--operation mode is normal
+
+K1L3 = K1L1 & K1L18;
+
+
+--K1L943 is FINAL:inst|display:U4|row_address[7]~228
+--operation mode is normal
+
+K1L943 = !K1_Horiz_Count[4] & !K1_Horiz_Count[3] & !K1_Horiz_Count[1] & !K1_Horiz_Count[5];
+
+
+--K1L053 is FINAL:inst|display:U4|row_address[7]~229
+--operation mode is normal
+
+K1L053 = K1L683 & (K1L843 & K1L943 # !K1L18);
+
+
+--K1L4 is FINAL:inst|display:U4|add~1026
+--operation mode is normal
+
+K1L4_carry_eqn = K1L2;
+K1L4 = K1_row_address[7] $ (K1L4_carry_eqn);
+
+
+--K1L5 is FINAL:inst|display:U4|add~1031
+--operation mode is normal
+
+K1L5 = K1L4 & K1L18;
+
+
+--K1L6 is FINAL:inst|display:U4|add~1032
+--operation mode is arithmetic
+
+K1L6_carry_eqn = K1L01;
+K1L6 = K1_row_address[1] $ (K1L6_carry_eqn);
+
+--K1L7 is FINAL:inst|display:U4|add~1034
+--operation mode is arithmetic
+
+K1L7 = CARRY(!K1L01 # !K1_row_address[1]);
+
+
+--K1L8 is FINAL:inst|display:U4|add~1037
+--operation mode is normal
+
+K1L8 = K1L6 & K1L18;
+
+
+--K1L9 is FINAL:inst|display:U4|add~1038
+--operation mode is arithmetic
+
+K1L9 = K1_row_address[0] $ !K1L911;
+
+--K1L01 is FINAL:inst|display:U4|add~1040
+--operation mode is arithmetic
+
+K1L01 = CARRY(K1_row_address[0] & !K1L911);
+
+
+--K1L11 is FINAL:inst|display:U4|add~1043
+--operation mode is normal
+
+K1L11 = K1L9 & K1L18;
+
+
+--K1L21 is FINAL:inst|display:U4|add~1044
+--operation mode is arithmetic
+
+K1L21_carry_eqn = K1L61;
+K1L21 = K1_row_address[3] $ (K1L21_carry_eqn);
+
+--K1L31 is FINAL:inst|display:U4|add~1046
+--operation mode is arithmetic
+
+K1L31 = CARRY(!K1L61 # !K1_row_address[3]);
+
+
+--K1L41 is FINAL:inst|display:U4|add~1049
+--operation mode is normal
+
+K1L41 = K1L21 & K1L18;
+
+
+--K1L51 is FINAL:inst|display:U4|add~1050
+--operation mode is arithmetic
+
+K1L51_carry_eqn = K1L7;
+K1L51 = K1_row_address[2] $ (!K1L51_carry_eqn);
+
+--K1L61 is FINAL:inst|display:U4|add~1052
+--operation mode is arithmetic
+
+K1L61 = CARRY(K1_row_address[2] & (!K1L7));
+
+
+--K1L71 is FINAL:inst|display:U4|add~1055
+--operation mode is normal
+
+K1L71 = K1L51 & K1L18;
+
+
+--K1L81 is FINAL:inst|display:U4|add~1056
+--operation mode is arithmetic
+
+K1L81_carry_eqn = K1L31;
+K1L81 = K1_row_address[4] $ (!K1L81_carry_eqn);
+
+--K1L91 is FINAL:inst|display:U4|add~1058
+--operation mode is arithmetic
+
+K1L91 = CARRY(K1_row_address[4] & (!K1L31));
+
+
+--K1L02 is FINAL:inst|display:U4|add~1061
+--operation mode is normal
+
+K1L02 = K1L81 & K1L18;
+
+
+--K1L12 is FINAL:inst|display:U4|add~1062
+--operation mode is arithmetic
+
+K1L12_carry_eqn = K1L91;
+K1L12 = K1_row_address[5] $ (K1L12_carry_eqn);
+
+--K1L22 is FINAL:inst|display:U4|add~1064
+--operation mode is arithmetic
+
+K1L22 = CARRY(!K1L91 # !K1_row_address[5]);
+
+
+--K1L32 is FINAL:inst|display:U4|add~1067
+--operation mode is normal
+
+K1L32 = K1L12 & K1L18;
+
+
+--K1L28 is FINAL:inst|display:U4|LessThan~1154
+--operation mode is normal
+
+K1L28 = K1_Horiz_Count[9] & (K1_Horiz_Count[8] # K1_Horiz_Count[7]);
+
+
+--K1_col_count[2] is FINAL:inst|display:U4|col_count[2]
+--operation mode is normal
+
+K1_col_count[2]_lut_out = !K1L28 & (K1_col_count[2] $ (K1_col_count[1] & K1_col_count[0]));
+K1_col_count[2] = DFFEAS(K1_col_count[2]_lut_out, P1__clk0, VCC, , K1L683, , , , );
+
+
+--K1_col_count[1] is FINAL:inst|display:U4|col_count[1]
+--operation mode is normal
+
+K1_col_count[1]_lut_out = !K1L28 & (K1_col_count[1] $ K1_col_count[0]);
+K1_col_count[1] = DFFEAS(K1_col_count[1]_lut_out, P1__clk0, VCC, , K1L683, , , , );
+
+
+--K1_col_count[0] is FINAL:inst|display:U4|col_count[0]
+--operation mode is normal
+
+K1_col_count[0]_lut_out = !K1_col_count[0] & (!K1_Horiz_Count[8] & !K1_Horiz_Count[7] # !K1_Horiz_Count[9]);
+K1_col_count[0] = DFFEAS(K1_col_count[0]_lut_out, P1__clk0, VCC, , K1L683, , , , );
+
+
+--K1L38 is FINAL:inst|display:U4|LessThan~1155
+--operation mode is normal
+
+K1L38 = !K1_col_count[0] # !K1_col_count[1] # !K1_col_count[2];
+
+
+--E1_clock_10Hz is clk_div:inst15|clock_10Hz
+--operation mode is normal
+
+E1_clock_10Hz_lut_out = E1_clock_10Hz_reg;
+E1_clock_10Hz = DFFEAS(E1_clock_10Hz_lut_out, CLK48, VCC, , , , , , );
+
+
+--J1_STATE.score_inc_1 is FINAL:inst|PING:U3|STATE.score_inc_1
+--operation mode is normal
+
+J1_STATE.score_inc_1_lut_out = J1_STATE.loop_state_1 & !J1L382 & J1L273 & J1L692;
+J1_STATE.score_inc_1 = DFFEAS(J1_STATE.score_inc_1_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1L913 is FINAL:inst|PING:U3|SCORE11[2]~119
+--operation mode is normal
+
+J1L913 = J1L713Q & J1L813Q & J1_STATE.score_inc_1;
+
+
+--J1L123 is FINAL:inst|PING:U3|SCORE11[3]~120
+--operation mode is normal
+
+J1L123 = J1L713Q & J1L813Q & J1L023Q & J1_STATE.score_inc_1;
+
+
+--J1_STATE.score_inc_2 is FINAL:inst|PING:U3|STATE.score_inc_2
+--operation mode is normal
+
+J1_STATE.score_inc_2_lut_out = J1_STATE.loop_state_2 & !J1L482 & J1L373 & J1L113;
+J1_STATE.score_inc_2 = DFFEAS(J1_STATE.score_inc_2_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1L523 is FINAL:inst|PING:U3|SCORE22[2]~91
+--operation mode is normal
+
+J1L523 = J1L323Q & J1L423Q & J1_STATE.score_inc_2;
+
+
+--J1L723 is FINAL:inst|PING:U3|SCORE22[3]~92
+--operation mode is normal
+
+J1L723 = J1L623Q & J1L323Q & J1L423Q & J1_STATE.score_inc_2;
+
+
+--J1_STATE.position_state_2 is FINAL:inst|PING:U3|STATE.position_state_2
+--operation mode is normal
+
+J1_STATE.position_state_2_lut_out = J1L543 # J1L363 & (!J1L692 # !J1L273);
+J1_STATE.position_state_2 = DFFEAS(J1_STATE.position_state_2_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1_a[0] is FINAL:inst|PING:U3|a[0]
+--operation mode is normal
+
+J1_a[0]_lut_out = J1L173 # J1L192 & J1L392 & J1L982;
+J1_a[0] = DFFEAS(J1_a[0]_lut_out, E1_clock_10Hz, VCC, , J1L5, , , , );
+
+
+--J1_a[2] is FINAL:inst|PING:U3|a[2]
+--operation mode is normal
+
+J1_a[2]_lut_out = J1L273;
+J1_a[2] = DFFEAS(J1_a[2]_lut_out, E1_clock_10Hz, VCC, , J1L5, , , , );
+
+
+--J1_a[1] is FINAL:inst|PING:U3|a[1]
+--operation mode is normal
+
+J1_a[1]_lut_out = !J1L173 & (J1L192 & J1L392 # !J1L982);
+J1_a[1] = DFFEAS(J1_a[1]_lut_out, E1_clock_10Hz, VCC, , J1L5, , , , );
+
+
+--J1L771 is FINAL:inst|PING:U3|CURRENT_ROW~3087
+--operation mode is normal
+
+J1L771 = J1_a[0] # J1_a[2] $ !J1_a[1];
+
+
+--J1L871 is FINAL:inst|PING:U3|CURRENT_ROW~3088
+--operation mode is normal
+
+J1L871 = J1_a[1] & J1_a[0] & !J1_a[2] # !J1_a[1] & !J1_a[0] & J1_a[2];
+
+
+--J1L971 is FINAL:inst|PING:U3|CURRENT_ROW~3089
+--operation mode is normal
+
+J1L971 = G1_paddle_2[1] $ J1L871 $ (G1_paddle_2[0] & !J1L771);
+
+
+--J1_STATE.step_decide_state_2 is FINAL:inst|PING:U3|STATE.step_decide_state_2
+--operation mode is normal
+
+J1_STATE.step_decide_state_2_lut_out = J1_STATE.position_state_2;
+J1_STATE.step_decide_state_2 = DFFEAS(J1_STATE.step_decide_state_2_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1_STATE.step_decide_state_1 is FINAL:inst|PING:U3|STATE.step_decide_state_1
+--operation mode is normal
+
+J1_STATE.step_decide_state_1_lut_out = J1_STATE.position_state_1;
+J1_STATE.step_decide_state_1 = DFFEAS(J1_STATE.step_decide_state_1_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1_b[0] is FINAL:inst|PING:U3|b[0]
+--operation mode is normal
+
+J1_b[0]_lut_out = J1L303 & (J1L703 # J1L951) # !J1L992;
+J1_b[0] = DFFEAS(J1_b[0]_lut_out, E1_clock_10Hz, VCC, , J1L651, , , , );
+
+
+--J1_b[2] is FINAL:inst|PING:U3|b[2]
+--operation mode is normal
+
+J1_b[2]_lut_out = J1L373;
+J1_b[2] = DFFEAS(J1_b[2]_lut_out, E1_clock_10Hz, VCC, , J1L851, , , , );
+
+
+--J1_b[1] is FINAL:inst|PING:U3|b[1]
+--operation mode is normal
+
+J1_b[1]_lut_out = J1L992 & (J1L703 # !J1L303);
+J1_b[1] = DFFEAS(J1_b[1]_lut_out, E1_clock_10Hz, VCC, , J1L851, , , , );
+
+
+--J1L081 is FINAL:inst|PING:U3|CURRENT_ROW~3090
+--operation mode is normal
+
+J1L081 = J1_b[0] # J1_b[2] $ !J1_b[1];
+
+
+--J1L181 is FINAL:inst|PING:U3|CURRENT_ROW~3091
+--operation mode is normal
+
+J1L181 = J1_b[1] & J1_b[0] & !J1_b[2] # !J1_b[1] & !J1_b[0] & J1_b[2];
+
+
+--J1L281 is FINAL:inst|PING:U3|CURRENT_ROW~3092
+--operation mode is normal
+
+J1L281 = G1_paddle_1[1] $ J1L181 $ (G1_paddle_1[0] & !J1L081);
+
+
+--J1L6 is FINAL:inst|PING:U3|add~3647
+--operation mode is arithmetic
+
+J1L6_carry_eqn = J1L53;
+J1L6 = J1_STEP[1] $ J1_CURRENT_ROW[1] $ !J1L6_carry_eqn;
+
+--J1L7 is FINAL:inst|PING:U3|add~3649
+--operation mode is arithmetic
+
+J1L7 = CARRY(J1_STEP[1] & (!J1L53 # !J1_CURRENT_ROW[1]) # !J1_STEP[1] & !J1_CURRENT_ROW[1] & !J1L53);
+
+
+--J1L8 is FINAL:inst|PING:U3|add~3652
+--operation mode is arithmetic
+
+J1L8_carry_eqn = J1L22;
+J1L8 = J1_STEP[6] $ J1_CURRENT_ROW[6] $ !J1L8_carry_eqn;
+
+--J1L9 is FINAL:inst|PING:U3|add~3654
+--operation mode is arithmetic
+
+J1L9 = CARRY(J1_STEP[6] & (J1_CURRENT_ROW[6] # !J1L22) # !J1_STEP[6] & J1_CURRENT_ROW[6] & !J1L22);
+
+
+--J1L01 is FINAL:inst|PING:U3|add~3657
+--operation mode is normal
+
+J1L01_carry_eqn = J1L9;
+J1L01 = J1L01_carry_eqn;
+
+
+--J1L11 is FINAL:inst|PING:U3|add~3662
+--operation mode is arithmetic
+
+J1L11 = J1_STEP[0] $ J1_CURRENT_ROW[0];
+
+--J1L21 is FINAL:inst|PING:U3|add~3664
+--operation mode is arithmetic
+
+J1L21 = CARRY(J1_STEP[0] & J1_CURRENT_ROW[0]);
+
+
+--J1L31 is FINAL:inst|PING:U3|add~3667
+--operation mode is arithmetic
+
+J1L31_carry_eqn = J1L21;
+J1L31 = J1_STEP[1] $ J1_CURRENT_ROW[1] $ J1L31_carry_eqn;
+
+--J1L41 is FINAL:inst|PING:U3|add~3669
+--operation mode is arithmetic
+
+J1L41 = CARRY(J1_STEP[1] & !J1_CURRENT_ROW[1] & !J1L21 # !J1_STEP[1] & (!J1L21 # !J1_CURRENT_ROW[1]));
+
+
+--J1L51 is FINAL:inst|PING:U3|add~3672
+--operation mode is arithmetic
+
+J1L51_carry_eqn = J1L41;
+J1L51 = J1_STEP[2] $ J1_CURRENT_ROW[2] $ !J1L51_carry_eqn;
+
+--J1L61 is FINAL:inst|PING:U3|add~3674
+--operation mode is arithmetic
+
+J1L61 = CARRY(J1_STEP[2] & (J1_CURRENT_ROW[2] # !J1L41) # !J1_STEP[2] & J1_CURRENT_ROW[2] & !J1L41);
+
+
+--J1L71 is FINAL:inst|PING:U3|add~3677
+--operation mode is arithmetic
+
+J1L71_carry_eqn = J1L61;
+J1L71 = J1_STEP[3] $ J1_CURRENT_ROW[3] $ J1L71_carry_eqn;
+
+--J1L81 is FINAL:inst|PING:U3|add~3679
+--operation mode is arithmetic
+
+J1L81 = CARRY(J1_STEP[3] & !J1_CURRENT_ROW[3] & !J1L61 # !J1_STEP[3] & (!J1L61 # !J1_CURRENT_ROW[3]));
+
+
+--J1L522 is FINAL:inst|PING:U3|LessThan~813
+--operation mode is normal
+
+J1L522 = J1L11 # J1L31 # J1L51 # J1L71;
+
+
+--J1L91 is FINAL:inst|PING:U3|add~3682
+--operation mode is arithmetic
+
+J1L91_carry_eqn = J1L81;
+J1L91 = J1_STEP[4] $ J1_CURRENT_ROW[4] $ !J1L91_carry_eqn;
+
+--J1L02 is FINAL:inst|PING:U3|add~3684
+--operation mode is arithmetic
+
+J1L02 = CARRY(J1_STEP[4] & (J1_CURRENT_ROW[4] # !J1L81) # !J1_STEP[4] & J1_CURRENT_ROW[4] & !J1L81);
+
+
+--J1L12 is FINAL:inst|PING:U3|add~3687
+--operation mode is arithmetic
+
+J1L12_carry_eqn = J1L02;
+J1L12 = J1_CURRENT_ROW[5] $ J1_STEP[5] $ !J1L12_carry_eqn;
+
+--J1L22 is FINAL:inst|PING:U3|add~3689
+--operation mode is arithmetic
+
+J1L22 = CARRY(J1_CURRENT_ROW[5] & (!J1L02 # !J1_STEP[5]) # !J1_CURRENT_ROW[5] & !J1_STEP[5] & !J1L02);
+
+
+--J1L622 is FINAL:inst|PING:U3|LessThan~814
+--operation mode is normal
+
+J1L622 = J1L91 & J1L12;
+
+
+--J1L722 is FINAL:inst|PING:U3|LessThan~815
+--operation mode is normal
+
+J1L722 = J1L8 # J1L01 # J1L522 & J1L622;
+
+
+--J1L32 is FINAL:inst|PING:U3|add~3692
+--operation mode is normal
+
+J1L32_carry_eqn = J1L92;
+J1L32 = J1L32_carry_eqn;
+
+
+--J1L822 is FINAL:inst|PING:U3|LessThan~816
+--operation mode is normal
+
+J1L822_carry_eqn = J1L132;
+J1L822 = J1_PREVIOUS_ROW[6] & J1_CURRENT_ROW[6] & !J1L822_carry_eqn # !J1_PREVIOUS_ROW[6] & (J1_CURRENT_ROW[6] # !J1L822_carry_eqn);
+
+
+--J1L381 is FINAL:inst|PING:U3|CURRENT_ROW~3093
+--operation mode is normal
+
+J1L381 = J1_CURRENT_ROW[4] & !J1_CURRENT_ROW[1] & !J1_CURRENT_ROW[0] & !J1_CURRENT_ROW[3];
+
+
+--J1L481 is FINAL:inst|PING:U3|CURRENT_ROW~3094
+--operation mode is normal
+
+J1L481 = J1L381 & (!J1_CURRENT_ROW[2] & !J1_CURRENT_ROW[6]);
+
+
+--J1L42 is FINAL:inst|PING:U3|add~3697
+--operation mode is arithmetic
+
+J1L42_carry_eqn = J1L36;
+J1L42 = J1_STEP[4] $ J1_CURRENT_ROW[4] $ J1L42_carry_eqn;
+
+--J1L52 is FINAL:inst|PING:U3|add~3699
+--operation mode is arithmetic
+
+J1L52 = CARRY(J1_STEP[4] & J1_CURRENT_ROW[4] & !J1L36 # !J1_STEP[4] & (J1_CURRENT_ROW[4] # !J1L36));
+
+
+--J1L62 is FINAL:inst|PING:U3|add~3702
+--operation mode is arithmetic
+
+J1L62_carry_eqn = J1L52;
+J1L62 = J1_CURRENT_ROW[5] $ J1_STEP[5] $ J1L62_carry_eqn;
+
+--J1L72 is FINAL:inst|PING:U3|add~3704
+--operation mode is arithmetic
+
+J1L72 = CARRY(J1_CURRENT_ROW[5] & (J1_STEP[5] # !J1L52) # !J1_CURRENT_ROW[5] & J1_STEP[5] & !J1L52);
+
+
+--J1L82 is FINAL:inst|PING:U3|add~3707
+--operation mode is arithmetic
+
+J1L82_carry_eqn = J1L72;
+J1L82 = J1_STEP[6] $ J1_CURRENT_ROW[6] $ J1L82_carry_eqn;
+
+--J1L92 is FINAL:inst|PING:U3|add~3709
+--operation mode is arithmetic
+
+J1L92 = CARRY(J1_STEP[6] & J1_CURRENT_ROW[6] & !J1L72 # !J1_STEP[6] & (J1_CURRENT_ROW[6] # !J1L72));
+
+
+--J1L581 is FINAL:inst|PING:U3|CURRENT_ROW~3095
+--operation mode is normal
+
+J1L581 = J1L42 # J1L62 # J1L82;
+
+
+--J1L681 is FINAL:inst|PING:U3|CURRENT_ROW~3096
+--operation mode is normal
+
+J1L681 = J1L822 & J1L481 & !J1_CURRENT_ROW[5] # !J1L822 & J1L581 & (!J1_CURRENT_ROW[5] # !J1L481);
+
+
+--J1L781 is FINAL:inst|PING:U3|CURRENT_ROW~3097
+--operation mode is normal
+
+J1L781 = J1L681 & (J1L822 & !J1L722 # !J1L822 & (J1L32));
+
+
+--J1L881 is FINAL:inst|PING:U3|CURRENT_ROW~3098
+--operation mode is normal
+
+J1L881 = J1L822 & J1L722 # !J1L822 & (!J1L481 # !J1_CURRENT_ROW[5]);
+
+
+--J1L981 is FINAL:inst|PING:U3|CURRENT_ROW~3099
+--operation mode is normal
+
+J1L981 = J1L781 & J1L6 # !J1L781 & (J1L31 & !J1L881);
+
+
+--J1_STATE.position_state_1 is FINAL:inst|PING:U3|STATE.position_state_1
+--operation mode is normal
+
+J1_STATE.position_state_1_lut_out = J1L643 # J1L751 & (!J1L113 # !J1L373);
+J1_STATE.position_state_1 = DFFEAS(J1_STATE.position_state_1_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1L923 is FINAL:inst|PING:U3|Select~3213
+--operation mode is normal
+
+J1L923 = !J1_STATE.step_decide_state_1 & (J1_STATE.position_state_1 & J1L281 # !J1_STATE.position_state_1 & (J1L981));
+
+
+--J1_STATE.serve_decide is FINAL:inst|PING:U3|STATE.serve_decide
+--operation mode is normal
+
+J1_STATE.serve_decide_lut_out = VCC;
+J1_STATE.serve_decide = DFFEAS(J1_STATE.serve_decide_lut_out, E1_clock_10Hz, RESETN, , A1L32, , , , );
+
+
+--J1_STATE.idle_state_1 is FINAL:inst|PING:U3|STATE.idle_state_1
+--operation mode is normal
+
+J1_STATE.idle_state_1_lut_out = J1L843 # J1_STATE.idle_state_1 & J1L473;
+J1_STATE.idle_state_1 = DFFEAS(J1_STATE.idle_state_1_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1_STATE.idle_state_2 is FINAL:inst|PING:U3|STATE.idle_state_2
+--operation mode is normal
+
+J1_STATE.idle_state_2_lut_out = J1L943 # J1_STATE.idle_state_2 & J1L473;
+J1_STATE.idle_state_2 = DFFEAS(J1_STATE.idle_state_2_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1L353 is FINAL:inst|PING:U3|STATE.idle_state_2~21
+--operation mode is normal
+
+J1L353 = !J1_STATE.idle_state_1 & !J1_STATE.idle_state_2;
+
+
+--J1L513 is FINAL:inst|PING:U3|reduce_or~10
+--operation mode is normal
+
+J1L513 = !J1_STATE.score_inc_2 & !J1_STATE.score_inc_1 & J1_STATE.serve_decide & J1L353;
+
+
+--J1L033 is FINAL:inst|PING:U3|Select~3215
+--operation mode is normal
+
+J1L033 = !J1_STATE.position_state_2 & !J1_STATE.position_state_1;
+
+
+--J1L03 is FINAL:inst|PING:U3|add~3712
+--operation mode is arithmetic
+
+J1L03_carry_eqn = J1L97;
+J1L03 = J1_CURRENT_COLUMN[2] $ (J1L03_carry_eqn);
+
+--J1L13 is FINAL:inst|PING:U3|add~3714
+--operation mode is arithmetic
+
+J1L13 = CARRY(J1_CURRENT_COLUMN[2] # !J1L97);
+
+
+--J1L23 is FINAL:inst|PING:U3|add~3717
+--operation mode is arithmetic
+
+J1L23_carry_eqn = J1L18;
+J1L23 = J1_CURRENT_COLUMN[2] $ (!J1L23_carry_eqn);
+
+--J1L33 is FINAL:inst|PING:U3|add~3719
+--operation mode is arithmetic
+
+J1L33 = CARRY(J1_CURRENT_COLUMN[2] & (!J1L18));
+
+
+--J1_STATE.loop_state_2 is FINAL:inst|PING:U3|STATE.loop_state_2
+--operation mode is normal
+
+J1_STATE.loop_state_2_lut_out = J1_STATE.step_decide_state_2 # J1_STATE.loop_state_2 & J1L482;
+J1_STATE.loop_state_2 = DFFEAS(J1_STATE.loop_state_2_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1L861 is FINAL:inst|PING:U3|CURRENT_COLUMN[6]~156
+--operation mode is normal
+
+J1L861 = J1_STATE.step_decide_state_2 # J1_STATE.loop_state_2;
+
+
+--J1L091 is FINAL:inst|PING:U3|CURRENT_ROW~3100
+--operation mode is normal
+
+J1L091 = G1_paddle_2[0] $ (!J1_a[0] & (J1_a[2] $ J1_a[1]));
+
+
+--J1L191 is FINAL:inst|PING:U3|CURRENT_ROW~3101
+--operation mode is normal
+
+J1L191 = G1_paddle_1[0] $ (!J1_b[0] & (J1_b[2] $ J1_b[1]));
+
+
+--J1L43 is FINAL:inst|PING:U3|add~3722
+--operation mode is arithmetic
+
+J1L43 = J1_STEP[0] $ J1_CURRENT_ROW[0];
+
+--J1L53 is FINAL:inst|PING:U3|add~3724
+--operation mode is arithmetic
+
+J1L53 = CARRY(J1_CURRENT_ROW[0] # !J1_STEP[0]);
+
+
+--J1L291 is FINAL:inst|PING:U3|CURRENT_ROW~3102
+--operation mode is normal
+
+J1L291 = J1L781 & J1L43 # !J1L781 & (J1L11 & !J1L881);
+
+
+--J1L133 is FINAL:inst|PING:U3|Select~3217
+--operation mode is normal
+
+J1L133 = J1_STATE.step_decide_state_1 # J1_STATE.position_state_1 & J1L191 # !J1_STATE.position_state_1 & (J1L291);
+
+
+--J1L63 is FINAL:inst|PING:U3|add~3727
+--operation mode is arithmetic
+
+J1L63_carry_eqn = J1L58;
+J1L63 = J1_CURRENT_COLUMN[5] $ (!J1L63_carry_eqn);
+
+--J1L73 is FINAL:inst|PING:U3|add~3729
+--operation mode is arithmetic
+
+J1L73 = CARRY(J1_CURRENT_COLUMN[5] # !J1L58);
+
+
+--J1_STATE.loop_state_1 is FINAL:inst|PING:U3|STATE.loop_state_1
+--operation mode is normal
+
+J1_STATE.loop_state_1_lut_out = J1_STATE.step_decide_state_1 # J1_STATE.loop_state_1 & J1L382;
+J1_STATE.loop_state_1 = DFFEAS(J1_STATE.loop_state_1_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1L233 is FINAL:inst|PING:U3|Select~3219
+--operation mode is normal
+
+J1L233 = J1_STATE.position_state_2 # J1L63 & (J1_STATE.step_decide_state_1 # J1_STATE.loop_state_1);
+
+
+--J1L83 is FINAL:inst|PING:U3|add~3732
+--operation mode is arithmetic
+
+J1L83_carry_eqn = J1L38;
+J1L83 = J1_CURRENT_COLUMN[5] $ (J1L83_carry_eqn);
+
+--J1L93 is FINAL:inst|PING:U3|add~3734
+--operation mode is arithmetic
+
+J1L93 = CARRY(J1_CURRENT_COLUMN[5] & (!J1L38));
+
+
+--J1L333 is FINAL:inst|PING:U3|Select~3220
+--operation mode is normal
+
+J1L333 = J1L83 & (J1_STATE.step_decide_state_2 # J1_STATE.loop_state_2);
+
+
+--J1L04 is FINAL:inst|PING:U3|add~3737
+--operation mode is normal
+
+J1L04 = G1_paddle_2[1] # G1_paddle_2[2] # G1_paddle_2[3];
+
+
+--J1L14 is FINAL:inst|PING:U3|add~3738
+--operation mode is normal
+
+J1L14 = G1_paddle_2[4] $ (G1_paddle_2[2] # G1_paddle_2[3] # !K1L802);
+
+
+--J1L24 is FINAL:inst|PING:U3|add~3739
+--operation mode is normal
+
+J1L24 = G1_paddle_2[0] & G1_paddle_2[1] & G1_paddle_2[2];
+
+
+--J1L34 is FINAL:inst|PING:U3|add~3740
+--operation mode is normal
+
+J1L34 = G1_paddle_2[4] $ (G1_paddle_2[3] & J1L24);
+
+
+--J1L391 is FINAL:inst|PING:U3|CURRENT_ROW~3103
+--operation mode is normal
+
+J1L391 = J1L771 & (J1L871) # !J1L771 & (J1L871 & !J1L14 # !J1L871 & (J1L34));
+
+
+--J1L491 is FINAL:inst|PING:U3|CURRENT_ROW~3104
+--operation mode is normal
+
+J1L491 = J1L771 & (G1_paddle_2[4] $ (!J1L04 & J1L391)) # !J1L771 & (J1L391);
+
+
+--J1L44 is FINAL:inst|PING:U3|add~3741
+--operation mode is normal
+
+J1L44 = G1_paddle_1[1] # G1_paddle_1[2] # G1_paddle_1[3];
+
+
+--J1L54 is FINAL:inst|PING:U3|add~3742
+--operation mode is normal
+
+J1L54 = G1_paddle_1[4] $ (G1_paddle_1[2] # G1_paddle_1[3] # !K1L422);
+
+
+--J1L64 is FINAL:inst|PING:U3|add~3743
+--operation mode is normal
+
+J1L64 = G1_paddle_1[0] & G1_paddle_1[1] & G1_paddle_1[2];
+
+
+--J1L74 is FINAL:inst|PING:U3|add~3744
+--operation mode is normal
+
+J1L74 = G1_paddle_1[4] $ (G1_paddle_1[3] & J1L64);
+
+
+--J1L591 is FINAL:inst|PING:U3|CURRENT_ROW~3105
+--operation mode is normal
+
+J1L591 = J1L081 & (J1L181) # !J1L081 & (J1L181 & !J1L54 # !J1L181 & (J1L74));
+
+
+--J1L691 is FINAL:inst|PING:U3|CURRENT_ROW~3106
+--operation mode is normal
+
+J1L691 = J1L081 & (G1_paddle_1[4] $ (!J1L44 & J1L591)) # !J1L081 & (J1L591);
+
+
+--J1L433 is FINAL:inst|PING:U3|Select~3222
+--operation mode is normal
+
+J1L433 = J1_STATE.position_state_2 & J1L491 # !J1_STATE.position_state_2 & (J1_STATE.position_state_1 & J1L691);
+
+
+--J1L533 is FINAL:inst|PING:U3|Select~3223
+--operation mode is normal
+
+J1L533 = J1_STATE.step_decide_state_2 # J1_STATE.step_decide_state_1 & (!J1_STATE.position_state_2);
+
+
+--J1L791 is FINAL:inst|PING:U3|CURRENT_ROW~3107
+--operation mode is normal
+
+J1L791 = J1L781 & J1L42 # !J1L781 & (J1L91 # J1L881);
+
+
+--J1L84 is FINAL:inst|PING:U3|add~3745
+--operation mode is arithmetic
+
+J1L84 = !J1_CURRENT_COLUMN[0];
+
+--J1L94 is FINAL:inst|PING:U3|add~3747
+--operation mode is arithmetic
+
+J1L94 = CARRY(J1_CURRENT_COLUMN[0]);
+
+
+--J1L05 is FINAL:inst|PING:U3|add~3750
+--operation mode is arithmetic
+
+J1L05 = !J1_CURRENT_COLUMN[0];
+
+--J1L15 is FINAL:inst|PING:U3|add~3752
+--operation mode is arithmetic
+
+J1L15 = CARRY(J1_CURRENT_COLUMN[0]);
+
+
+--J1L633 is FINAL:inst|PING:U3|Select~3226
+--operation mode is normal
+
+J1L633 = J1_STATE.position_state_1 & !J1_STATE.step_decide_state_2 & !J1_STATE.position_state_2 & !J1_STATE.step_decide_state_1;
+
+
+--J1L733 is FINAL:inst|PING:U3|Select~3227
+--operation mode is normal
+
+J1L733 = J1_STATE.position_state_2 & (!J1_STATE.step_decide_state_2);
+
+
+--J1L25 is FINAL:inst|PING:U3|add~3755
+--operation mode is normal
+
+J1L25 = G1_paddle_2[2] $ (G1_paddle_2[0] # G1_paddle_2[1]);
+
+
+--J1L35 is FINAL:inst|PING:U3|add~3756
+--operation mode is normal
+
+J1L35 = G1_paddle_2[2] $ (G1_paddle_2[0] & G1_paddle_2[1]);
+
+
+--J1L891 is FINAL:inst|PING:U3|CURRENT_ROW~3108
+--operation mode is normal
+
+J1L891 = J1L771 & (J1L871) # !J1L771 & (J1L871 & !J1L25 # !J1L871 & (J1L35));
+
+
+--J1L991 is FINAL:inst|PING:U3|CURRENT_ROW~3109
+--operation mode is normal
+
+J1L991 = J1L771 & (G1_paddle_2[2] $ (!G1_paddle_2[1] & J1L891)) # !J1L771 & (J1L891);
+
+
+--J1L45 is FINAL:inst|PING:U3|add~3757
+--operation mode is normal
+
+J1L45 = G1_paddle_1[2] $ (G1_paddle_1[0] # G1_paddle_1[1]);
+
+
+--J1L55 is FINAL:inst|PING:U3|add~3758
+--operation mode is normal
+
+J1L55 = G1_paddle_1[2] $ (G1_paddle_1[0] & G1_paddle_1[1]);
+
+
+--J1L002 is FINAL:inst|PING:U3|CURRENT_ROW~3110
+--operation mode is normal
+
+J1L002 = J1L081 & (J1L181) # !J1L081 & (J1L181 & !J1L45 # !J1L181 & (J1L55));
+
+
+--J1L102 is FINAL:inst|PING:U3|CURRENT_ROW~3111
+--operation mode is normal
+
+J1L102 = J1L081 & (G1_paddle_1[2] $ (!G1_paddle_1[1] & J1L002)) # !J1L081 & (J1L002);
+
+
+--J1L833 is FINAL:inst|PING:U3|Select~3228
+--operation mode is normal
+
+J1L833 = J1L633 & (J1L102 # J1L733 & J1L991) # !J1L633 & J1L733 & J1L991;
+
+
+--J1L933 is FINAL:inst|PING:U3|Select~3229
+--operation mode is normal
+
+J1L933 = !J1_STATE.step_decide_state_2 & !J1_STATE.step_decide_state_1;
+
+
+--J1L65 is FINAL:inst|PING:U3|add~3759
+--operation mode is arithmetic
+
+J1L65_carry_eqn = J1L7;
+J1L65 = J1_STEP[2] $ J1_CURRENT_ROW[2] $ J1L65_carry_eqn;
+
+--J1L75 is FINAL:inst|PING:U3|add~3761
+--operation mode is arithmetic
+
+J1L75 = CARRY(J1_STEP[2] & J1_CURRENT_ROW[2] & !J1L7 # !J1_STEP[2] & (J1_CURRENT_ROW[2] # !J1L7));
+
+
+--J1L202 is FINAL:inst|PING:U3|CURRENT_ROW~3112
+--operation mode is normal
+
+J1L202 = J1L781 & J1L65 # !J1L781 & (J1L51 & !J1L881);
+
+
+--J1L85 is FINAL:inst|PING:U3|add~3764
+--operation mode is normal
+
+J1L85 = G1_paddle_2[3] $ (G1_paddle_2[0] # G1_paddle_2[1] # G1_paddle_2[2]);
+
+
+--J1L302 is FINAL:inst|PING:U3|CURRENT_ROW~3113
+--operation mode is normal
+
+J1L302 = J1L871 & (J1L771) # !J1L871 & (G1_paddle_2[3] $ (J1L24 & !J1L771));
+
+
+--J1L95 is FINAL:inst|PING:U3|add~3765
+--operation mode is normal
+
+J1L95 = G1_paddle_2[3] $ (G1_paddle_2[1] # G1_paddle_2[2]);
+
+
+--J1L402 is FINAL:inst|PING:U3|CURRENT_ROW~3114
+--operation mode is normal
+
+J1L402 = J1L871 & (J1L302 & (!J1L95) # !J1L302 & !J1L85) # !J1L871 & (J1L302);
+
+
+--J1L06 is FINAL:inst|PING:U3|add~3766
+--operation mode is normal
+
+J1L06 = G1_paddle_1[3] $ (G1_paddle_1[0] # G1_paddle_1[1] # G1_paddle_1[2]);
+
+
+--J1L502 is FINAL:inst|PING:U3|CURRENT_ROW~3115
+--operation mode is normal
+
+J1L502 = J1L181 & (J1L081) # !J1L181 & (G1_paddle_1[3] $ (J1L64 & !J1L081));
+
+
+--J1L16 is FINAL:inst|PING:U3|add~3767
+--operation mode is normal
+
+J1L16 = G1_paddle_1[3] $ (G1_paddle_1[1] # G1_paddle_1[2]);
+
+
+--J1L602 is FINAL:inst|PING:U3|CURRENT_ROW~3116
+--operation mode is normal
+
+J1L602 = J1L181 & (J1L502 & (!J1L16) # !J1L502 & !J1L06) # !J1L181 & (J1L502);
+
+
+--J1L043 is FINAL:inst|PING:U3|Select~3231
+--operation mode is normal
+
+J1L043 = J1L633 & (J1L602 # J1L733 & J1L402) # !J1L633 & J1L733 & J1L402;
+
+
+--J1L26 is FINAL:inst|PING:U3|add~3768
+--operation mode is arithmetic
+
+J1L26_carry_eqn = J1L75;
+J1L26 = J1_STEP[3] $ J1_CURRENT_ROW[3] $ !J1L26_carry_eqn;
+
+--J1L36 is FINAL:inst|PING:U3|add~3770
+--operation mode is arithmetic
+
+J1L36 = CARRY(J1_STEP[3] & (!J1L75 # !J1_CURRENT_ROW[3]) # !J1_STEP[3] & !J1_CURRENT_ROW[3] & !J1L75);
+
+
+--J1L702 is FINAL:inst|PING:U3|CURRENT_ROW~3117
+--operation mode is normal
+
+J1L702 = J1L781 & J1L26 # !J1L781 & (J1L71 & !J1L881);
+
+
+--J1L46 is FINAL:inst|PING:U3|add~3773
+--operation mode is normal
+
+J1L46_carry_eqn = J1L93;
+J1L46 = J1_CURRENT_COLUMN[6] $ (J1L46_carry_eqn);
+
+
+--J1L56 is FINAL:inst|PING:U3|add~3778
+--operation mode is normal
+
+J1L56_carry_eqn = J1L73;
+J1L56 = J1_CURRENT_COLUMN[6] $ (!J1L56_carry_eqn);
+
+
+--J1L66 is FINAL:inst|PING:U3|add~3783
+--operation mode is arithmetic
+
+J1L66_carry_eqn = J1L13;
+J1L66 = J1_CURRENT_COLUMN[3] $ (!J1L66_carry_eqn);
+
+--J1L76 is FINAL:inst|PING:U3|add~3785
+--operation mode is arithmetic
+
+J1L76 = CARRY(!J1_CURRENT_COLUMN[3] & (!J1L13));
+
+
+--J1L86 is FINAL:inst|PING:U3|add~3788
+--operation mode is arithmetic
+
+J1L86_carry_eqn = J1L33;
+J1L86 = J1_CURRENT_COLUMN[3] $ (J1L86_carry_eqn);
+
+--J1L96 is FINAL:inst|PING:U3|add~3790
+--operation mode is arithmetic
+
+J1L96 = CARRY(!J1L33 # !J1_CURRENT_COLUMN[3]);
+
+
+--J1L07 is FINAL:inst|PING:U3|add~3793
+--operation mode is normal
+
+J1L07 = G1_paddle_2[4] # G1_paddle_2[2] # G1_paddle_2[3] # !K1L802;
+
+
+--J1L17 is FINAL:inst|PING:U3|add~3794
+--operation mode is normal
+
+J1L17 = !G1_paddle_2[5] & !J1L07;
+
+
+--J1L27 is FINAL:inst|PING:U3|add~3795
+--operation mode is normal
+
+J1L27 = G1_paddle_2[4] # G1_paddle_2[5] # J1L04;
+
+
+--J1L37 is FINAL:inst|PING:U3|add~3796
+--operation mode is normal
+
+J1L37 = G1_paddle_2[4] & G1_paddle_2[5] & G1_paddle_2[3] & J1L24;
+
+
+--J1L802 is FINAL:inst|PING:U3|CURRENT_ROW~3118
+--operation mode is normal
+
+J1L802 = J1_a[0] & (!J1L27 # !J1_a[1]) # !J1_a[0] & J1_a[1] & (J1L37);
+
+
+--J1L902 is FINAL:inst|PING:U3|CURRENT_ROW~3119
+--operation mode is normal
+
+J1L902 = J1_a[2] & J1L17 & !J1_a[1] & !J1L802 # !J1_a[2] & (J1_a[1] & J1L802);
+
+
+--J1L47 is FINAL:inst|PING:U3|add~3797
+--operation mode is normal
+
+J1L47 = G1_paddle_1[4] # G1_paddle_1[2] # G1_paddle_1[3] # !K1L422;
+
+
+--J1L57 is FINAL:inst|PING:U3|add~3798
+--operation mode is normal
+
+J1L57 = !G1_paddle_1[5] & !J1L47;
+
+
+--J1L67 is FINAL:inst|PING:U3|add~3799
+--operation mode is normal
+
+J1L67 = G1_paddle_1[4] # G1_paddle_1[5] # J1L44;
+
+
+--J1L77 is FINAL:inst|PING:U3|add~3800
+--operation mode is normal
+
+J1L77 = G1_paddle_1[4] & G1_paddle_1[5] & G1_paddle_1[3] & J1L64;
+
+
+--J1L012 is FINAL:inst|PING:U3|CURRENT_ROW~3120
+--operation mode is normal
+
+J1L012 = J1_b[0] & (!J1L67 # !J1_b[1]) # !J1_b[0] & J1_b[1] & (J1L77);
+
+
+--J1L112 is FINAL:inst|PING:U3|CURRENT_ROW~3121
+--operation mode is normal
+
+J1L112 = J1_b[2] & (J1_b[1] # J1L012 # !J1L57) # !J1_b[2] & (!J1L012 # !J1_b[1]);
+
+
+--J1L143 is FINAL:inst|PING:U3|Select~3235
+--operation mode is normal
+
+J1L143 = J1_STATE.position_state_2 & (J1L902 # J1_STATE.position_state_1 & !J1L112) # !J1_STATE.position_state_2 & J1_STATE.position_state_1 & (!J1L112);
+
+
+--J1L243 is FINAL:inst|PING:U3|Select~3236
+--operation mode is normal
+
+J1L243 = J1_CURRENT_ROW[6] & !J1L513;
+
+
+--J1L212 is FINAL:inst|PING:U3|CURRENT_ROW~3122
+--operation mode is normal
+
+J1L212 = J1L781 & J1L82 # !J1L781 & (J1L8 & !J1L881);
+
+
+--J1L072 is FINAL:inst|PING:U3|PREVIOUS_ROW~57
+--operation mode is normal
+
+J1L072 = !J1_STATE.loop_state_2 & !J1_STATE.loop_state_1;
+
+
+--J1L87 is FINAL:inst|PING:U3|add~3801
+--operation mode is arithmetic
+
+J1L87_carry_eqn = J1L94;
+J1L87 = J1_CURRENT_COLUMN[1] $ (!J1L87_carry_eqn);
+
+--J1L97 is FINAL:inst|PING:U3|add~3803
+--operation mode is arithmetic
+
+J1L97 = CARRY(!J1_CURRENT_COLUMN[1] & (!J1L94));
+
+
+--J1L08 is FINAL:inst|PING:U3|add~3806
+--operation mode is arithmetic
+
+J1L08_carry_eqn = J1L15;
+J1L08 = J1_CURRENT_COLUMN[1] $ (J1L08_carry_eqn);
+
+--J1L18 is FINAL:inst|PING:U3|add~3808
+--operation mode is arithmetic
+
+J1L18 = CARRY(!J1L15 # !J1_CURRENT_COLUMN[1]);
+
+
+--J1L28 is FINAL:inst|PING:U3|add~3811
+--operation mode is arithmetic
+
+J1L28_carry_eqn = J1L76;
+J1L28 = J1_CURRENT_COLUMN[4] $ (J1L28_carry_eqn);
+
+--J1L38 is FINAL:inst|PING:U3|add~3813
+--operation mode is arithmetic
+
+J1L38 = CARRY(J1_CURRENT_COLUMN[4] # !J1L76);
+
+
+--J1L48 is FINAL:inst|PING:U3|add~3816
+--operation mode is arithmetic
+
+J1L48_carry_eqn = J1L96;
+J1L48 = J1_CURRENT_COLUMN[4] $ (!J1L48_carry_eqn);
+
+--J1L58 is FINAL:inst|PING:U3|add~3818
+--operation mode is arithmetic
+
+J1L58 = CARRY(J1_CURRENT_COLUMN[4] & (!J1L96));
+
+
+--J1L343 is FINAL:inst|PING:U3|Select~3240
+--operation mode is normal
+
+J1L343 = !J1L513 & (!J1_CURRENT_ROW[5]);
+
+
+--J1L312 is FINAL:inst|PING:U3|CURRENT_ROW~3123
+--operation mode is normal
+
+J1L312 = J1L881 & J1L822 # !J1L881 & (J1L12);
+
+
+--J1L412 is FINAL:inst|PING:U3|CURRENT_ROW~3124
+--operation mode is normal
+
+J1L412 = J1L781 & J1L62 # !J1L781 & (J1L312);
+
+
+--J1L68 is FINAL:inst|PING:U3|add~3821
+--operation mode is normal
+
+J1L68 = G1_paddle_2[5] $ J1L07;
+
+
+--J1L78 is FINAL:inst|PING:U3|add~3822
+--operation mode is normal
+
+J1L78 = G1_paddle_2[4] & G1_paddle_2[2] & G1_paddle_2[3] & K1L912;
+
+
+--J1L512 is FINAL:inst|PING:U3|CURRENT_ROW~3125
+--operation mode is normal
+
+J1L512 = J1L871 & (J1L771) # !J1L871 & (G1_paddle_2[5] $ (J1L78 & !J1L771));
+
+
+--J1L88 is FINAL:inst|PING:U3|add~3823
+--operation mode is normal
+
+J1L88 = G1_paddle_2[5] $ (G1_paddle_2[4] # J1L04);
+
+
+--J1L612 is FINAL:inst|PING:U3|CURRENT_ROW~3126
+--operation mode is normal
+
+J1L612 = J1L871 & (J1L512 & (!J1L88) # !J1L512 & !J1L68) # !J1L871 & (J1L512);
+
+
+--J1L98 is FINAL:inst|PING:U3|add~3824
+--operation mode is normal
+
+J1L98 = G1_paddle_1[5] $ (G1_paddle_1[4] # J1L44);
+
+
+--J1L09 is FINAL:inst|PING:U3|add~3825
+--operation mode is normal
+
+J1L09 = G1_paddle_1[4] & G1_paddle_1[2] & G1_paddle_1[3] & K1L822;
+
+
+--J1L712 is FINAL:inst|PING:U3|CURRENT_ROW~3127
+--operation mode is normal
+
+J1L712 = J1L081 & (J1L181) # !J1L081 & (J1L181 & !J1L47 # !J1L181 & (J1L09));
+
+
+--J1L812 is FINAL:inst|PING:U3|CURRENT_ROW~3128
+--operation mode is normal
+
+J1L812 = J1L712 & (J1L081 & (!J1L98) # !J1L081 & !G1_paddle_1[5]) # !J1L712 & G1_paddle_1[5];
+
+
+--J1L443 is FINAL:inst|PING:U3|Select~3241
+--operation mode is normal
+
+J1L443 = J1_STATE.position_state_2 & !J1L612 & (!J1L812 # !J1_STATE.position_state_1) # !J1_STATE.position_state_2 & (!J1L812 # !J1_STATE.position_state_1);
+
+
+--G1L1 is FINAL:inst|bat:U1|add~520
+--operation mode is arithmetic
+
+G1L1_carry_eqn = G1L9;
+G1L1 = G1_pdl_2[2] $ G1L18 $ !G1L1_carry_eqn;
+
+--G1L2 is FINAL:inst|bat:U1|add~522
+--operation mode is arithmetic
+
+G1L2 = CARRY(G1_pdl_2[2] & (G1L18 # !G1L9) # !G1_pdl_2[2] & G1L18 & !G1L9);
+
+
+--E1_clock_100Hz is clk_div:inst15|clock_100Hz
+--operation mode is normal
+
+E1_clock_100Hz_lut_out = E1_clock_100hz_reg;
+E1_clock_100Hz = DFFEAS(E1_clock_100Hz_lut_out, CLK48, VCC, , , , , , );
+
+
+--G1_state.read_data is FINAL:inst|bat:U1|state.read_data
+--operation mode is normal
+
+G1_state.read_data_lut_out = G1L58 & F1_scan_ready & G1_state.wait_ready # !G1L58 & (G1L86 # F1_scan_ready & G1_state.wait_ready);
+G1_state.read_data = DFFEAS(G1_state.read_data_lut_out, E1_clock_100Hz, RESETN, , , , , , );
+
+
+--F1_scan_code[2] is keyboard:inst16|scan_code[2]
+--operation mode is normal
+
+F1_scan_code[2]_lut_out = F1_SHIFTIN[2];
+F1_scan_code[2] = DFFEAS(F1_scan_code[2]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--F1_scan_code[1] is keyboard:inst16|scan_code[1]
+--operation mode is normal
+
+F1_scan_code[1]_lut_out = F1_SHIFTIN[1];
+F1_scan_code[1] = DFFEAS(F1_scan_code[1]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--F1_scan_code[3] is keyboard:inst16|scan_code[3]
+--operation mode is normal
+
+F1_scan_code[3]_lut_out = F1_SHIFTIN[3];
+F1_scan_code[3] = DFFEAS(F1_scan_code[3]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--F1_scan_code[7] is keyboard:inst16|scan_code[7]
+--operation mode is normal
+
+F1_scan_code[7]_lut_out = F1_SHIFTIN[7];
+F1_scan_code[7] = DFFEAS(F1_scan_code[7]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--F1_scan_code[5] is keyboard:inst16|scan_code[5]
+--operation mode is normal
+
+F1_scan_code[5]_lut_out = F1_SHIFTIN[5];
+F1_scan_code[5] = DFFEAS(F1_scan_code[5]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--G1L28 is FINAL:inst|bat:U1|reduce_nor~103
+--operation mode is normal
+
+G1L28 = F1_scan_code[3] & (!F1_scan_code[7] & !F1_scan_code[5]);
+
+
+--F1_scan_code[0] is keyboard:inst16|scan_code[0]
+--operation mode is normal
+
+F1_scan_code[0]_lut_out = F1_SHIFTIN[0];
+F1_scan_code[0] = DFFEAS(F1_scan_code[0]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--F1_scan_code[4] is keyboard:inst16|scan_code[4]
+--operation mode is normal
+
+F1_scan_code[4]_lut_out = F1_SHIFTIN[4];
+F1_scan_code[4] = DFFEAS(F1_scan_code[4]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--F1_scan_code[6] is keyboard:inst16|scan_code[6]
+--operation mode is normal
+
+F1_scan_code[6]_lut_out = F1_SHIFTIN[6];
+F1_scan_code[6] = DFFEAS(F1_scan_code[6]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L73, , , , );
+
+
+--G1L38 is FINAL:inst|bat:U1|reduce_nor~104
+--operation mode is normal
+
+G1L38 = F1_scan_code[0] & F1_scan_code[4] & (!F1_scan_code[6]);
+
+
+--G1L97 is FINAL:inst|bat:U1|reduce_nor~0
+--operation mode is normal
+
+G1L97 = F1_scan_code[2] # !G1L38 # !G1L28 # !F1_scan_code[1];
+
+
+--G1L48 is FINAL:inst|bat:U1|reduce_nor~105
+--operation mode is normal
+
+G1L48 = F1_scan_code[2] & F1_scan_code[3] & !F1_scan_code[7] & !F1_scan_code[5];
+
+
+--G1L08 is FINAL:inst|bat:U1|reduce_nor~1
+--operation mode is normal
+
+G1L08 = F1_scan_code[1] # !G1L38 # !G1L48;
+
+
+--G1L86 is FINAL:inst|bat:U1|pdl_2[0]~769
+--operation mode is normal
+
+G1L86 = G1_state.read_data & G1L97 & G1L08;
+
+
+--G1L58 is FINAL:inst|bat:U1|reduce_nor~106
+--operation mode is normal
+
+G1L58 = G1L48 & F1_scan_code[6] & !F1_scan_code[1] & !F1_scan_code[4];
+
+
+--G1L44 is FINAL:inst|bat:U1|paddle_2[0]~321
+--operation mode is normal
+
+G1L44 = RESETN & G1L86 & (G1L58);
+
+
+--G1_pdl_2[2] is FINAL:inst|bat:U1|pdl_2[2]
+--operation mode is normal
+
+G1_pdl_2[2]_lut_out = G1L1;
+G1_pdl_2[2] = DFFEAS(G1_pdl_2[2]_lut_out, E1_clock_100Hz, RESETN, , G1L37, , , , );
+
+
+--G1_pdl_2[4] is FINAL:inst|bat:U1|pdl_2[4]
+--operation mode is normal
+
+G1_pdl_2[4]_lut_out = G1L3;
+G1_pdl_2[4] = DFFEAS(G1_pdl_2[4]_lut_out, E1_clock_100Hz, RESETN, , G1L37, , , , );
+
+
+--G1_pdl_2[5] is FINAL:inst|bat:U1|pdl_2[5]
+--operation mode is normal
+
+G1_pdl_2[5]_lut_out = !G1L57 & (G1L18 # G1_pdl_2[5] $ G1L52);
+G1_pdl_2[5] = DFFEAS(G1_pdl_2[5]_lut_out, E1_clock_100Hz, RESETN, , G1L86, , , , );
+
+
+--G1_pdl_2[0] is FINAL:inst|bat:U1|pdl_2[0]
+--operation mode is normal
+
+G1_pdl_2[0]_lut_out = G1L01;
+G1_pdl_2[0] = DFFEAS(G1_pdl_2[0]_lut_out, E1_clock_100Hz, RESETN, , G1L37, , , , );
+
+
+--G1_pdl_2[1] is FINAL:inst|bat:U1|pdl_2[1]
+--operation mode is normal
+
+G1_pdl_2[1]_lut_out = G1L8;
+G1_pdl_2[1] = DFFEAS(G1_pdl_2[1]_lut_out, E1_clock_100Hz, RESETN, , G1L37, , , , );
+
+
+--G1_pdl_2[3] is FINAL:inst|bat:U1|pdl_2[3]
+--operation mode is normal
+
+G1_pdl_2[3]_lut_out = G1L6;
+G1_pdl_2[3] = DFFEAS(G1_pdl_2[3]_lut_out, E1_clock_100Hz, RESETN, , G1L37, , , , );
+
+
+--G1L67 is FINAL:inst|bat:U1|process0~152
+--operation mode is normal
+
+G1L67 = !G1_pdl_2[0] & !G1_pdl_2[2] & !G1_pdl_2[1] & !G1_pdl_2[3];
+
+
+--G1L05 is FINAL:inst|bat:U1|paddle_2~322
+--operation mode is normal
+
+G1L05 = G1_pdl_2[2] & (G1_pdl_2[4] & G1_pdl_2[5] & !G1L67 # !G1_pdl_2[4] & !G1_pdl_2[5]);
+
+
+--G1L15 is FINAL:inst|bat:U1|paddle_2~323
+--operation mode is normal
+
+G1L15 = !G1L67 # !G1_pdl_2[4];
+
+
+--G1L3 is FINAL:inst|bat:U1|add~525
+--operation mode is arithmetic
+
+G1L3_carry_eqn = G1L7;
+G1L3 = G1_pdl_2[4] $ G1L18 $ !G1L3_carry_eqn;
+
+--G1L4 is FINAL:inst|bat:U1|add~527
+--operation mode is arithmetic
+
+G1L4 = CARRY(G1_pdl_2[4] & (G1L18 # !G1L7) # !G1_pdl_2[4] & G1L18 & !G1L7);
+
+
+--G1L25 is FINAL:inst|bat:U1|paddle_2~324
+--operation mode is normal
+
+G1L25 = G1_pdl_2[4] # G1_pdl_2[5];
+
+
+--G1L5 is FINAL:inst|bat:U1|add~530
+--operation mode is normal
+
+G1L5_carry_eqn = G1L4;
+G1L5 = G1_pdl_2[5] $ G1L18 $ !G1L5_carry_eqn;
+
+
+--G1L35 is FINAL:inst|bat:U1|paddle_2~325
+--operation mode is normal
+
+G1L35 = G1_pdl_2[4] & G1L67 # !G1_pdl_2[5];
+
+
+--G1L6 is FINAL:inst|bat:U1|add~535
+--operation mode is arithmetic
+
+G1L6_carry_eqn = G1L2;
+G1L6 = G1_pdl_2[3] $ G1L18 $ G1L6_carry_eqn;
+
+--G1L7 is FINAL:inst|bat:U1|add~537
+--operation mode is arithmetic
+
+G1L7 = CARRY(G1_pdl_2[3] & !G1L18 & !G1L2 # !G1_pdl_2[3] & (!G1L2 # !G1L18));
+
+
+--G1L45 is FINAL:inst|bat:U1|paddle_2~326
+--operation mode is normal
+
+G1L45 = G1_pdl_2[3] & (G1_pdl_2[4] & G1_pdl_2[5] & !G1L67 # !G1_pdl_2[4] & !G1_pdl_2[5]);
+
+
+--G1L8 is FINAL:inst|bat:U1|add~540
+--operation mode is arithmetic
+
+G1L8_carry_eqn = G1L11;
+G1L8 = G1_pdl_2[1] $ G1L18 $ G1L8_carry_eqn;
+
+--G1L9 is FINAL:inst|bat:U1|add~542
+--operation mode is arithmetic
+
+G1L9 = CARRY(G1_pdl_2[1] & !G1L18 & !G1L11 # !G1_pdl_2[1] & (!G1L11 # !G1L18));
+
+
+--G1L55 is FINAL:inst|bat:U1|paddle_2~327
+--operation mode is normal
+
+G1L55 = G1_pdl_2[1] & (G1_pdl_2[4] & G1_pdl_2[5] & !G1L67 # !G1_pdl_2[4] & !G1_pdl_2[5]);
+
+
+--G1L01 is FINAL:inst|bat:U1|add~545
+--operation mode is arithmetic
+
+G1L01 = !G1_pdl_2[0];
+
+--G1L11 is FINAL:inst|bat:U1|add~547
+--operation mode is arithmetic
+
+G1L11 = CARRY(G1_pdl_2[0]);
+
+
+--G1L65 is FINAL:inst|bat:U1|paddle_2~328
+--operation mode is normal
+
+G1L65 = G1_pdl_2[0] & (G1_pdl_2[4] & G1_pdl_2[5] & !G1L67 # !G1_pdl_2[4] & !G1_pdl_2[5]);
+
+
+--G1L21 is FINAL:inst|bat:U1|add~550
+--operation mode is normal
+
+G1L21_carry_eqn = G1L81;
+G1L21 = G1_pdl_1[5] $ G1L97 $ !G1L21_carry_eqn;
+
+
+--G1L82 is FINAL:inst|bat:U1|paddle_1[0]~364
+--operation mode is normal
+
+G1L82 = RESETN & G1_state.read_data & (!G1L08 # !G1L97);
+
+
+--G1_pdl_1[4] is FINAL:inst|bat:U1|pdl_1[4]
+--operation mode is normal
+
+G1_pdl_1[4]_lut_out = G1L71;
+G1_pdl_1[4] = DFFEAS(G1_pdl_1[4]_lut_out, E1_clock_100Hz, RESETN, , G1L92, , , , );
+
+
+--G1_pdl_1[2] is FINAL:inst|bat:U1|pdl_1[2]
+--operation mode is normal
+
+G1_pdl_1[2]_lut_out = G1L91;
+G1_pdl_1[2] = DFFEAS(G1_pdl_1[2]_lut_out, E1_clock_100Hz, RESETN, , G1L92, , , , );
+
+
+--G1_pdl_1[0] is FINAL:inst|bat:U1|pdl_1[0]
+--operation mode is normal
+
+G1_pdl_1[0]_lut_out = G1L31;
+G1_pdl_1[0] = DFFEAS(G1_pdl_1[0]_lut_out, E1_clock_100Hz, RESETN, , G1L92, , , , );
+
+
+--G1_pdl_1[1] is FINAL:inst|bat:U1|pdl_1[1]
+--operation mode is normal
+
+G1_pdl_1[1]_lut_out = G1L51;
+G1_pdl_1[1] = DFFEAS(G1_pdl_1[1]_lut_out, E1_clock_100Hz, RESETN, , G1L92, , , , );
+
+
+--G1_pdl_1[3] is FINAL:inst|bat:U1|pdl_1[3]
+--operation mode is normal
+
+G1_pdl_1[3]_lut_out = G1L12;
+G1_pdl_1[3] = DFFEAS(G1_pdl_1[3]_lut_out, E1_clock_100Hz, RESETN, , G1L92, , , , );
+
+
+--G1L77 is FINAL:inst|bat:U1|process0~153
+--operation mode is normal
+
+G1L77 = !G1_pdl_1[2] & !G1_pdl_1[0] & !G1_pdl_1[1] & !G1_pdl_1[3];
+
+
+--G1_pdl_1[5] is FINAL:inst|bat:U1|pdl_1[5]
+--operation mode is normal
+
+G1_pdl_1[5]_lut_out = G1_pdl_1[5] $ (G1L56 & (G1_pdl_1[4] # !G1L08));
+G1_pdl_1[5] = DFFEAS(G1_pdl_1[5]_lut_out, E1_clock_100Hz, RESETN, , G1_state.read_data, , , , );
+
+
+--G1L53 is FINAL:inst|bat:U1|paddle_1~365
+--operation mode is normal
+
+G1L53 = G1_pdl_1[4] & G1L77 # !G1_pdl_1[5];
+
+
+--G1L63 is FINAL:inst|bat:U1|paddle_1~366
+--operation mode is normal
+
+G1L63 = !G1L77 # !G1_pdl_1[4];
+
+
+--G1L31 is FINAL:inst|bat:U1|add~555
+--operation mode is arithmetic
+
+G1L31 = !G1_pdl_1[0];
+
+--G1L41 is FINAL:inst|bat:U1|add~557
+--operation mode is arithmetic
+
+G1L41 = CARRY(G1_pdl_1[0]);
+
+
+--G1L73 is FINAL:inst|bat:U1|paddle_1~367
+--operation mode is normal
+
+G1L73 = G1_pdl_1[0] & (G1_pdl_1[4] & G1_pdl_1[5] & !G1L77 # !G1_pdl_1[4] & !G1_pdl_1[5]);
+
+
+--G1L51 is FINAL:inst|bat:U1|add~560
+--operation mode is arithmetic
+
+G1L51_carry_eqn = G1L41;
+G1L51 = G1_pdl_1[1] $ G1L97 $ G1L51_carry_eqn;
+
+--G1L61 is FINAL:inst|bat:U1|add~562
+--operation mode is arithmetic
+
+G1L61 = CARRY(G1_pdl_1[1] & !G1L97 & !G1L41 # !G1_pdl_1[1] & (!G1L41 # !G1L97));
+
+
+--G1L83 is FINAL:inst|bat:U1|paddle_1~368
+--operation mode is normal
+
+G1L83 = G1_pdl_1[1] & (G1_pdl_1[4] & G1_pdl_1[5] & !G1L77 # !G1_pdl_1[4] & !G1_pdl_1[5]);
+
+
+--G1L71 is FINAL:inst|bat:U1|add~565
+--operation mode is arithmetic
+
+G1L71_carry_eqn = G1L22;
+G1L71 = G1_pdl_1[4] $ G1L97 $ !G1L71_carry_eqn;
+
+--G1L81 is FINAL:inst|bat:U1|add~567
+--operation mode is arithmetic
+
+G1L81 = CARRY(G1_pdl_1[4] & (G1L97 # !G1L22) # !G1_pdl_1[4] & G1L97 & !G1L22);
+
+
+--G1L93 is FINAL:inst|bat:U1|paddle_1~369
+--operation mode is normal
+
+G1L93 = G1_pdl_1[4] # G1_pdl_1[5];
+
+
+--G1L91 is FINAL:inst|bat:U1|add~570
+--operation mode is arithmetic
+
+G1L91_carry_eqn = G1L61;
+G1L91 = G1_pdl_1[2] $ G1L97 $ !G1L91_carry_eqn;
+
+--G1L02 is FINAL:inst|bat:U1|add~572
+--operation mode is arithmetic
+
+G1L02 = CARRY(G1_pdl_1[2] & (G1L97 # !G1L61) # !G1_pdl_1[2] & G1L97 & !G1L61);
+
+
+--G1L04 is FINAL:inst|bat:U1|paddle_1~370
+--operation mode is normal
+
+G1L04 = G1_pdl_1[2] & (G1_pdl_1[4] & G1_pdl_1[5] & !G1L77 # !G1_pdl_1[4] & !G1_pdl_1[5]);
+
+
+--G1L12 is FINAL:inst|bat:U1|add~575
+--operation mode is arithmetic
+
+G1L12_carry_eqn = G1L02;
+G1L12 = G1_pdl_1[3] $ G1L97 $ G1L12_carry_eqn;
+
+--G1L22 is FINAL:inst|bat:U1|add~577
+--operation mode is arithmetic
+
+G1L22 = CARRY(G1_pdl_1[3] & !G1L97 & !G1L02 # !G1_pdl_1[3] & (!G1L02 # !G1L97));
+
+
+--G1L14 is FINAL:inst|bat:U1|paddle_1~371
+--operation mode is normal
+
+G1L14 = G1_pdl_1[3] & (G1_pdl_1[4] & G1_pdl_1[5] & !G1L77 # !G1_pdl_1[4] & !G1_pdl_1[5]);
+
+
+--C1_next_command.print_string is LCD_Display:inst2|next_command.print_string
+--operation mode is normal
+
+C1_next_command.print_string_lut_out = C1L221 # C1L801 & C1_next_command.print_string # !C1L011;
+C1_next_command.print_string = DFFEAS(C1_next_command.print_string_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L801 is LCD_Display:inst2|reduce_or~47
+--operation mode is normal
+
+C1L801 = C1_state.drop_lcd_e # C1_state.hold;
+
+
+--C1_CLK_COUNT_400HZ[16] is LCD_Display:inst2|CLK_COUNT_400HZ[16]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[16]_carry_eqn = C1L84;
+C1_CLK_COUNT_400HZ[16]_lut_out = C1_CLK_COUNT_400HZ[16] $ (!C1_CLK_COUNT_400HZ[16]_carry_eqn);
+C1_CLK_COUNT_400HZ[16] = DFFEAS(C1_CLK_COUNT_400HZ[16]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L05 is LCD_Display:inst2|CLK_COUNT_400HZ[16]~337
+--operation mode is arithmetic
+
+C1L05 = CARRY(C1_CLK_COUNT_400HZ[16] & (!C1L84));
+
+
+--C1_CLK_COUNT_400HZ[17] is LCD_Display:inst2|CLK_COUNT_400HZ[17]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[17]_carry_eqn = C1L05;
+C1_CLK_COUNT_400HZ[17]_lut_out = C1_CLK_COUNT_400HZ[17] $ (C1_CLK_COUNT_400HZ[17]_carry_eqn);
+C1_CLK_COUNT_400HZ[17] = DFFEAS(C1_CLK_COUNT_400HZ[17]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L25 is LCD_Display:inst2|CLK_COUNT_400HZ[17]~341
+--operation mode is arithmetic
+
+C1L25 = CARRY(!C1L05 # !C1_CLK_COUNT_400HZ[17]);
+
+
+--C1_CLK_COUNT_400HZ[18] is LCD_Display:inst2|CLK_COUNT_400HZ[18]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[18]_carry_eqn = C1L25;
+C1_CLK_COUNT_400HZ[18]_lut_out = C1_CLK_COUNT_400HZ[18] $ (!C1_CLK_COUNT_400HZ[18]_carry_eqn);
+C1_CLK_COUNT_400HZ[18] = DFFEAS(C1_CLK_COUNT_400HZ[18]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L45 is LCD_Display:inst2|CLK_COUNT_400HZ[18]~345
+--operation mode is arithmetic
+
+C1L45 = CARRY(C1_CLK_COUNT_400HZ[18] & (!C1L25));
+
+
+--C1_CLK_COUNT_400HZ[19] is LCD_Display:inst2|CLK_COUNT_400HZ[19]
+--operation mode is normal
+
+C1_CLK_COUNT_400HZ[19]_carry_eqn = C1L45;
+C1_CLK_COUNT_400HZ[19]_lut_out = C1_CLK_COUNT_400HZ[19] $ (C1_CLK_COUNT_400HZ[19]_carry_eqn);
+C1_CLK_COUNT_400HZ[19] = DFFEAS(C1_CLK_COUNT_400HZ[19]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+
+--C1L71 is LCD_Display:inst2|CLK_COUNT_400HZ[1]~352
+--operation mode is normal
+
+C1L71 = !C1_CLK_COUNT_400HZ[16] & !C1_CLK_COUNT_400HZ[17] & !C1_CLK_COUNT_400HZ[18] & !C1_CLK_COUNT_400HZ[19];
+
+
+--C1_CLK_COUNT_400HZ[13] is LCD_Display:inst2|CLK_COUNT_400HZ[13]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[13]_carry_eqn = C1L24;
+C1_CLK_COUNT_400HZ[13]_lut_out = C1_CLK_COUNT_400HZ[13] $ (C1_CLK_COUNT_400HZ[13]_carry_eqn);
+C1_CLK_COUNT_400HZ[13] = DFFEAS(C1_CLK_COUNT_400HZ[13]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L44 is LCD_Display:inst2|CLK_COUNT_400HZ[13]~354
+--operation mode is arithmetic
+
+C1L44 = CARRY(!C1L24 # !C1_CLK_COUNT_400HZ[13]);
+
+
+--C1_CLK_COUNT_400HZ[14] is LCD_Display:inst2|CLK_COUNT_400HZ[14]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[14]_carry_eqn = C1L44;
+C1_CLK_COUNT_400HZ[14]_lut_out = C1_CLK_COUNT_400HZ[14] $ (!C1_CLK_COUNT_400HZ[14]_carry_eqn);
+C1_CLK_COUNT_400HZ[14] = DFFEAS(C1_CLK_COUNT_400HZ[14]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L64 is LCD_Display:inst2|CLK_COUNT_400HZ[14]~358
+--operation mode is arithmetic
+
+C1L64 = CARRY(C1_CLK_COUNT_400HZ[14] & (!C1L44));
+
+
+--C1_CLK_COUNT_400HZ[15] is LCD_Display:inst2|CLK_COUNT_400HZ[15]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[15]_carry_eqn = C1L64;
+C1_CLK_COUNT_400HZ[15]_lut_out = C1_CLK_COUNT_400HZ[15] $ (C1_CLK_COUNT_400HZ[15]_carry_eqn);
+C1_CLK_COUNT_400HZ[15] = DFFEAS(C1_CLK_COUNT_400HZ[15]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L84 is LCD_Display:inst2|CLK_COUNT_400HZ[15]~362
+--operation mode is arithmetic
+
+C1L84 = CARRY(!C1L64 # !C1_CLK_COUNT_400HZ[15]);
+
+
+--C1L37 is LCD_Display:inst2|LessThan~443
+--operation mode is normal
+
+C1L37 = !C1_CLK_COUNT_400HZ[15] # !C1_CLK_COUNT_400HZ[14] # !C1_CLK_COUNT_400HZ[13];
+
+
+--C1_CLK_COUNT_400HZ[5] is LCD_Display:inst2|CLK_COUNT_400HZ[5]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[5]_carry_eqn = C1L62;
+C1_CLK_COUNT_400HZ[5]_lut_out = C1_CLK_COUNT_400HZ[5] $ (C1_CLK_COUNT_400HZ[5]_carry_eqn);
+C1_CLK_COUNT_400HZ[5] = DFFEAS(C1_CLK_COUNT_400HZ[5]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L82 is LCD_Display:inst2|CLK_COUNT_400HZ[5]~366
+--operation mode is arithmetic
+
+C1L82 = CARRY(!C1L62 # !C1_CLK_COUNT_400HZ[5]);
+
+
+--C1_CLK_COUNT_400HZ[6] is LCD_Display:inst2|CLK_COUNT_400HZ[6]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[6]_carry_eqn = C1L82;
+C1_CLK_COUNT_400HZ[6]_lut_out = C1_CLK_COUNT_400HZ[6] $ (!C1_CLK_COUNT_400HZ[6]_carry_eqn);
+C1_CLK_COUNT_400HZ[6] = DFFEAS(C1_CLK_COUNT_400HZ[6]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L03 is LCD_Display:inst2|CLK_COUNT_400HZ[6]~370
+--operation mode is arithmetic
+
+C1L03 = CARRY(C1_CLK_COUNT_400HZ[6] & (!C1L82));
+
+
+--C1_CLK_COUNT_400HZ[7] is LCD_Display:inst2|CLK_COUNT_400HZ[7]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[7]_carry_eqn = C1L03;
+C1_CLK_COUNT_400HZ[7]_lut_out = C1_CLK_COUNT_400HZ[7] $ (C1_CLK_COUNT_400HZ[7]_carry_eqn);
+C1_CLK_COUNT_400HZ[7] = DFFEAS(C1_CLK_COUNT_400HZ[7]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L23 is LCD_Display:inst2|CLK_COUNT_400HZ[7]~374
+--operation mode is arithmetic
+
+C1L23 = CARRY(!C1L03 # !C1_CLK_COUNT_400HZ[7]);
+
+
+--C1_CLK_COUNT_400HZ[8] is LCD_Display:inst2|CLK_COUNT_400HZ[8]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[8]_carry_eqn = C1L23;
+C1_CLK_COUNT_400HZ[8]_lut_out = C1_CLK_COUNT_400HZ[8] $ (!C1_CLK_COUNT_400HZ[8]_carry_eqn);
+C1_CLK_COUNT_400HZ[8] = DFFEAS(C1_CLK_COUNT_400HZ[8]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L43 is LCD_Display:inst2|CLK_COUNT_400HZ[8]~378
+--operation mode is arithmetic
+
+C1L43 = CARRY(C1_CLK_COUNT_400HZ[8] & (!C1L23));
+
+
+--C1L47 is LCD_Display:inst2|LessThan~444
+--operation mode is normal
+
+C1L47 = !C1_CLK_COUNT_400HZ[7] & !C1_CLK_COUNT_400HZ[8] & (!C1_CLK_COUNT_400HZ[6] # !C1_CLK_COUNT_400HZ[5]);
+
+
+--C1_CLK_COUNT_400HZ[9] is LCD_Display:inst2|CLK_COUNT_400HZ[9]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[9]_carry_eqn = C1L43;
+C1_CLK_COUNT_400HZ[9]_lut_out = C1_CLK_COUNT_400HZ[9] $ (C1_CLK_COUNT_400HZ[9]_carry_eqn);
+C1_CLK_COUNT_400HZ[9] = DFFEAS(C1_CLK_COUNT_400HZ[9]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L63 is LCD_Display:inst2|CLK_COUNT_400HZ[9]~382
+--operation mode is arithmetic
+
+C1L63 = CARRY(!C1L43 # !C1_CLK_COUNT_400HZ[9]);
+
+
+--C1_CLK_COUNT_400HZ[10] is LCD_Display:inst2|CLK_COUNT_400HZ[10]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[10]_carry_eqn = C1L63;
+C1_CLK_COUNT_400HZ[10]_lut_out = C1_CLK_COUNT_400HZ[10] $ (!C1_CLK_COUNT_400HZ[10]_carry_eqn);
+C1_CLK_COUNT_400HZ[10] = DFFEAS(C1_CLK_COUNT_400HZ[10]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L83 is LCD_Display:inst2|CLK_COUNT_400HZ[10]~386
+--operation mode is arithmetic
+
+C1L83 = CARRY(C1_CLK_COUNT_400HZ[10] & (!C1L63));
+
+
+--C1_CLK_COUNT_400HZ[11] is LCD_Display:inst2|CLK_COUNT_400HZ[11]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[11]_carry_eqn = C1L83;
+C1_CLK_COUNT_400HZ[11]_lut_out = C1_CLK_COUNT_400HZ[11] $ (C1_CLK_COUNT_400HZ[11]_carry_eqn);
+C1_CLK_COUNT_400HZ[11] = DFFEAS(C1_CLK_COUNT_400HZ[11]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L04 is LCD_Display:inst2|CLK_COUNT_400HZ[11]~390
+--operation mode is arithmetic
+
+C1L04 = CARRY(!C1L83 # !C1_CLK_COUNT_400HZ[11]);
+
+
+--C1L57 is LCD_Display:inst2|LessThan~445
+--operation mode is normal
+
+C1L57 = !C1_CLK_COUNT_400HZ[10] & (C1L47 # !C1_CLK_COUNT_400HZ[9]) # !C1_CLK_COUNT_400HZ[11];
+
+
+--C1_CLK_COUNT_400HZ[12] is LCD_Display:inst2|CLK_COUNT_400HZ[12]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[12]_carry_eqn = C1L04;
+C1_CLK_COUNT_400HZ[12]_lut_out = C1_CLK_COUNT_400HZ[12] $ (!C1_CLK_COUNT_400HZ[12]_carry_eqn);
+C1_CLK_COUNT_400HZ[12] = DFFEAS(C1_CLK_COUNT_400HZ[12]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L24 is LCD_Display:inst2|CLK_COUNT_400HZ[12]~394
+--operation mode is arithmetic
+
+C1L24 = CARRY(C1_CLK_COUNT_400HZ[12] & (!C1L04));
+
+
+--C1L81 is LCD_Display:inst2|CLK_COUNT_400HZ[1]~397
+--operation mode is normal
+
+C1L81 = C1L71 & (C1L37 # C1L57 & !C1_CLK_COUNT_400HZ[12]);
+
+
+--C1_state.line2 is LCD_Display:inst2|state.line2
+--operation mode is normal
+
+C1_state.line2_lut_out = C1_state.hold & C1_next_command.line2;
+C1_state.line2 = DFFEAS(C1_state.line2_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_state.return_home is LCD_Display:inst2|state.return_home
+--operation mode is normal
+
+C1_state.return_home_lut_out = C1_state.hold & C1_next_command.return_home;
+C1_state.return_home = DFFEAS(C1_state.return_home_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L901 is LCD_Display:inst2|Select~1783
+--operation mode is normal
+
+C1L901 = C1_state.line2 # C1_DATA_BUS_VALUE[6] & (C1_state.drop_lcd_e # C1_state.hold);
+
+
+--J1_HEXOUT[126] is FINAL:inst|PING:U3|HEXOUT[126]
+--operation mode is normal
+
+J1_HEXOUT[126]_lut_out = VCC;
+J1_HEXOUT[126] = DFFEAS(J1_HEXOUT[126]_lut_out, E1_clock_10Hz, RESETN, , J1L422, , , , );
+
+
+--C1_CHAR_COUNT[4] is LCD_Display:inst2|CHAR_COUNT[4]
+--operation mode is normal
+
+C1_CHAR_COUNT[4]_carry_eqn = C1L9;
+C1_CHAR_COUNT[4]_lut_out = C1_CHAR_COUNT[4] $ (!C1_CHAR_COUNT[4]_carry_eqn);
+C1_CHAR_COUNT[4] = DFFEAS(C1_CHAR_COUNT[4]_lut_out, CLK48, VCC, , C1L11, C1L321, , , !C1_state.print_string);
+
+
+--C1L29 is LCD_Display:inst2|Next_Char[6]~1402
+--operation mode is normal
+
+C1L29 = J1_HEXOUT[126] & (!C1_CHAR_COUNT[4]);
+
+
+--C1_CHAR_COUNT[0] is LCD_Display:inst2|CHAR_COUNT[0]
+--operation mode is arithmetic
+
+C1_CHAR_COUNT[0]_lut_out = !C1_CHAR_COUNT[0];
+C1_CHAR_COUNT[0] = DFFEAS(C1_CHAR_COUNT[0]_lut_out, CLK48, VCC, , C1L11, C1L421, , , !C1_state.print_string);
+
+--C1L3 is LCD_Display:inst2|CHAR_COUNT[0]~197
+--operation mode is arithmetic
+
+C1L3 = CARRY(C1_CHAR_COUNT[0]);
+
+
+--C1_CHAR_COUNT[1] is LCD_Display:inst2|CHAR_COUNT[1]
+--operation mode is arithmetic
+
+C1_CHAR_COUNT[1]_carry_eqn = C1L3;
+C1_CHAR_COUNT[1]_lut_out = C1_CHAR_COUNT[1] $ (C1_CHAR_COUNT[1]_carry_eqn);
+C1_CHAR_COUNT[1] = DFFEAS(C1_CHAR_COUNT[1]_lut_out, CLK48, VCC, , C1L11, C1L521, , , !C1_state.print_string);
+
+--C1L5 is LCD_Display:inst2|CHAR_COUNT[1]~201
+--operation mode is arithmetic
+
+C1L5 = CARRY(!C1L3 # !C1_CHAR_COUNT[1]);
+
+
+--C1L39 is LCD_Display:inst2|Next_Char[6]~1403
+--operation mode is normal
+
+C1L39 = !C1_CHAR_COUNT[0] & !C1_CHAR_COUNT[1];
+
+
+--C1_CHAR_COUNT[2] is LCD_Display:inst2|CHAR_COUNT[2]
+--operation mode is arithmetic
+
+C1_CHAR_COUNT[2]_carry_eqn = C1L5;
+C1_CHAR_COUNT[2]_lut_out = C1_CHAR_COUNT[2] $ (!C1_CHAR_COUNT[2]_carry_eqn);
+C1_CHAR_COUNT[2] = DFFEAS(C1_CHAR_COUNT[2]_lut_out, CLK48, VCC, , C1L11, C1L621, , , !C1_state.print_string);
+
+--C1L7 is LCD_Display:inst2|CHAR_COUNT[2]~205
+--operation mode is arithmetic
+
+C1L7 = CARRY(C1_CHAR_COUNT[2] & (!C1L5));
+
+
+--C1_CHAR_COUNT[3] is LCD_Display:inst2|CHAR_COUNT[3]
+--operation mode is arithmetic
+
+C1_CHAR_COUNT[3]_carry_eqn = C1L7;
+C1_CHAR_COUNT[3]_lut_out = C1_CHAR_COUNT[3] $ (C1_CHAR_COUNT[3]_carry_eqn);
+C1_CHAR_COUNT[3] = DFFEAS(C1_CHAR_COUNT[3]_lut_out, CLK48, VCC, , C1L11, C1L721, , , !C1_state.print_string);
+
+--C1L9 is LCD_Display:inst2|CHAR_COUNT[3]~209
+--operation mode is arithmetic
+
+C1L9 = CARRY(!C1L7 # !C1_CHAR_COUNT[3]);
+
+
+--C1L49 is LCD_Display:inst2|Next_Char[6]~1404
+--operation mode is normal
+
+C1L49 = C1_CHAR_COUNT[3] & (C1_CHAR_COUNT[2]) # !C1_CHAR_COUNT[3] & C1L29 & (!C1_CHAR_COUNT[2] # !C1_CHAR_COUNT[1]);
+
+
+--C1L59 is LCD_Display:inst2|Next_Char[6]~1405
+--operation mode is normal
+
+C1L59 = C1_CHAR_COUNT[3] & C1L29 & (C1L39 $ !C1L49) # !C1_CHAR_COUNT[3] & (C1L49);
+
+
+--C1L68 is LCD_Display:inst2|Next_Char[3]~1406
+--operation mode is normal
+
+C1L68 = !C1_CHAR_COUNT[2] & (C1_CHAR_COUNT[3] & C1_CHAR_COUNT[1] # !C1_CHAR_COUNT[3] & (C1_CHAR_COUNT[0]));
+
+
+--C1L58 is LCD_Display:inst2|Next_Char[2]~1407
+--operation mode is normal
+
+C1L58 = C1_CHAR_COUNT[3] & C1_CHAR_COUNT[0] & (!C1_CHAR_COUNT[2]) # !C1_CHAR_COUNT[3] & !C1_CHAR_COUNT[1] & (C1_CHAR_COUNT[0] $ C1_CHAR_COUNT[2]);
+
+
+--C1L18 is LCD_Display:inst2|Next_Char[1]~1408
+--operation mode is normal
+
+C1L18 = C1_CHAR_COUNT[2] & C1_CHAR_COUNT[3] & C1L29 & C1L39;
+
+
+--J1_HEXOUT[65] is FINAL:inst|PING:U3|HEXOUT[65]
+--operation mode is normal
+
+J1_HEXOUT[65]_lut_out = J1L313;
+J1_HEXOUT[65] = DFFEAS(J1_HEXOUT[65]_lut_out, E1_clock_10Hz, RESETN, , J1L422, , , , );
+
+
+--C1L28 is LCD_Display:inst2|Next_Char[1]~1409
+--operation mode is normal
+
+C1L28 = C1_CHAR_COUNT[1] & J1_HEXOUT[65] # !C1_CHAR_COUNT[1] & (J1_HEXOUT[126]);
+
+
+--C1L38 is LCD_Display:inst2|Next_Char[1]~1410
+--operation mode is normal
+
+C1L38 = C1_CHAR_COUNT[2] & (C1L28 & !C1_CHAR_COUNT[3]) # !C1_CHAR_COUNT[2] & J1_HEXOUT[126] & (C1_CHAR_COUNT[3]);
+
+
+--C1L48 is LCD_Display:inst2|Next_Char[1]~1411
+--operation mode is normal
+
+C1L48 = C1L18 # C1_CHAR_COUNT[0] & C1L38 & !C1_CHAR_COUNT[4];
+
+
+--C1L67 is LCD_Display:inst2|LessThan~446
+--operation mode is normal
+
+C1L67 = C1L29 & C1L68 & (C1L58 # C1L48);
+
+
+--J1_HEXOUT[125] is FINAL:inst|PING:U3|HEXOUT[125]
+--operation mode is normal
+
+J1_HEXOUT[125]_lut_out = VCC;
+J1_HEXOUT[125] = DFFEAS(J1_HEXOUT[125]_lut_out, E1_clock_10Hz, RESETN, , J1L422, , , , );
+
+
+--C1L19 is LCD_Display:inst2|Next_Char[5]~1412
+--operation mode is normal
+
+C1L19 = C1_CHAR_COUNT[1] # C1_CHAR_COUNT[2] # C1_CHAR_COUNT[0] $ C1_CHAR_COUNT[3];
+
+
+--C1L56 is LCD_Display:inst2|DATA_BUS_VALUE~302
+--operation mode is normal
+
+C1L56 = J1_HEXOUT[125] & (!C1_CHAR_COUNT[4] & !C1L19);
+
+
+--C1L98 is LCD_Display:inst2|Next_Char[4]~1413
+--operation mode is normal
+
+C1L98 = C1_CHAR_COUNT[1] & C1_CHAR_COUNT[0] & (!C1_CHAR_COUNT[3]) # !C1_CHAR_COUNT[1] & (C1_CHAR_COUNT[0] $ C1_CHAR_COUNT[2] $ !C1_CHAR_COUNT[3]);
+
+
+--C1L66 is LCD_Display:inst2|DATA_BUS_VALUE~303
+--operation mode is normal
+
+C1L66 = C1L67 & C1L56 & (!C1L98 # !C1L29);
+
+
+--C1_state.mode_set is LCD_Display:inst2|state.mode_set
+--operation mode is normal
+
+C1_state.mode_set_lut_out = C1_state.hold & C1_next_command.mode_set;
+C1_state.mode_set = DFFEAS(C1_state.mode_set_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L011 is LCD_Display:inst2|Select~1785
+--operation mode is normal
+
+C1L011 = !C1_state.line2 & !C1_state.return_home & !C1_state.mode_set;
+
+
+--C1_state.display_on is LCD_Display:inst2|state.display_on
+--operation mode is normal
+
+C1_state.display_on_lut_out = C1_state.hold & C1_next_command.display_on;
+C1_state.display_on = DFFEAS(C1_state.display_on_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_state.display_off is LCD_Display:inst2|state.display_off
+--operation mode is normal
+
+C1_state.display_off_lut_out = C1_state.hold & C1_next_command.display_off;
+C1_state.display_off = DFFEAS(C1_state.display_off_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L111 is LCD_Display:inst2|Select~1786
+--operation mode is normal
+
+C1L111 = !C1_state.display_on & !C1_state.display_off;
+
+
+--C1_state.display_clear is LCD_Display:inst2|state.display_clear
+--operation mode is normal
+
+C1_state.display_clear_lut_out = C1_state.hold & C1_next_command.display_clear;
+C1_state.display_clear = DFFEAS(C1_state.display_clear_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L211 is LCD_Display:inst2|Select~1787
+--operation mode is normal
+
+C1L211 = C1L011 & C1L111 & !C1_state.print_string & !C1_state.display_clear;
+
+
+--C1L311 is LCD_Display:inst2|Select~1788
+--operation mode is normal
+
+C1L311 = !C1L59 & !C1L67 & (!C1L98 # !C1L29);
+
+
+--C1L411 is LCD_Display:inst2|Select~1790
+--operation mode is normal
+
+C1L411 = C1L56 & (!C1L59 & !C1L67);
+
+
+--C1_state.reset3 is LCD_Display:inst2|state.reset3
+--operation mode is normal
+
+C1_state.reset3_lut_out = C1_state.hold & C1_next_command.reset3;
+C1_state.reset3 = DFFEAS(C1_state.reset3_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_state.func_set is LCD_Display:inst2|state.func_set
+--operation mode is normal
+
+C1_state.func_set_lut_out = C1_state.hold & C1_next_command.func_set;
+C1_state.func_set = DFFEAS(C1_state.func_set_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_state.reset2 is LCD_Display:inst2|state.reset2
+--operation mode is normal
+
+C1_state.reset2_lut_out = !C1_next_command.reset2 & (C1_state.hold);
+C1_state.reset2 = DFFEAS(C1_state.reset2_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L511 is LCD_Display:inst2|Select~1792
+--operation mode is normal
+
+C1L511 = C1_state.reset3 # C1_state.func_set # C1_state.reset2 # !C1L111;
+
+
+--C1_state.reset1 is LCD_Display:inst2|state.reset1
+--operation mode is normal
+
+C1_state.reset1_lut_out = VCC;
+C1_state.reset1 = DFFEAS(C1_state.reset1_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L611 is LCD_Display:inst2|Select~1793
+--operation mode is normal
+
+C1L611 = C1L511 # C1L801 & !C1_DATA_BUS_VALUE[3] # !C1_state.reset1;
+
+
+--C1L76 is LCD_Display:inst2|DATA_BUS_VALUE~304
+--operation mode is normal
+
+C1L76 = C1L67 & C1L56 & !C1L59 & !C1L09;
+
+
+--C1L77 is LCD_Display:inst2|Next_Char[0]~1414
+--operation mode is normal
+
+C1L77 = !C1_CHAR_COUNT[3] & (C1_CHAR_COUNT[1] $ (!C1_CHAR_COUNT[0] & C1_CHAR_COUNT[2]));
+
+
+--C1L87 is LCD_Display:inst2|Next_Char[0]~1415
+--operation mode is normal
+
+C1L87 = C1_CHAR_COUNT[0] & (C1_CHAR_COUNT[1] & (C1_CHAR_COUNT[2]) # !C1_CHAR_COUNT[1] & C1_CHAR_COUNT[3]) # !C1_CHAR_COUNT[0] & C1_CHAR_COUNT[3] & (C1_CHAR_COUNT[1] # C1_CHAR_COUNT[2]);
+
+
+--J1_HEXOUT[64] is FINAL:inst|PING:U3|HEXOUT[64]
+--operation mode is normal
+
+J1_HEXOUT[64]_lut_out = !J1L313;
+J1_HEXOUT[64] = DFFEAS(J1_HEXOUT[64]_lut_out, E1_clock_10Hz, RESETN, , J1L422, , , , );
+
+
+--C1L97 is LCD_Display:inst2|Next_Char[0]~1416
+--operation mode is normal
+
+C1L97 = !C1_CHAR_COUNT[4] & (C1L87 & J1_HEXOUT[64] # !C1L87 & (J1_HEXOUT[126]));
+
+
+--C1L08 is LCD_Display:inst2|Next_Char[0]~1417
+--operation mode is normal
+
+C1L08 = C1L77 & (C1L97) # !C1L77 & C1L29 & C1L87;
+
+
+--C1L711 is LCD_Display:inst2|Select~1795
+--operation mode is normal
+
+C1L711 = !C1L48 & !C1L08 & C1L76;
+
+
+--C1L811 is LCD_Display:inst2|Select~1796
+--operation mode is normal
+
+C1L811 = C1_state.print_string & (C1L711 $ (C1L29 & C1L58));
+
+
+--C1L911 is LCD_Display:inst2|Select~1797
+--operation mode is normal
+
+C1L911 = C1_DATA_BUS_VALUE[2] & (C1_state.drop_lcd_e # C1_state.hold);
+
+
+--C1L021 is LCD_Display:inst2|Select~1799
+--operation mode is normal
+
+C1L021 = C1_state.print_string & (C1L48 $ (!C1L08 & C1L76));
+
+
+--C1L121 is LCD_Display:inst2|Select~1801
+--operation mode is normal
+
+C1L121 = C1_state.display_clear # C1_DATA_BUS_VALUE[0] & (C1_state.drop_lcd_e # C1_state.hold);
+
+
+--K1_row_count[1] is FINAL:inst|display:U4|row_count[1]
+--operation mode is normal
+
+K1_row_count[1]_lut_out = K1L18 & (K1_row_count[1] & (!K1_row_count[0]) # !K1_row_count[1] & !K1_row_count[2] & K1_row_count[0]);
+K1_row_count[1] = DFFEAS(K1_row_count[1]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1_row_count[2] is FINAL:inst|display:U4|row_count[2]
+--operation mode is normal
+
+K1_row_count[2]_lut_out = K1L18 & (K1_row_count[2] & (!K1_row_count[0]) # !K1_row_count[2] & K1_row_count[1] & K1_row_count[0]);
+K1_row_count[2] = DFFEAS(K1_row_count[2]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1_row_count[0] is FINAL:inst|display:U4|row_count[0]
+--operation mode is normal
+
+K1_row_count[0]_lut_out = K1L18 & (!K1_row_count[0]);
+K1_row_count[0] = DFFEAS(K1_row_count[0]_lut_out, P1__clk0, VCC, , K1L053, , , , );
+
+
+--K1L911 is FINAL:inst|display:U4|reduce_nor~1532
+--operation mode is normal
+
+K1L911 = K1_row_count[1] # !K1_row_count[0] # !K1_row_count[2];
+
+
+--E1_clock_10Hz_reg is clk_div:inst15|clock_10Hz_reg
+--operation mode is normal
+
+E1_clock_10Hz_reg_lut_out = E1_clock_10Hz_int;
+E1_clock_10Hz_reg = DFFEAS(E1_clock_10Hz_reg_lut_out, CLK48, VCC, , , , , , );
+
+
+--J1L582 is FINAL:inst|PING:U3|reduce_nor~512
+--operation mode is normal
+
+J1L582 = !J1_CURRENT_COLUMN[2] & !J1_CURRENT_COLUMN[0] & !J1_CURRENT_COLUMN[3] & !J1_CURRENT_COLUMN[6];
+
+
+--J1L382 is FINAL:inst|PING:U3|reduce_nor~6
+--operation mode is normal
+
+J1L382 = J1_CURRENT_COLUMN[5] # J1_CURRENT_COLUMN[1] # !J1L582 # !J1_CURRENT_COLUMN[4];
+
+
+--J1L363 is FINAL:inst|PING:U3|STATE~468
+--operation mode is normal
+
+J1L363 = J1_STATE.loop_state_1 & (!J1L382);
+
+
+--J1L272 is FINAL:inst|PING:U3|process0~18
+--operation mode is normal
+
+J1L272 = G1_paddle_2[0] $ J1L291;
+
+
+--J1L682 is FINAL:inst|PING:U3|reduce_nor~513
+--operation mode is normal
+
+J1L682 = G1_paddle_2[5] $ J1L78 $ J1L412 # !J1L272;
+
+
+--J1L172 is FINAL:inst|PING:U3|process0~12
+--operation mode is normal
+
+J1L172 = G1_paddle_2[0] $ G1_paddle_2[1] $ J1L981;
+
+
+--J1L782 is FINAL:inst|PING:U3|reduce_nor~514
+--operation mode is normal
+
+J1L782 = J1L682 # J1L172 # J1L212 $ J1L37;
+
+
+--J1L572 is FINAL:inst|PING:U3|process0~670
+--operation mode is normal
+
+J1L572 = G1_paddle_2[3] $ J1L702;
+
+
+--J1L882 is FINAL:inst|PING:U3|reduce_nor~515
+--operation mode is normal
+
+J1L882 = J1L791 & (J1L24 $ J1L572 # !J1L34) # !J1L791 & (J1L34 # J1L24 $ J1L572);
+
+
+--J1L982 is FINAL:inst|PING:U3|reduce_nor~516
+--operation mode is normal
+
+J1L982 = J1L782 # J1L882 # J1L202 $ J1L35;
+
+
+--J1L672 is FINAL:inst|PING:U3|process0~671
+--operation mode is normal
+
+J1L672 = G1_paddle_2[4] $ J1L791;
+
+
+--J1L092 is FINAL:inst|PING:U3|reduce_nor~517
+--operation mode is normal
+
+J1L092 = J1L04 & !J1L672 & (J1L702 $ J1L95) # !J1L04 & J1L672 & (J1L702 $ J1L95);
+
+
+--J1L772 is FINAL:inst|PING:U3|process0~672
+--operation mode is normal
+
+J1L772 = G1_paddle_2[2] $ J1L202;
+
+
+--J1L192 is FINAL:inst|PING:U3|reduce_nor~518
+--operation mode is normal
+
+J1L192 = J1L092 & (J1L981 & J1L772 & !G1_paddle_2[1] # !J1L981 & !J1L772 & G1_paddle_2[1]);
+
+
+--J1L292 is FINAL:inst|PING:U3|reduce_nor~519
+--operation mode is normal
+
+J1L292 = !J1L212 & (G1_paddle_2[0] $ !J1L291);
+
+
+--J1L392 is FINAL:inst|PING:U3|reduce_nor~520
+--operation mode is normal
+
+J1L392 = J1L27 & J1L292 & (J1L412 $ J1L88);
+
+
+--J1L463 is FINAL:inst|PING:U3|STATE~469
+--operation mode is normal
+
+J1L463 = G1_paddle_2[1] & J1L981 & (G1_paddle_2[2] $ !J1L202) # !G1_paddle_2[1] & !J1L981 & (G1_paddle_2[2] $ !J1L202);
+
+
+--J1L922 is FINAL:inst|PING:U3|LessThan~821
+--operation mode is normal
+
+J1L922_carry_eqn = J1L332;
+J1L922 = J1_CURRENT_ROW[6] & J1L212 & !J1L922_carry_eqn # !J1_CURRENT_ROW[6] & (J1L212 # !J1L922_carry_eqn);
+
+
+--J1L563 is FINAL:inst|PING:U3|STATE~470
+--operation mode is normal
+
+J1L563 = J1L922 & !J1L572 & (G1_paddle_2[5] $ !J1L412);
+
+
+--J1L663 is FINAL:inst|PING:U3|STATE~471
+--operation mode is normal
+
+J1L663 = J1L463 & J1L292 & J1L563 & !J1L672;
+
+
+--J1L19 is FINAL:inst|PING:U3|add~3826
+--operation mode is arithmetic
+
+J1L19_carry_eqn = J1L301;
+J1L19 = J1L791 $ J1_STEP[4] $ J1L19_carry_eqn;
+
+--J1L29 is FINAL:inst|PING:U3|add~3828
+--operation mode is arithmetic
+
+J1L29 = CARRY(J1L791 & (!J1L301 # !J1_STEP[4]) # !J1L791 & !J1_STEP[4] & !J1L301);
+
+
+--J1L39 is FINAL:inst|PING:U3|add~3831
+--operation mode is arithmetic
+
+J1L39_carry_eqn = J1L29;
+J1L39 = J1L412 $ J1_STEP[5] $ !J1L39_carry_eqn;
+
+--J1L49 is FINAL:inst|PING:U3|add~3833
+--operation mode is arithmetic
+
+J1L49 = CARRY(J1L412 & J1_STEP[5] & !J1L29 # !J1L412 & (J1_STEP[5] # !J1L29));
+
+
+--J1L763 is FINAL:inst|PING:U3|STATE~472
+--operation mode is normal
+
+J1L763 = J1L19 & G1_paddle_2[4] & (J1L39 $ !G1_paddle_2[5]) # !J1L19 & !G1_paddle_2[4] & (J1L39 $ !G1_paddle_2[5]);
+
+
+--J1L59 is FINAL:inst|PING:U3|add~3836
+--operation mode is arithmetic
+
+J1L59 = J1L291 $ J1_STEP[0];
+
+--J1L69 is FINAL:inst|PING:U3|add~3838
+--operation mode is arithmetic
+
+J1L69 = CARRY(J1L291 # !J1_STEP[0]);
+
+
+--J1L79 is FINAL:inst|PING:U3|add~3841
+--operation mode is arithmetic
+
+J1L79_carry_eqn = J1L101;
+J1L79 = J1L202 $ J1_STEP[2] $ J1L79_carry_eqn;
+
+--J1L89 is FINAL:inst|PING:U3|add~3843
+--operation mode is arithmetic
+
+J1L89 = CARRY(J1L202 & (!J1L101 # !J1_STEP[2]) # !J1L202 & !J1_STEP[2] & !J1L101);
+
+
+--J1L863 is FINAL:inst|PING:U3|STATE~473
+--operation mode is normal
+
+J1L863 = J1L59 & G1_paddle_2[0] & (J1L79 $ !G1_paddle_2[2]) # !J1L59 & !G1_paddle_2[0] & (J1L79 $ !G1_paddle_2[2]);
+
+
+--J1L99 is FINAL:inst|PING:U3|add~3846
+--operation mode is normal
+
+J1L99_carry_eqn = J1L501;
+J1L99 = J1L99_carry_eqn;
+
+
+--J1L001 is FINAL:inst|PING:U3|add~3851
+--operation mode is arithmetic
+
+J1L001_carry_eqn = J1L69;
+J1L001 = J1L981 $ J1_STEP[1] $ !J1L001_carry_eqn;
+
+--J1L101 is FINAL:inst|PING:U3|add~3853
+--operation mode is arithmetic
+
+J1L101 = CARRY(J1L981 & J1_STEP[1] & !J1L69 # !J1L981 & (J1_STEP[1] # !J1L69));
+
+
+--J1L201 is FINAL:inst|PING:U3|add~3856
+--operation mode is arithmetic
+
+J1L201_carry_eqn = J1L89;
+J1L201 = J1L702 $ J1_STEP[3] $ !J1L201_carry_eqn;
+
+--J1L301 is FINAL:inst|PING:U3|add~3858
+--operation mode is arithmetic
+
+J1L301 = CARRY(J1L702 & J1_STEP[3] & !J1L89 # !J1L702 & (J1_STEP[3] # !J1L89));
+
+
+--J1L963 is FINAL:inst|PING:U3|STATE~474
+--operation mode is normal
+
+J1L963 = J1L001 & G1_paddle_2[1] & (J1L201 $ !G1_paddle_2[3]) # !J1L001 & !G1_paddle_2[1] & (J1L201 $ !G1_paddle_2[3]);
+
+
+--J1L401 is FINAL:inst|PING:U3|add~3861
+--operation mode is arithmetic
+
+J1L401_carry_eqn = J1L49;
+J1L401 = J1L212 $ J1_STEP[6] $ J1L401_carry_eqn;
+
+--J1L501 is FINAL:inst|PING:U3|add~3863
+--operation mode is arithmetic
+
+J1L501 = CARRY(J1L212 & (!J1L49 # !J1_STEP[6]) # !J1L212 & !J1_STEP[6] & !J1L49);
+
+
+--J1L073 is FINAL:inst|PING:U3|STATE~475
+--operation mode is normal
+
+J1L073 = J1L99 & J1L963 & !J1L922 & !J1L401;
+
+
+--J1L173 is FINAL:inst|PING:U3|STATE~476
+--operation mode is normal
+
+J1L173 = J1L663 # J1L763 & J1L863 & J1L073;
+
+
+--J1L273 is FINAL:inst|PING:U3|STATE~477
+--operation mode is normal
+
+J1L273 = J1L982 & !J1L173 & (!J1L392 # !J1L192);
+
+
+--J1L492 is FINAL:inst|PING:U3|reduce_nor~521
+--operation mode is normal
+
+J1L492 = J1L702 & (J1L85 # J1L202 $ !J1L25) # !J1L702 & (J1L202 $ !J1L25 # !J1L85);
+
+
+--J1L592 is FINAL:inst|PING:U3|reduce_nor~522
+--operation mode is normal
+
+J1L592 = J1L212 # J1L413 # J1L412 $ !J1L68;
+
+
+--J1L692 is FINAL:inst|PING:U3|reduce_nor~523
+--operation mode is normal
+
+J1L692 = J1L492 # J1L592 # !J1L172 # !J1L272;
+
+
+--J1L482 is FINAL:inst|PING:U3|reduce_nor~18
+--operation mode is normal
+
+J1L482 = J1_CURRENT_COLUMN[1] # !J1L582 # !J1_CURRENT_COLUMN[4] # !J1_CURRENT_COLUMN[5];
+
+
+--J1L751 is FINAL:inst|PING:U3|b[2]~167
+--operation mode is normal
+
+J1L751 = J1_STATE.loop_state_2 & (!J1L482);
+
+
+--J1L872 is FINAL:inst|PING:U3|process0~673
+--operation mode is normal
+
+J1L872 = G1_paddle_1[3] $ J1L702;
+
+
+--J1L472 is FINAL:inst|PING:U3|process0~47
+--operation mode is normal
+
+J1L472 = G1_paddle_1[0] $ J1L291;
+
+
+--J1L792 is FINAL:inst|PING:U3|reduce_nor~524
+--operation mode is normal
+
+J1L792 = J1L212 # J1L472 # G1_paddle_1[5] $ J1L412;
+
+
+--J1L972 is FINAL:inst|PING:U3|process0~674
+--operation mode is normal
+
+J1L972 = G1_paddle_1[4] $ J1L791;
+
+
+--J1L892 is FINAL:inst|PING:U3|reduce_nor~525
+--operation mode is normal
+
+J1L892 = J1L792 # J1L972 # G1_paddle_1[1] $ J1L981;
+
+
+--J1L992 is FINAL:inst|PING:U3|reduce_nor~526
+--operation mode is normal
+
+J1L992 = J1L872 # J1L892 # G1_paddle_1[2] $ J1L202;
+
+
+--J1L003 is FINAL:inst|PING:U3|reduce_nor~527
+--operation mode is normal
+
+J1L003 = G1_paddle_1[5] $ J1L09 $ J1L412 # !J1L472;
+
+
+--J1L372 is FINAL:inst|PING:U3|process0~41
+--operation mode is normal
+
+J1L372 = G1_paddle_1[0] $ G1_paddle_1[1] $ J1L981;
+
+
+--J1L103 is FINAL:inst|PING:U3|reduce_nor~528
+--operation mode is normal
+
+J1L103 = J1L003 # J1L372 # J1L212 $ J1L77;
+
+
+--J1L203 is FINAL:inst|PING:U3|reduce_nor~529
+--operation mode is normal
+
+J1L203 = J1L791 & (J1L64 $ J1L872 # !J1L74) # !J1L791 & (J1L74 # J1L64 $ J1L872);
+
+
+--J1L303 is FINAL:inst|PING:U3|reduce_nor~530
+--operation mode is normal
+
+J1L303 = J1L103 # J1L203 # J1L202 $ J1L55;
+
+
+--J1L403 is FINAL:inst|PING:U3|reduce_nor~531
+--operation mode is normal
+
+J1L403 = G1_paddle_1[1] & !J1L981 & (G1_paddle_1[2] $ !J1L202) # !G1_paddle_1[1] & J1L981 & (G1_paddle_1[2] $ J1L202);
+
+
+--J1L503 is FINAL:inst|PING:U3|reduce_nor~532
+--operation mode is normal
+
+J1L503 = J1L44 & !J1L972 & (J1L702 $ J1L16) # !J1L44 & J1L972 & (J1L702 $ J1L16);
+
+
+--J1L603 is FINAL:inst|PING:U3|reduce_nor~533
+--operation mode is normal
+
+J1L603 = !J1L212 & !J1L472 & (J1L412 $ J1L98);
+
+
+--J1L703 is FINAL:inst|PING:U3|reduce_nor~534
+--operation mode is normal
+
+J1L703 = J1L67 & J1L403 & J1L503 & J1L603;
+
+
+--J1L373 is FINAL:inst|PING:U3|STATE~478
+--operation mode is normal
+
+J1L373 = J1L992 & J1L303 & (!J1L703);
+
+
+--J1L803 is FINAL:inst|PING:U3|reduce_nor~535
+--operation mode is normal
+
+J1L803 = J1L702 & (J1L06 # J1L202 $ !J1L45) # !J1L702 & (J1L202 $ !J1L45 # !J1L06);
+
+
+--J1L903 is FINAL:inst|PING:U3|reduce_nor~536
+--operation mode is normal
+
+J1L903 = J1L212 # G1_paddle_1[5] $ J1L47 $ !J1L412;
+
+
+--J1L013 is FINAL:inst|PING:U3|reduce_nor~537
+--operation mode is normal
+
+J1L013 = J1L57 # J1L903 # J1L791 $ !J1L54;
+
+
+--J1L113 is FINAL:inst|PING:U3|reduce_nor~538
+--operation mode is normal
+
+J1L113 = J1L803 # J1L013 # !J1L372 # !J1L472;
+
+
+--A1L81 is pin_name~28
+--operation mode is normal
+
+A1L81 = sw4 & (!pin_name);
+
+
+--J1L213 is FINAL:inst|PING:U3|reduce_nor~539
+--operation mode is normal
+
+J1L213 = J1L323Q & (!J1L423Q);
+
+
+--J1L313 is FINAL:inst|PING:U3|reduce_nor~540
+--operation mode is normal
+
+J1L313 = J1L813Q # J1L023Q # !J1L223Q # !J1L713Q;
+
+
+--J1L473 is FINAL:inst|PING:U3|STATE~479
+--operation mode is normal
+
+J1L473 = J1L823Q & J1L213 & !J1L623Q # !J1L313;
+
+
+--J1L543 is FINAL:inst|PING:U3|Select~3243
+--operation mode is normal
+
+J1L543 = A1L81 & (J1_STATE.idle_state_2 & !J1L473 # !J1_STATE.serve_decide) # !A1L81 & J1_STATE.idle_state_2 & (!J1L473);
+
+
+--J1L5 is FINAL:inst|PING:U3|a[2]~143
+--operation mode is normal
+
+J1L5 = RESETN & J1L363 & (!J1L692 # !J1L273);
+
+
+--J1L951 is FINAL:inst|PING:U3|b~168
+--operation mode is normal
+
+J1L951 = J1_b[0] & J1L113;
+
+
+--J1L651 is FINAL:inst|PING:U3|b[2]~12
+--operation mode is normal
+
+J1L651 = J1L922 & RESETN & J1_STATE.loop_state_2 & !J1L482;
+
+
+--J1L851 is FINAL:inst|PING:U3|b[2]~170
+--operation mode is normal
+
+J1L851 = J1L651 & (!J1L113 # !J1L373);
+
+
+--J1_STEP[1] is FINAL:inst|PING:U3|STEP[1]
+--operation mode is arithmetic
+
+J1_STEP[1]_carry_eqn = J1L973;
+J1_STEP[1]_lut_out = J1L911 $ (!J1_STEP[1]_carry_eqn);
+J1_STEP[1] = DFFEAS(J1_STEP[1]_lut_out, E1_clock_10Hz, VCC, , J1L293, , , , );
+
+--J1L283 is FINAL:inst|PING:U3|STEP[1]~99
+--operation mode is arithmetic
+
+J1L283 = CARRY(J1L911 & (!J1L973));
+
+
+--J1_STEP[6] is FINAL:inst|PING:U3|STEP[6]
+--operation mode is normal
+
+J1_STEP[6]_carry_eqn = J1L093;
+J1_STEP[6]_lut_out = J1L221 $ (J1_STEP[6]_carry_eqn);
+J1_STEP[6] = DFFEAS(J1_STEP[6]_lut_out, E1_clock_10Hz, VCC, , J1L293, , , , );
+
+
+--J1_STEP[0] is FINAL:inst|PING:U3|STEP[0]
+--operation mode is arithmetic
+
+J1_STEP[0]_carry_eqn = J1L083;
+J1_STEP[0]_lut_out = J1L721 $ (J1_STEP[0]_carry_eqn);
+J1_STEP[0] = DFFEAS(J1_STEP[0]_lut_out, E1_clock_10Hz, VCC, , J1L293, , , , );
+
+--J1L973 is FINAL:inst|PING:U3|STEP[0]~107
+--operation mode is arithmetic
+
+J1L973 = CARRY(!J1L083 # !J1L721);
+
+
+--J1_STEP[2] is FINAL:inst|PING:U3|STEP[2]
+--operation mode is arithmetic
+
+J1_STEP[2]_carry_eqn = J1L283;
+J1_STEP[2]_lut_out = J1L231 $ (J1_STEP[2]_carry_eqn);
+J1_STEP[2] = DFFEAS(J1_STEP[2]_lut_out, E1_clock_10Hz, VCC, , J1L293, , , , );
+
+--J1L483 is FINAL:inst|PING:U3|STEP[2]~111
+--operation mode is arithmetic
+
+J1L483 = CARRY(!J1L283 # !J1L231);
+
+
+--J1_STEP[3] is FINAL:inst|PING:U3|STEP[3]
+--operation mode is arithmetic
+
+J1_STEP[3]_carry_eqn = J1L483;
+J1_STEP[3]_lut_out = J1L731 $ (!J1_STEP[3]_carry_eqn);
+J1_STEP[3] = DFFEAS(J1_STEP[3]_lut_out, E1_clock_10Hz, VCC, , J1L293, , , , );
+
+--J1L683 is FINAL:inst|PING:U3|STEP[3]~115
+--operation mode is arithmetic
+
+J1L683 = CARRY(J1L731 & (!J1L483));
+
+
+--J1_STEP[4] is FINAL:inst|PING:U3|STEP[4]
+--operation mode is arithmetic
+
+J1_STEP[4]_carry_eqn = J1L683;
+J1_STEP[4]_lut_out = J1L241 $ (J1_STEP[4]_carry_eqn);
+J1_STEP[4] = DFFEAS(J1_STEP[4]_lut_out, E1_clock_10Hz, VCC, , J1L293, , , , );
+
+--J1L883 is FINAL:inst|PING:U3|STEP[4]~119
+--operation mode is arithmetic
+
+J1L883 = CARRY(!J1L683 # !J1L241);
+
+
+--J1_STEP[5] is FINAL:inst|PING:U3|STEP[5]
+--operation mode is arithmetic
+
+J1_STEP[5]_carry_eqn = J1L883;
+J1_STEP[5]_lut_out = J1L221 $ (!J1_STEP[5]_carry_eqn);
+J1_STEP[5] = DFFEAS(J1_STEP[5]_lut_out, E1_clock_10Hz, VCC, , J1L293, , , , );
+
+--J1L093 is FINAL:inst|PING:U3|STEP[5]~123
+--operation mode is arithmetic
+
+J1L093 = CARRY(J1L221 & (!J1L883));
+
+
+--J1_PREVIOUS_ROW[6] is FINAL:inst|PING:U3|PREVIOUS_ROW[6]
+--operation mode is normal
+
+J1_PREVIOUS_ROW[6]_lut_out = J1L072 & !J1L112 # !J1L072 & (J1_CURRENT_ROW[6]);
+J1_PREVIOUS_ROW[6] = DFFEAS(J1_PREVIOUS_ROW[6]_lut_out, E1_clock_10Hz, RESETN, , J1L613, J1L902, , , J1_STATE.position_state_2);
+
+
+--J1L132 is FINAL:inst|PING:U3|LessThan~828
+--operation mode is arithmetic
+
+J1L132 = CARRY(J1_PREVIOUS_ROW[5] & J1_CURRENT_ROW[5] & !J1L732 # !J1_PREVIOUS_ROW[5] & (J1_CURRENT_ROW[5] # !J1L732));
+
+
+--J1L643 is FINAL:inst|PING:U3|Select~3245
+--operation mode is normal
+
+J1L643 = J1_STATE.idle_state_1 & (!J1_STATE.serve_decide & !sw4 # !J1L473) # !J1_STATE.idle_state_1 & !J1_STATE.serve_decide & !sw4;
+
+
+--A1L32 is rtl~0
+--operation mode is normal
+
+A1L32 = !pin_name # !sw4;
+
+
+--J1L601 is FINAL:inst|PING:U3|add~3866
+--operation mode is normal
+
+J1L601_carry_eqn = J1L801;
+J1L601 = !J1L601_carry_eqn;
+
+
+--J1L701 is FINAL:inst|PING:U3|add~3871
+--operation mode is arithmetic
+
+J1L701_carry_eqn = J1L411;
+J1L701 = J1L223Q $ J1L823Q $ J1L701_carry_eqn;
+
+--J1L801 is FINAL:inst|PING:U3|add~3873
+--operation mode is arithmetic
+
+J1L801 = CARRY(J1L223Q & !J1L823Q & !J1L411 # !J1L223Q & (!J1L411 # !J1L823Q));
+
+
+--J1L901 is FINAL:inst|PING:U3|add~3876
+--operation mode is arithmetic
+
+J1L901_carry_eqn = J1L211;
+J1L901 = J1L423Q $ J1L813Q $ J1L901_carry_eqn;
+
+--J1L011 is FINAL:inst|PING:U3|add~3878
+--operation mode is arithmetic
+
+J1L011 = CARRY(J1L423Q & !J1L813Q & !J1L211 # !J1L423Q & (!J1L211 # !J1L813Q));
+
+
+--J1L111 is FINAL:inst|PING:U3|add~3881
+--operation mode is arithmetic
+
+J1L111 = J1L323Q $ J1L713Q;
+
+--J1L211 is FINAL:inst|PING:U3|add~3883
+--operation mode is arithmetic
+
+J1L211 = CARRY(J1L323Q & J1L713Q);
+
+
+--J1L082 is FINAL:inst|PING:U3|process0~675
+--operation mode is normal
+
+J1L082 = J1L901 # J1L111;
+
+
+--J1L311 is FINAL:inst|PING:U3|add~3886
+--operation mode is arithmetic
+
+J1L311_carry_eqn = J1L011;
+J1L311 = J1L623Q $ J1L023Q $ !J1L311_carry_eqn;
+
+--J1L411 is FINAL:inst|PING:U3|add~3888
+--operation mode is arithmetic
+
+J1L411 = CARRY(J1L623Q & (J1L023Q # !J1L011) # !J1L623Q & J1L023Q & !J1L011);
+
+
+--J1L182 is FINAL:inst|PING:U3|process0~676
+--operation mode is normal
+
+J1L182 = J1L601 # J1L701 & (J1L082 # J1L311) # !J1L701 & (!J1L311);
+
+
+--J1L282 is FINAL:inst|PING:U3|process0~677
+--operation mode is normal
+
+J1L282 = J1L601 & (J1L311 # J1L701 # J1L901) # !J1L601 & (!J1L901 # !J1L701 # !J1L311);
+
+
+--J1L743 is FINAL:inst|PING:U3|Select~3247
+--operation mode is normal
+
+J1L743 = J1L182 & J1L282;
+
+
+--J1L573 is FINAL:inst|PING:U3|STATE~480
+--operation mode is normal
+
+J1L573 = J1L701 & J1L311 & J1L901 # !J1L701 & (J1L311 # J1L901 & J1L111);
+
+
+--J1L673 is FINAL:inst|PING:U3|STATE~481
+--operation mode is normal
+
+J1L673 = J1L601 & (!J1L573) # !J1L601 & J1L701 & J1L573 # !J1L182;
+
+
+--J1L843 is FINAL:inst|PING:U3|Select~3248
+--operation mode is normal
+
+J1L843 = J1_STATE.score_inc_2 & (J1_STATE.score_inc_1 & !J1L673 # !J1L743) # !J1_STATE.score_inc_2 & J1_STATE.score_inc_1 & (!J1L673);
+
+
+--J1L943 is FINAL:inst|PING:U3|Select~3250
+--operation mode is normal
+
+J1L943 = J1_STATE.score_inc_2 & (J1L743 # J1_STATE.score_inc_1 & J1L673) # !J1_STATE.score_inc_2 & J1_STATE.score_inc_1 & J1L673;
+
+
+--G1L18 is FINAL:inst|bat:U1|reduce_nor~2
+--operation mode is normal
+
+G1L18 = F1_scan_code[0] # !G1L58;
+
+
+--E1_clock_100hz_reg is clk_div:inst15|clock_100hz_reg
+--operation mode is normal
+
+E1_clock_100hz_reg_lut_out = E1_clock_100hz_int;
+E1_clock_100hz_reg = DFFEAS(E1_clock_100hz_reg_lut_out, CLK48, VCC, , , , , , );
+
+
+--F1_scan_ready is keyboard:inst16|scan_ready
+--operation mode is normal
+
+F1_scan_ready_lut_out = VCC;
+F1_scan_ready = DFFEAS(F1_scan_ready_lut_out, F1_ready_set, !G1_read, , , , , , );
+
+
+--G1_state.wait_ready is FINAL:inst|bat:U1|state.wait_ready
+--operation mode is normal
+
+G1_state.wait_ready_lut_out = G1_state.wait_ready & !F1_scan_ready # !G1_state.read_low;
+G1_state.wait_ready = DFFEAS(G1_state.wait_ready_lut_out, E1_clock_100Hz, RESETN, , , , , , );
+
+
+--F1_SHIFTIN[2] is keyboard:inst16|SHIFTIN[2]
+--operation mode is normal
+
+F1_SHIFTIN[2]_lut_out = F1_SHIFTIN[3];
+F1_SHIFTIN[2] = DFFEAS(F1_SHIFTIN[2]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--F1_keyboard_clk_filtered is keyboard:inst16|keyboard_clk_filtered
+--operation mode is normal
+
+F1_keyboard_clk_filtered_lut_out = F1L02 & (F1_keyboard_clk_filtered # F1L12 & F1L22) # !F1L02 & F1_keyboard_clk_filtered & (F1L12 # F1L22);
+F1_keyboard_clk_filtered = DFFEAS(F1_keyboard_clk_filtered_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1_READ_CHAR is keyboard:inst16|READ_CHAR
+--operation mode is normal
+
+F1_READ_CHAR_lut_out = F1_READ_CHAR & (!F1L42 # !F1_INCNT[3]) # !F1_READ_CHAR & !PS2DATA;
+F1_READ_CHAR = DFFEAS(F1_READ_CHAR_lut_out, F1_keyboard_clk_filtered, VCC, , , , , !RESETN, );
+
+
+--F1_ready_set is keyboard:inst16|ready_set
+--operation mode is normal
+
+F1_ready_set_lut_out = RESETN & (F1_READ_CHAR # PS2DATA);
+F1_ready_set = DFFEAS(F1_ready_set_lut_out, F1_keyboard_clk_filtered, VCC, , F1L62, , , , );
+
+
+--F1_INCNT[2] is keyboard:inst16|INCNT[2]
+--operation mode is normal
+
+F1_INCNT[2]_lut_out = RESETN & F1L32 & (F1_INCNT[2] $ F1L1);
+F1_INCNT[2] = DFFEAS(F1_INCNT[2]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L51, , , , );
+
+
+--F1_INCNT[1] is keyboard:inst16|INCNT[1]
+--operation mode is normal
+
+F1_INCNT[1]_lut_out = RESETN & F1L32 & (F1_INCNT[1] $ F1_INCNT[0]);
+F1_INCNT[1] = DFFEAS(F1_INCNT[1]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L51, , , , );
+
+
+--F1_INCNT[0] is keyboard:inst16|INCNT[0]
+--operation mode is normal
+
+F1_INCNT[0]_lut_out = !F1_INCNT[0] & (RESETN & F1L32);
+F1_INCNT[0] = DFFEAS(F1_INCNT[0]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L51, , , , );
+
+
+--F1_INCNT[3] is keyboard:inst16|INCNT[3]
+--operation mode is normal
+
+F1_INCNT[3]_lut_out = RESETN & F1L32 & (F1_INCNT[3] $ F1L2);
+F1_INCNT[3] = DFFEAS(F1_INCNT[3]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L51, , , , );
+
+
+--F1L32 is keyboard:inst16|LessThan~65
+--operation mode is normal
+
+F1L32 = !F1_INCNT[2] & !F1_INCNT[1] & !F1_INCNT[0] # !F1_INCNT[3];
+
+
+--F1_SHIFTIN[1] is keyboard:inst16|SHIFTIN[1]
+--operation mode is normal
+
+F1_SHIFTIN[1]_lut_out = F1_SHIFTIN[2];
+F1_SHIFTIN[1] = DFFEAS(F1_SHIFTIN[1]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--F1_SHIFTIN[3] is keyboard:inst16|SHIFTIN[3]
+--operation mode is normal
+
+F1_SHIFTIN[3]_lut_out = F1_SHIFTIN[4];
+F1_SHIFTIN[3] = DFFEAS(F1_SHIFTIN[3]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--F1_SHIFTIN[7] is keyboard:inst16|SHIFTIN[7]
+--operation mode is normal
+
+F1_SHIFTIN[7]_lut_out = F1_SHIFTIN[8];
+F1_SHIFTIN[7] = DFFEAS(F1_SHIFTIN[7]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--F1_SHIFTIN[5] is keyboard:inst16|SHIFTIN[5]
+--operation mode is normal
+
+F1_SHIFTIN[5]_lut_out = F1_SHIFTIN[6];
+F1_SHIFTIN[5] = DFFEAS(F1_SHIFTIN[5]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--F1_SHIFTIN[0] is keyboard:inst16|SHIFTIN[0]
+--operation mode is normal
+
+F1_SHIFTIN[0]_lut_out = F1_SHIFTIN[1];
+F1_SHIFTIN[0] = DFFEAS(F1_SHIFTIN[0]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--F1_SHIFTIN[4] is keyboard:inst16|SHIFTIN[4]
+--operation mode is normal
+
+F1_SHIFTIN[4]_lut_out = F1_SHIFTIN[5];
+F1_SHIFTIN[4] = DFFEAS(F1_SHIFTIN[4]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--F1_SHIFTIN[6] is keyboard:inst16|SHIFTIN[6]
+--operation mode is normal
+
+F1_SHIFTIN[6]_lut_out = F1_SHIFTIN[7];
+F1_SHIFTIN[6] = DFFEAS(F1_SHIFTIN[6]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--G1L37 is FINAL:inst|bat:U1|pdl_2[4]~770
+--operation mode is normal
+
+G1L37 = G1_state.read_data & G1L97 & G1L08 & G1L58;
+
+
+--G1L32 is FINAL:inst|bat:U1|add~580
+--operation mode is normal
+
+G1L32 = G1_pdl_2[4] # !G1L67;
+
+
+--G1L57 is FINAL:inst|bat:U1|pdl_2~771
+--operation mode is normal
+
+G1L57 = G1L58 & F1_scan_code[0] & (G1L32 $ G1_pdl_2[5]) # !G1L58 & (!G1_pdl_2[5]);
+
+
+--G1L42 is FINAL:inst|bat:U1|add~581
+--operation mode is normal
+
+G1L42 = G1_pdl_2[4] & G1_pdl_2[2];
+
+
+--G1L52 is FINAL:inst|bat:U1|add~582
+--operation mode is normal
+
+G1L52 = G1_pdl_2[0] & G1_pdl_2[1] & G1_pdl_2[3] & G1L42;
+
+
+--G1L92 is FINAL:inst|bat:U1|paddle_1[0]~372
+--operation mode is normal
+
+G1L92 = G1_state.read_data & (!G1L08 # !G1L97);
+
+
+--G1L46 is FINAL:inst|bat:U1|pdl_1~760
+--operation mode is normal
+
+G1L46 = G1_pdl_1[2] & G1_pdl_1[0] & G1_pdl_1[1] & G1_pdl_1[3];
+
+
+--G1L56 is FINAL:inst|bat:U1|pdl_1~761
+--operation mode is normal
+
+G1L56 = G1_pdl_1[4] & (!G1L97 & G1L46) # !G1_pdl_1[4] & G1L77 & G1L97;
+
+
+--C1L78 is LCD_Display:inst2|Next_Char[3]~1418
+--operation mode is normal
+
+C1L78 = C1_CHAR_COUNT[1] & C1_CHAR_COUNT[3];
+
+
+--C1L701 is LCD_Display:inst2|reduce_nor~1
+--operation mode is normal
+
+C1L701 = !C1L78 # !C1_CHAR_COUNT[2] # !C1_CHAR_COUNT[0] # !C1_CHAR_COUNT[4];
+
+
+--C1L601 is LCD_Display:inst2|reduce_nor~0
+--operation mode is normal
+
+C1L601 = C1_CHAR_COUNT[4] # !C1L78 # !C1_CHAR_COUNT[2] # !C1_CHAR_COUNT[0];
+
+
+--C1L221 is LCD_Display:inst2|Select~1803
+--operation mode is normal
+
+C1L221 = C1_state.print_string & C1L701 & C1L601;
+
+
+--C1L91 is LCD_Display:inst2|CLK_COUNT_400HZ[1]~398
+--operation mode is normal
+
+C1L91 = !C1L81 # !RESETN;
+
+
+--C1_CLK_COUNT_400HZ[4] is LCD_Display:inst2|CLK_COUNT_400HZ[4]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[4]_carry_eqn = C1L42;
+C1_CLK_COUNT_400HZ[4]_lut_out = C1_CLK_COUNT_400HZ[4] $ (!C1_CLK_COUNT_400HZ[4]_carry_eqn);
+C1_CLK_COUNT_400HZ[4] = DFFEAS(C1_CLK_COUNT_400HZ[4]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L62 is LCD_Display:inst2|CLK_COUNT_400HZ[4]~400
+--operation mode is arithmetic
+
+C1L62 = CARRY(C1_CLK_COUNT_400HZ[4] & (!C1L42));
+
+
+--C1_next_command.line2 is LCD_Display:inst2|next_command.line2
+--operation mode is normal
+
+C1_next_command.line2_lut_out = C1L801 & (C1_next_command.line2 # C1_state.print_string & !C1L601) # !C1L801 & (C1_state.print_string & !C1L601);
+C1_next_command.line2 = DFFEAS(C1_next_command.line2_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_next_command.return_home is LCD_Display:inst2|next_command.return_home
+--operation mode is normal
+
+C1_next_command.return_home_lut_out = C1L801 & (C1_next_command.return_home # C1_state.print_string & !C1L701) # !C1L801 & (C1_state.print_string & !C1L701);
+C1_next_command.return_home = DFFEAS(C1_next_command.return_home_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1L321 is LCD_Display:inst2|Select~1805
+--operation mode is normal
+
+C1L321 = C1_CHAR_COUNT[4] & C1_state.reset1;
+
+
+--C1L11 is LCD_Display:inst2|CHAR_COUNT[4]~5
+--operation mode is normal
+
+C1L11 = RESETN & C1_CLK_400HZ_Enable;
+
+
+--C1L421 is LCD_Display:inst2|Select~1806
+--operation mode is normal
+
+C1L421 = C1_CHAR_COUNT[0] & C1_state.reset1;
+
+
+--C1L521 is LCD_Display:inst2|Select~1807
+--operation mode is normal
+
+C1L521 = C1_CHAR_COUNT[1] & C1_state.reset1;
+
+
+--C1L621 is LCD_Display:inst2|Select~1808
+--operation mode is normal
+
+C1L621 = C1_CHAR_COUNT[2] & C1_state.reset1;
+
+
+--C1L721 is LCD_Display:inst2|Select~1809
+--operation mode is normal
+
+C1L721 = C1_CHAR_COUNT[3] & C1_state.reset1;
+
+
+--C1_next_command.mode_set is LCD_Display:inst2|next_command.mode_set
+--operation mode is normal
+
+C1_next_command.mode_set_lut_out = C1_state.display_on # C1_next_command.mode_set & (C1_state.drop_lcd_e # C1_state.hold);
+C1_next_command.mode_set = DFFEAS(C1_next_command.mode_set_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_next_command.display_on is LCD_Display:inst2|next_command.display_on
+--operation mode is normal
+
+C1_next_command.display_on_lut_out = C1_state.display_clear # C1_next_command.display_on & (C1_state.drop_lcd_e # C1_state.hold);
+C1_next_command.display_on = DFFEAS(C1_next_command.display_on_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_next_command.display_off is LCD_Display:inst2|next_command.display_off
+--operation mode is normal
+
+C1_next_command.display_off_lut_out = C1_state.func_set # C1_next_command.display_off & (C1_state.drop_lcd_e # C1_state.hold);
+C1_next_command.display_off = DFFEAS(C1_next_command.display_off_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_next_command.display_clear is LCD_Display:inst2|next_command.display_clear
+--operation mode is normal
+
+C1_next_command.display_clear_lut_out = C1_state.display_off # C1_next_command.display_clear & (C1_state.drop_lcd_e # C1_state.hold);
+C1_next_command.display_clear = DFFEAS(C1_next_command.display_clear_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_next_command.reset3 is LCD_Display:inst2|next_command.reset3
+--operation mode is normal
+
+C1_next_command.reset3_lut_out = C1_state.reset2 # C1_next_command.reset3 & (C1_state.drop_lcd_e # C1_state.hold);
+C1_next_command.reset3 = DFFEAS(C1_next_command.reset3_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_next_command.func_set is LCD_Display:inst2|next_command.func_set
+--operation mode is normal
+
+C1_next_command.func_set_lut_out = C1_state.reset3 # C1_next_command.func_set & (C1_state.drop_lcd_e # C1_state.hold);
+C1_next_command.func_set = DFFEAS(C1_next_command.func_set_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--C1_next_command.reset2 is LCD_Display:inst2|next_command.reset2
+--operation mode is normal
+
+C1_next_command.reset2_lut_out = C1_state.reset1 & (C1_next_command.reset2 # !C1_state.drop_lcd_e & !C1_state.hold);
+C1_next_command.reset2 = DFFEAS(C1_next_command.reset2_lut_out, CLK48, RESETN, , C1_CLK_400HZ_Enable, , , , );
+
+
+--E1_clock_10Hz_int is clk_div:inst15|clock_10Hz_int
+--operation mode is normal
+
+E1_clock_10Hz_int_lut_out = !E1_clock_10Hz_int;
+E1_clock_10Hz_int = DFFEAS(E1_clock_10Hz_int_lut_out, E1_clock_100hz_reg, VCC, , E1L15, , , , );
+
+
+--J1L332 is FINAL:inst|PING:U3|LessThan~833
+--operation mode is arithmetic
+
+J1L332 = CARRY(J1_CURRENT_ROW[5] & !J1L412 & !J1L932 # !J1_CURRENT_ROW[5] & (!J1L932 # !J1L412));
+
+
+--J1L511 is FINAL:inst|PING:U3|add~3891
+--operation mode is arithmetic
+
+J1L511_carry_eqn = J1L421;
+J1L511 = J1_PREVIOUS_ROW[3] $ (!J1L511_carry_eqn);
+
+--J1L611 is FINAL:inst|PING:U3|add~3893
+--operation mode is arithmetic
+
+J1L611 = CARRY(!J1_PREVIOUS_ROW[3] & (!J1L421));
+
+
+--J1L711 is FINAL:inst|PING:U3|add~3896
+--operation mode is arithmetic
+
+J1L711_carry_eqn = J1L621;
+J1L711 = J1_PREVIOUS_ROW[3] $ (J1L711_carry_eqn);
+
+--J1L811 is FINAL:inst|PING:U3|add~3898
+--operation mode is arithmetic
+
+J1L811 = CARRY(!J1_PREVIOUS_ROW[3] & (!J1L621));
+
+
+--J1_PREVIOUS_ROW[4] is FINAL:inst|PING:U3|PREVIOUS_ROW[4]
+--operation mode is normal
+
+J1_PREVIOUS_ROW[4]_lut_out = J1L072 & J1L691 # !J1L072 & (J1_CURRENT_ROW[4]);
+J1_PREVIOUS_ROW[4] = DFFEAS(J1_PREVIOUS_ROW[4]_lut_out, E1_clock_10Hz, RESETN, , J1L613, J1L491, , , J1_STATE.position_state_2);
+
+
+--J1_PREVIOUS_ROW[3] is FINAL:inst|PING:U3|PREVIOUS_ROW[3]
+--operation mode is normal
+
+J1_PREVIOUS_ROW[3]_lut_out = J1L072 & J1L602 # !J1L072 & (J1_CURRENT_ROW[3]);
+J1_PREVIOUS_ROW[3] = DFFEAS(J1_PREVIOUS_ROW[3]_lut_out, E1_clock_10Hz, RESETN, , J1L613, J1L402, , , J1_STATE.position_state_2);
+
+
+--J1_PREVIOUS_ROW[2] is FINAL:inst|PING:U3|PREVIOUS_ROW[2]
+--operation mode is normal
+
+J1_PREVIOUS_ROW[2]_lut_out = J1L072 & J1L102 # !J1L072 & (J1_CURRENT_ROW[2]);
+J1_PREVIOUS_ROW[2] = DFFEAS(J1_PREVIOUS_ROW[2]_lut_out, E1_clock_10Hz, RESETN, , J1L613, J1L991, , , J1_STATE.position_state_2);
+
+
+--J1_PREVIOUS_ROW[1] is FINAL:inst|PING:U3|PREVIOUS_ROW[1]
+--operation mode is normal
+
+J1_PREVIOUS_ROW[1]_lut_out = J1L072 & J1L281 # !J1L072 & (J1_CURRENT_ROW[1]);
+J1_PREVIOUS_ROW[1] = DFFEAS(J1_PREVIOUS_ROW[1]_lut_out, E1_clock_10Hz, RESETN, , J1L613, J1L971, , , J1_STATE.position_state_2);
+
+
+--J1L432 is FINAL:inst|PING:U3|LessThan~836
+--operation mode is normal
+
+J1L432 = J1_PREVIOUS_ROW[3] # J1_PREVIOUS_ROW[2] # J1_PREVIOUS_ROW[1];
+
+
+--J1_PREVIOUS_ROW[5] is FINAL:inst|PING:U3|PREVIOUS_ROW[5]
+--operation mode is normal
+
+J1_PREVIOUS_ROW[5]_lut_out = !J1L053 & J1L443 & (J1_PREVIOUS_ROW[5] # J1L613);
+J1_PREVIOUS_ROW[5] = DFFEAS(J1_PREVIOUS_ROW[5]_lut_out, E1_clock_10Hz, RESETN, , , , , , );
+
+
+--J1L532 is FINAL:inst|PING:U3|LessThan~837
+--operation mode is normal
+
+J1L532 = J1_PREVIOUS_ROW[6] # J1_PREVIOUS_ROW[4] & J1L432 # !J1_PREVIOUS_ROW[5];
+
+
+--J1L911 is FINAL:inst|PING:U3|add~3901
+--operation mode is normal
+
+J1L911 = J1L532 & J1L511 # !J1L532 & (J1L711);
+
+
+--J1L293 is FINAL:inst|PING:U3|STEP[6]~126
+--operation mode is normal
+
+J1L293 = RESETN & (J1_STATE.step_decide_state_2 # J1_STATE.step_decide_state_1);
+
+
+--J1L021 is FINAL:inst|PING:U3|add~3902
+--operation mode is normal
+
+J1L021_carry_eqn = J1L931;
+J1L021 = !J1L021_carry_eqn;
+
+
+--J1L121 is FINAL:inst|PING:U3|add~3907
+--operation mode is normal
+
+J1L121_carry_eqn = J1L141;
+J1L121 = J1L121_carry_eqn;
+
+
+--J1L221 is FINAL:inst|PING:U3|add~3912
+--operation mode is normal
+
+J1L221 = J1L532 & J1L021 # !J1L532 & (J1L121);
+
+
+--J1L321 is FINAL:inst|PING:U3|add~3913
+--operation mode is arithmetic
+
+J1L321_carry_eqn = J1L441;
+J1L321 = J1_PREVIOUS_ROW[2] $ (J1L321_carry_eqn);
+
+--J1L421 is FINAL:inst|PING:U3|add~3915
+--operation mode is arithmetic
+
+J1L421 = CARRY(J1_PREVIOUS_ROW[2] # !J1L441);
+
+
+--J1L521 is FINAL:inst|PING:U3|add~3918
+--operation mode is arithmetic
+
+J1L521_carry_eqn = J1L641;
+J1L521 = J1_PREVIOUS_ROW[2] $ (!J1L521_carry_eqn);
+
+--J1L621 is FINAL:inst|PING:U3|add~3920
+--operation mode is arithmetic
+
+J1L621 = CARRY(J1_PREVIOUS_ROW[2] # !J1L641);
+
+
+--J1L721 is FINAL:inst|PING:U3|add~3923
+--operation mode is normal
+
+J1L721 = J1L532 & J1L321 # !J1L532 & (J1L521);
+
+
+--J1L083 is FINAL:inst|PING:U3|STEP[0]~129
+--operation mode is arithmetic
+
+J1L083 = CARRY(J1L221 & J1L151);
+
+
+--J1L821 is FINAL:inst|PING:U3|add~3924
+--operation mode is arithmetic
+
+J1L821_carry_eqn = J1L611;
+J1L821 = J1_PREVIOUS_ROW[4] $ (!J1L821_carry_eqn);
+
+--J1L921 is FINAL:inst|PING:U3|add~3926
+--operation mode is arithmetic
+
+J1L921 = CARRY(J1_PREVIOUS_ROW[4] & (!J1L611));
+
+
+--J1L031 is FINAL:inst|PING:U3|add~3929
+--operation mode is arithmetic
+
+J1L031_carry_eqn = J1L811;
+J1L031 = J1_PREVIOUS_ROW[4] $ (J1L031_carry_eqn);
+
+--J1L131 is FINAL:inst|PING:U3|add~3931
+--operation mode is arithmetic
+
+J1L131 = CARRY(J1_PREVIOUS_ROW[4] & (!J1L811));
+
+
+--J1L231 is FINAL:inst|PING:U3|add~3934
+--operation mode is normal
+
+J1L231 = J1L532 & J1L821 # !J1L532 & (J1L031);
+
+
+--J1L331 is FINAL:inst|PING:U3|add~3935
+--operation mode is arithmetic
+
+J1L331_carry_eqn = J1L921;
+J1L331 = J1_PREVIOUS_ROW[5] $ (J1L331_carry_eqn);
+
+--J1L431 is FINAL:inst|PING:U3|add~3937
+--operation mode is arithmetic
+
+J1L431 = CARRY(J1_PREVIOUS_ROW[5] & (!J1L921));
+
+
+--J1L531 is FINAL:inst|PING:U3|add~3940
+--operation mode is arithmetic
+
+J1L531_carry_eqn = J1L131;
+J1L531 = J1_PREVIOUS_ROW[5] $ (!J1L531_carry_eqn);
+
+--J1L631 is FINAL:inst|PING:U3|add~3942
+--operation mode is arithmetic
+
+J1L631 = CARRY(J1_PREVIOUS_ROW[5] & (!J1L131));
+
+
+--J1L731 is FINAL:inst|PING:U3|add~3945
+--operation mode is normal
+
+J1L731 = J1L532 & J1L331 # !J1L532 & (J1L531);
+
+
+--J1L831 is FINAL:inst|PING:U3|add~3946
+--operation mode is arithmetic
+
+J1L831_carry_eqn = J1L431;
+J1L831 = J1_PREVIOUS_ROW[6] $ (J1L831_carry_eqn);
+
+--J1L931 is FINAL:inst|PING:U3|add~3948
+--operation mode is arithmetic
+
+J1L931 = CARRY(J1_PREVIOUS_ROW[6] # !J1L431);
+
+
+--J1L041 is FINAL:inst|PING:U3|add~3951
+--operation mode is arithmetic
+
+J1L041_carry_eqn = J1L631;
+J1L041 = J1_PREVIOUS_ROW[6] $ (!J1L041_carry_eqn);
+
+--J1L141 is FINAL:inst|PING:U3|add~3953
+--operation mode is arithmetic
+
+J1L141 = CARRY(J1_PREVIOUS_ROW[6] # !J1L631);
+
+
+--J1L241 is FINAL:inst|PING:U3|add~3956
+--operation mode is normal
+
+J1L241 = J1L532 & J1L831 # !J1L532 & (J1L041);
+
+
+--J1L613 is FINAL:inst|PING:U3|reduce_or~52
+--operation mode is normal
+
+J1L613 = J1_STATE.position_state_2 # J1_STATE.position_state_1 # J1_STATE.loop_state_2 # J1_STATE.loop_state_1;
+
+
+--J1L732 is FINAL:inst|PING:U3|LessThan~840
+--operation mode is arithmetic
+
+J1L732 = CARRY(J1_PREVIOUS_ROW[4] & J1_CURRENT_ROW[4] & !J1L142 # !J1_PREVIOUS_ROW[4] & (J1_CURRENT_ROW[4] # !J1L142));
+
+
+--E1_clock_100hz_int is clk_div:inst15|clock_100hz_int
+--operation mode is normal
+
+E1_clock_100hz_int_lut_out = !E1_clock_100hz_int;
+E1_clock_100hz_int = DFFEAS(E1_clock_100hz_int_lut_out, E1_clock_1Khz_reg, VCC, , E1L25, , , , );
+
+
+--G1_read is FINAL:inst|bat:U1|read
+--operation mode is normal
+
+G1_read_lut_out = G1_state.wait_ready & (G1_read # F1_scan_ready) # !G1_state.wait_ready & G1_read & G1_state.read_data;
+G1_read = DFFEAS(G1_read_lut_out, E1_clock_100Hz, VCC, , RESETN, , , , );
+
+
+--G1_state.read_low is FINAL:inst|bat:U1|state.read_low
+--operation mode is normal
+
+G1_state.read_low_lut_out = !G1L58 & G1L97 & G1L08 # !G1_state.read_data;
+G1_state.read_low = DFFEAS(G1_state.read_low_lut_out, E1_clock_100Hz, RESETN, , , , , , );
+
+
+--F1_filter[3] is keyboard:inst16|filter[3]
+--operation mode is normal
+
+F1_filter[3]_lut_out = F1_filter[4];
+F1_filter[3] = DFFEAS(F1_filter[3]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1_filter[1] is keyboard:inst16|filter[1]
+--operation mode is normal
+
+F1_filter[1]_lut_out = F1_filter[2];
+F1_filter[1] = DFFEAS(F1_filter[1]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1_filter[4] is keyboard:inst16|filter[4]
+--operation mode is normal
+
+F1_filter[4]_lut_out = F1_filter[5];
+F1_filter[4] = DFFEAS(F1_filter[4]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1L02 is keyboard:inst16|keyboard_clk_filtered~98
+--operation mode is normal
+
+F1L02 = F1_filter[3] & F1_filter[1] & F1_filter[4] # !F1_filter[3] & (F1_filter[1] # F1_filter[4]);
+
+
+--F1_filter[2] is keyboard:inst16|filter[2]
+--operation mode is normal
+
+F1_filter[2]_lut_out = F1_filter[3];
+F1_filter[2] = DFFEAS(F1_filter[2]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1_filter[0] is keyboard:inst16|filter[0]
+--operation mode is normal
+
+F1_filter[0]_lut_out = F1_filter[1];
+F1_filter[0] = DFFEAS(F1_filter[0]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1L12 is keyboard:inst16|keyboard_clk_filtered~99
+--operation mode is normal
+
+F1L12 = F1_filter[2] & (F1_keyboard_clk_filtered # F1_filter[0] & F1_filter[3]) # !F1_filter[2] & F1_keyboard_clk_filtered & (F1_filter[0] # F1_filter[3]);
+
+
+--F1_filter[7] is keyboard:inst16|filter[7]
+--operation mode is normal
+
+F1_filter[7]_lut_out = PS2CLK;
+F1_filter[7] = DFFEAS(F1_filter[7]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1_filter[6] is keyboard:inst16|filter[6]
+--operation mode is normal
+
+F1_filter[6]_lut_out = F1_filter[7];
+F1_filter[6] = DFFEAS(F1_filter[6]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1_filter[5] is keyboard:inst16|filter[5]
+--operation mode is normal
+
+F1_filter[5]_lut_out = F1_filter[6];
+F1_filter[5] = DFFEAS(F1_filter[5]_lut_out, CLK48, VCC, , F1_clock_enable, , , , );
+
+
+--F1L22 is keyboard:inst16|keyboard_clk_filtered~100
+--operation mode is normal
+
+F1L22 = F1_filter[7] & (F1_keyboard_clk_filtered # F1_filter[6] & F1_filter[5]) # !F1_filter[7] & F1_keyboard_clk_filtered & (F1_filter[6] # F1_filter[5]);
+
+
+--F1_clock_enable is keyboard:inst16|clock_enable
+--operation mode is normal
+
+F1_clock_enable_lut_out = !F1_clock_enable;
+F1_clock_enable = DFFEAS(F1_clock_enable_lut_out, CLK48, VCC, , , , , , );
+
+
+--F1L42 is keyboard:inst16|LessThan~66
+--operation mode is normal
+
+F1L42 = F1_INCNT[2] # F1_INCNT[1] # F1_INCNT[0];
+
+
+--F1L1 is keyboard:inst16|add~111
+--operation mode is normal
+
+F1L1 = F1_INCNT[1] & F1_INCNT[0];
+
+
+--F1L51 is keyboard:inst16|INCNT[0]~196
+--operation mode is normal
+
+F1L51 = F1_READ_CHAR # !RESETN;
+
+
+--F1L2 is keyboard:inst16|add~112
+--operation mode is normal
+
+F1L2 = F1_INCNT[2] & F1_INCNT[1] & F1_INCNT[0];
+
+
+--F1_SHIFTIN[8] is keyboard:inst16|SHIFTIN[8]
+--operation mode is normal
+
+F1_SHIFTIN[8]_lut_out = PS2DATA;
+F1_SHIFTIN[8] = DFFEAS(F1_SHIFTIN[8]_lut_out, F1_keyboard_clk_filtered, VCC, , F1L84, , , , );
+
+
+--C1_CLK_COUNT_400HZ[3] is LCD_Display:inst2|CLK_COUNT_400HZ[3]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[3]_carry_eqn = C1L22;
+C1_CLK_COUNT_400HZ[3]_lut_out = C1_CLK_COUNT_400HZ[3] $ (C1_CLK_COUNT_400HZ[3]_carry_eqn);
+C1_CLK_COUNT_400HZ[3] = DFFEAS(C1_CLK_COUNT_400HZ[3]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L42 is LCD_Display:inst2|CLK_COUNT_400HZ[3]~404
+--operation mode is arithmetic
+
+C1L42 = CARRY(!C1L22 # !C1_CLK_COUNT_400HZ[3]);
+
+
+--E1_count_10hz[1] is clk_div:inst15|count_10hz[1]
+--operation mode is normal
+
+E1_count_10hz[1]_lut_out = !E1_count_10hz[1];
+E1_count_10hz[1] = DFFEAS(E1_count_10hz[1]_lut_out, E1_clock_100hz_reg, VCC, , E1_count_10hz[0], , , , );
+
+
+--E1_count_10hz[0] is clk_div:inst15|count_10hz[0]
+--operation mode is normal
+
+E1_count_10hz[0]_lut_out = !E1_count_10hz[0] & (E1_count_10hz[1] # !E1_count_10hz[2]);
+E1_count_10hz[0] = DFFEAS(E1_count_10hz[0]_lut_out, E1_clock_100hz_reg, VCC, , , , , , );
+
+
+--E1_count_10hz[2] is clk_div:inst15|count_10hz[2]
+--operation mode is normal
+
+E1_count_10hz[2]_lut_out = E1_count_10hz[2] & (E1_count_10hz[1] $ E1_count_10hz[0]) # !E1_count_10hz[2] & E1_count_10hz[1] & E1_count_10hz[0];
+E1_count_10hz[2] = DFFEAS(E1_count_10hz[2]_lut_out, E1_clock_100hz_reg, VCC, , , , , , );
+
+
+--E1L15 is clk_div:inst15|reduce_or~71
+--operation mode is normal
+
+E1L15 = !E1_count_10hz[1] & !E1_count_10hz[0] & (E1_count_10hz[2]);
+
+
+--J1L932 is FINAL:inst|PING:U3|LessThan~845
+--operation mode is arithmetic
+
+J1L932 = CARRY(J1_CURRENT_ROW[4] & J1L791 & !J1L342 # !J1_CURRENT_ROW[4] & (J1L791 # !J1L342));
+
+
+--J1L053 is FINAL:inst|PING:U3|Select~3254
+--operation mode is normal
+
+J1L053 = !J1_CURRENT_ROW[5] & (J1_STATE.loop_state_2 # J1_STATE.loop_state_1);
+
+
+--J1L341 is FINAL:inst|PING:U3|add~3957
+--operation mode is arithmetic
+
+J1L341_carry_eqn = J1L051;
+J1L341 = J1_PREVIOUS_ROW[1] $ (!J1L341_carry_eqn);
+
+--J1L441 is FINAL:inst|PING:U3|add~3959
+--operation mode is arithmetic
+
+J1L441 = CARRY(!J1_PREVIOUS_ROW[1] & (!J1L051));
+
+
+--J1L641 is FINAL:inst|PING:U3|add~3964
+--operation mode is arithmetic
+
+J1L641 = CARRY(!J1_PREVIOUS_ROW[1]);
+
+
+--J1L741 is FINAL:inst|PING:U3|add~3967
+--operation mode is normal
+
+J1L741 = !J1_PREVIOUS_ROW[0];
+
+
+--J1L841 is FINAL:inst|PING:U3|add~3972
+--operation mode is normal
+
+J1L841 = J1_PREVIOUS_ROW[1] # J1L741;
+
+
+--J1L941 is FINAL:inst|PING:U3|add~3973
+--operation mode is arithmetic
+
+J1L941 = !J1_PREVIOUS_ROW[0];
+
+--J1L051 is FINAL:inst|PING:U3|add~3975
+--operation mode is arithmetic
+
+J1L051 = CARRY(J1_PREVIOUS_ROW[0]);
+
+
+--J1L151 is FINAL:inst|PING:U3|add~3978
+--operation mode is normal
+
+J1L151 = J1L532 & (J1L341 # J1L941) # !J1L532 & J1L841;
+
+
+--J1L142 is FINAL:inst|PING:U3|LessThan~850
+--operation mode is arithmetic
+
+J1L142 = CARRY(J1_PREVIOUS_ROW[3] & (!J1L542 # !J1_CURRENT_ROW[3]) # !J1_PREVIOUS_ROW[3] & !J1_CURRENT_ROW[3] & !J1L542);
+
+
+--E1_clock_1Khz_reg is clk_div:inst15|clock_1Khz_reg
+--operation mode is normal
+
+E1_clock_1Khz_reg_lut_out = E1_clock_1Khz_int;
+E1_clock_1Khz_reg = DFFEAS(E1_clock_1Khz_reg_lut_out, CLK48, VCC, , , , , , );
+
+
+--E1_count_100hz[1] is clk_div:inst15|count_100hz[1]
+--operation mode is normal
+
+E1_count_100hz[1]_lut_out = !E1_count_100hz[1];
+E1_count_100hz[1] = DFFEAS(E1_count_100hz[1]_lut_out, E1_clock_1Khz_reg, VCC, , E1_count_100hz[0], , , , );
+
+
+--E1_count_100hz[0] is clk_div:inst15|count_100hz[0]
+--operation mode is normal
+
+E1_count_100hz[0]_lut_out = !E1_count_100hz[0] & (E1_count_100hz[1] # !E1_count_100hz[2]);
+E1_count_100hz[0] = DFFEAS(E1_count_100hz[0]_lut_out, E1_clock_1Khz_reg, VCC, , , , , , );
+
+
+--E1_count_100hz[2] is clk_div:inst15|count_100hz[2]
+--operation mode is normal
+
+E1_count_100hz[2]_lut_out = E1_count_100hz[2] & (E1_count_100hz[1] $ E1_count_100hz[0]) # !E1_count_100hz[2] & E1_count_100hz[1] & E1_count_100hz[0];
+E1_count_100hz[2] = DFFEAS(E1_count_100hz[2]_lut_out, E1_clock_1Khz_reg, VCC, , , , , , );
+
+
+--E1L25 is clk_div:inst15|reduce_or~72
+--operation mode is normal
+
+E1L25 = !E1_count_100hz[1] & !E1_count_100hz[0] & (E1_count_100hz[2]);
+
+
+--F1L62 is keyboard:inst16|READ_CHAR~128
+--operation mode is normal
+
+F1L62 = F1_READ_CHAR & !F1L32 # !F1_READ_CHAR & (!PS2DATA) # !RESETN;
+
+
+--C1_CLK_COUNT_400HZ[2] is LCD_Display:inst2|CLK_COUNT_400HZ[2]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[2]_carry_eqn = C1L02;
+C1_CLK_COUNT_400HZ[2]_lut_out = C1_CLK_COUNT_400HZ[2] $ (!C1_CLK_COUNT_400HZ[2]_carry_eqn);
+C1_CLK_COUNT_400HZ[2] = DFFEAS(C1_CLK_COUNT_400HZ[2]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L22 is LCD_Display:inst2|CLK_COUNT_400HZ[2]~408
+--operation mode is arithmetic
+
+C1L22 = CARRY(C1_CLK_COUNT_400HZ[2] & (!C1L02));
+
+
+--J1L342 is FINAL:inst|PING:U3|LessThan~855
+--operation mode is arithmetic
+
+J1L342 = CARRY(J1_CURRENT_ROW[3] & (!J1L742 # !J1L702) # !J1_CURRENT_ROW[3] & !J1L702 & !J1L742);
+
+
+--J1_PREVIOUS_ROW[0] is FINAL:inst|PING:U3|PREVIOUS_ROW[0]
+--operation mode is normal
+
+J1_PREVIOUS_ROW[0]_lut_out = J1L072 & J1L191 # !J1L072 & (J1_CURRENT_ROW[0]);
+J1_PREVIOUS_ROW[0] = DFFEAS(J1_PREVIOUS_ROW[0]_lut_out, E1_clock_10Hz, RESETN, , J1L613, J1L091, , , J1_STATE.position_state_2);
+
+
+--J1L542 is FINAL:inst|PING:U3|LessThan~860
+--operation mode is arithmetic
+
+J1L542 = CARRY(J1_PREVIOUS_ROW[2] & J1_CURRENT_ROW[2] & !J1L942 # !J1_PREVIOUS_ROW[2] & (J1_CURRENT_ROW[2] # !J1L942));
+
+
+--E1_clock_1Khz_int is clk_div:inst15|clock_1Khz_int
+--operation mode is normal
+
+E1_clock_1Khz_int_lut_out = !E1_clock_1Khz_int;
+E1_clock_1Khz_int = DFFEAS(E1_clock_1Khz_int_lut_out, E1_clock_10Khz_reg, VCC, , E1L35, , , , );
+
+
+--C1_CLK_COUNT_400HZ[1] is LCD_Display:inst2|CLK_COUNT_400HZ[1]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[1]_carry_eqn = C1L51;
+C1_CLK_COUNT_400HZ[1]_lut_out = C1_CLK_COUNT_400HZ[1] $ (C1_CLK_COUNT_400HZ[1]_carry_eqn);
+C1_CLK_COUNT_400HZ[1] = DFFEAS(C1_CLK_COUNT_400HZ[1]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L02 is LCD_Display:inst2|CLK_COUNT_400HZ[1]~412
+--operation mode is arithmetic
+
+C1L02 = CARRY(!C1L51 # !C1_CLK_COUNT_400HZ[1]);
+
+
+--J1L742 is FINAL:inst|PING:U3|LessThan~865
+--operation mode is arithmetic
+
+J1L742 = CARRY(J1_CURRENT_ROW[2] & J1L202 & !J1L152 # !J1_CURRENT_ROW[2] & (J1L202 # !J1L152));
+
+
+--J1L942 is FINAL:inst|PING:U3|LessThan~870
+--operation mode is arithmetic
+
+J1L942 = CARRY(J1_PREVIOUS_ROW[1] & (!J1L352 # !J1_CURRENT_ROW[1]) # !J1_PREVIOUS_ROW[1] & !J1_CURRENT_ROW[1] & !J1L352);
+
+
+--E1_clock_10Khz_reg is clk_div:inst15|clock_10Khz_reg
+--operation mode is normal
+
+E1_clock_10Khz_reg_lut_out = E1_clock_10Khz_int;
+E1_clock_10Khz_reg = DFFEAS(E1_clock_10Khz_reg_lut_out, CLK48, VCC, , , , , , );
+
+
+--E1_count_1Khz[1] is clk_div:inst15|count_1Khz[1]
+--operation mode is normal
+
+E1_count_1Khz[1]_lut_out = !E1_count_1Khz[1];
+E1_count_1Khz[1] = DFFEAS(E1_count_1Khz[1]_lut_out, E1_clock_10Khz_reg, VCC, , E1_count_1Khz[0], , , , );
+
+
+--E1_count_1Khz[0] is clk_div:inst15|count_1Khz[0]
+--operation mode is normal
+
+E1_count_1Khz[0]_lut_out = !E1_count_1Khz[0] & (E1_count_1Khz[1] # !E1_count_1Khz[2]);
+E1_count_1Khz[0] = DFFEAS(E1_count_1Khz[0]_lut_out, E1_clock_10Khz_reg, VCC, , , , , , );
+
+
+--E1_count_1Khz[2] is clk_div:inst15|count_1Khz[2]
+--operation mode is normal
+
+E1_count_1Khz[2]_lut_out = E1_count_1Khz[2] & (E1_count_1Khz[1] $ E1_count_1Khz[0]) # !E1_count_1Khz[2] & E1_count_1Khz[1] & E1_count_1Khz[0];
+E1_count_1Khz[2] = DFFEAS(E1_count_1Khz[2]_lut_out, E1_clock_10Khz_reg, VCC, , , , , , );
+
+
+--E1L35 is clk_div:inst15|reduce_or~73
+--operation mode is normal
+
+E1L35 = !E1_count_1Khz[1] & !E1_count_1Khz[0] & (E1_count_1Khz[2]);
+
+
+--C1_CLK_COUNT_400HZ[0] is LCD_Display:inst2|CLK_COUNT_400HZ[0]
+--operation mode is arithmetic
+
+C1_CLK_COUNT_400HZ[0]_lut_out = !C1_CLK_COUNT_400HZ[0];
+C1_CLK_COUNT_400HZ[0] = DFFEAS(C1_CLK_COUNT_400HZ[0]_lut_out, CLK48, VCC, , , , , C1L91, );
+
+--C1L51 is LCD_Display:inst2|CLK_COUNT_400HZ[0]~416
+--operation mode is arithmetic
+
+C1L51 = CARRY(C1_CLK_COUNT_400HZ[0]);
+
+
+--J1L152 is FINAL:inst|PING:U3|LessThan~875
+--operation mode is arithmetic
+
+J1L152 = CARRY(J1_CURRENT_ROW[1] & (!J1L552 # !J1L981) # !J1_CURRENT_ROW[1] & !J1L981 & !J1L552);
+
+
+--J1L352 is FINAL:inst|PING:U3|LessThan~880
+--operation mode is arithmetic
+
+J1L352 = CARRY(!J1_PREVIOUS_ROW[0] & J1_CURRENT_ROW[0]);
+
+
+--E1_clock_10Khz_int is clk_div:inst15|clock_10Khz_int
+--operation mode is normal
+
+E1_clock_10Khz_int_lut_out = !E1_clock_10Khz_int;
+E1_clock_10Khz_int = DFFEAS(E1_clock_10Khz_int_lut_out, E1_clock_100Khz_reg, VCC, , E1L45, , , , );
+
+
+--J1L552 is FINAL:inst|PING:U3|LessThan~885
+--operation mode is arithmetic
+
+J1L552 = CARRY(!J1_CURRENT_ROW[0] & J1L291);
+
+
+--E1_clock_100Khz_reg is clk_div:inst15|clock_100Khz_reg
+--operation mode is normal
+
+E1_clock_100Khz_reg_lut_out = E1_clock_100Khz_int;
+E1_clock_100Khz_reg = DFFEAS(E1_clock_100Khz_reg_lut_out, CLK48, VCC, , , , , , );
+
+
+--E1_count_10Khz[1] is clk_div:inst15|count_10Khz[1]
+--operation mode is normal
+
+E1_count_10Khz[1]_lut_out = !E1_count_10Khz[1];
+E1_count_10Khz[1] = DFFEAS(E1_count_10Khz[1]_lut_out, E1_clock_100Khz_reg, VCC, , E1_count_10Khz[0], , , , );
+
+
+--E1_count_10Khz[0] is clk_div:inst15|count_10Khz[0]
+--operation mode is normal
+
+E1_count_10Khz[0]_lut_out = !E1_count_10Khz[0] & (E1_count_10Khz[1] # !E1_count_10Khz[2]);
+E1_count_10Khz[0] = DFFEAS(E1_count_10Khz[0]_lut_out, E1_clock_100Khz_reg, VCC, , , , , , );
+
+
+--E1_count_10Khz[2] is clk_div:inst15|count_10Khz[2]
+--operation mode is normal
+
+E1_count_10Khz[2]_lut_out = E1_count_10Khz[2] & (E1_count_10Khz[1] $ E1_count_10Khz[0]) # !E1_count_10Khz[2] & E1_count_10Khz[1] & E1_count_10Khz[0];
+E1_count_10Khz[2] = DFFEAS(E1_count_10Khz[2]_lut_out, E1_clock_100Khz_reg, VCC, , , , , , );
+
+
+--E1L45 is clk_div:inst15|reduce_or~74
+--operation mode is normal
+
+E1L45 = !E1_count_10Khz[1] & !E1_count_10Khz[0] & (E1_count_10Khz[2]);
+
+
+--E1_clock_100Khz_int is clk_div:inst15|clock_100Khz_int
+--operation mode is normal
+
+E1_clock_100Khz_int_lut_out = !E1_clock_100Khz_int;
+E1_clock_100Khz_int = DFFEAS(E1_clock_100Khz_int_lut_out, E1_clock_1Mhz_reg, VCC, , E1L55, , , , );
+
+
+--E1_clock_1Mhz_reg is clk_div:inst15|clock_1Mhz_reg
+--operation mode is normal
+
+E1_clock_1Mhz_reg_lut_out = E1_clock_1Mhz_int;
+E1_clock_1Mhz_reg = DFFEAS(E1_clock_1Mhz_reg_lut_out, CLK48, VCC, , , , , , );
+
+
+--E1_count_100Khz[1] is clk_div:inst15|count_100Khz[1]
+--operation mode is normal
+
+E1_count_100Khz[1]_lut_out = !E1_count_100Khz[1];
+E1_count_100Khz[1] = DFFEAS(E1_count_100Khz[1]_lut_out, E1_clock_1Mhz_reg, VCC, , E1_count_100Khz[0], , , , );
+
+
+--E1_count_100Khz[0] is clk_div:inst15|count_100Khz[0]
+--operation mode is normal
+
+E1_count_100Khz[0]_lut_out = !E1_count_100Khz[0] & (E1_count_100Khz[1] # !E1_count_100Khz[2]);
+E1_count_100Khz[0] = DFFEAS(E1_count_100Khz[0]_lut_out, E1_clock_1Mhz_reg, VCC, , , , , , );
+
+
+--E1_count_100Khz[2] is clk_div:inst15|count_100Khz[2]
+--operation mode is normal
+
+E1_count_100Khz[2]_lut_out = E1_count_100Khz[2] & (E1_count_100Khz[1] $ E1_count_100Khz[0]) # !E1_count_100Khz[2] & E1_count_100Khz[1] & E1_count_100Khz[0];
+E1_count_100Khz[2] = DFFEAS(E1_count_100Khz[2]_lut_out, E1_clock_1Mhz_reg, VCC, , , , , , );
+
+
+--E1L55 is clk_div:inst15|reduce_or~75
+--operation mode is normal
+
+E1L55 = !E1_count_100Khz[1] & !E1_count_100Khz[0] & (E1_count_100Khz[2]);
+
+
+--E1_clock_1Mhz_int is clk_div:inst15|clock_1Mhz_int
+--operation mode is normal
+
+E1_clock_1Mhz_int_lut_out = E1_count_1Mhz[5] # E1_count_1Mhz[6] # E1_count_1Mhz[3] & E1_count_1Mhz[4];
+E1_clock_1Mhz_int = DFFEAS(E1_clock_1Mhz_int_lut_out, CLK48, VCC, , , , , , );
+
+
+--E1_count_1Mhz[3] is clk_div:inst15|count_1Mhz[3]
+--operation mode is arithmetic
+
+E1_count_1Mhz[3]_carry_eqn = E1L52;
+E1_count_1Mhz[3]_lut_out = E1_count_1Mhz[3] $ (E1_count_1Mhz[3]_carry_eqn);
+E1_count_1Mhz[3] = DFFEAS(E1_count_1Mhz[3]_lut_out, CLK48, VCC, , , , , E1L05, );
+
+--E1L72 is clk_div:inst15|count_1Mhz[3]~107
+--operation mode is arithmetic
+
+E1L72 = CARRY(!E1L52 # !E1_count_1Mhz[3]);
+
+
+--E1_count_1Mhz[4] is clk_div:inst15|count_1Mhz[4]
+--operation mode is arithmetic
+
+E1_count_1Mhz[4]_carry_eqn = E1L72;
+E1_count_1Mhz[4]_lut_out = E1_count_1Mhz[4] $ (!E1_count_1Mhz[4]_carry_eqn);
+E1_count_1Mhz[4] = DFFEAS(E1_count_1Mhz[4]_lut_out, CLK48, VCC, , , , , E1L05, );
+
+--E1L92 is clk_div:inst15|count_1Mhz[4]~111
+--operation mode is arithmetic
+
+E1L92 = CARRY(E1_count_1Mhz[4] & (!E1L72));
+
+
+--E1_count_1Mhz[5] is clk_div:inst15|count_1Mhz[5]
+--operation mode is arithmetic
+
+E1_count_1Mhz[5]_carry_eqn = E1L92;
+E1_count_1Mhz[5]_lut_out = E1_count_1Mhz[5] $ (E1_count_1Mhz[5]_carry_eqn);
+E1_count_1Mhz[5] = DFFEAS(E1_count_1Mhz[5]_lut_out, CLK48, VCC, , , , , E1L05, );
+
+--E1L13 is clk_div:inst15|count_1Mhz[5]~115
+--operation mode is arithmetic
+
+E1L13 = CARRY(!E1L92 # !E1_count_1Mhz[5]);
+
+
+--E1_count_1Mhz[6] is clk_div:inst15|count_1Mhz[6]
+--operation mode is normal
+
+E1_count_1Mhz[6]_carry_eqn = E1L13;
+E1_count_1Mhz[6]_lut_out = E1_count_1Mhz[6] $ (!E1_count_1Mhz[6]_carry_eqn);
+E1_count_1Mhz[6] = DFFEAS(E1_count_1Mhz[6]_lut_out, CLK48, VCC, , , , , E1L05, );
+
+
+--E1_count_1Mhz[0] is clk_div:inst15|count_1Mhz[0]
+--operation mode is arithmetic
+
+E1_count_1Mhz[0]_lut_out = !E1_count_1Mhz[0];
+E1_count_1Mhz[0] = DFFEAS(E1_count_1Mhz[0]_lut_out, CLK48, VCC, , , , , E1L05, );
+
+--E1L12 is clk_div:inst15|count_1Mhz[0]~123
+--operation mode is arithmetic
+
+E1L12 = CARRY(E1_count_1Mhz[0]);
+
+
+--E1_count_1Mhz[1] is clk_div:inst15|count_1Mhz[1]
+--operation mode is arithmetic
+
+E1_count_1Mhz[1]_carry_eqn = E1L12;
+E1_count_1Mhz[1]_lut_out = E1_count_1Mhz[1] $ (E1_count_1Mhz[1]_carry_eqn);
+E1_count_1Mhz[1] = DFFEAS(E1_count_1Mhz[1]_lut_out, CLK48, VCC, , , , , E1L05, );
+
+--E1L32 is clk_div:inst15|count_1Mhz[1]~127
+--operation mode is arithmetic
+
+E1L32 = CARRY(!E1L12 # !E1_count_1Mhz[1]);
+
+
+--E1_count_1Mhz[2] is clk_div:inst15|count_1Mhz[2]
+--operation mode is arithmetic
+
+E1_count_1Mhz[2]_carry_eqn = E1L32;
+E1_count_1Mhz[2]_lut_out = E1_count_1Mhz[2] $ (!E1_count_1Mhz[2]_carry_eqn);
+E1_count_1Mhz[2] = DFFEAS(E1_count_1Mhz[2]_lut_out, CLK48, VCC, , , , , E1L05, );
+
+--E1L52 is clk_div:inst15|count_1Mhz[2]~131
+--operation mode is arithmetic
+
+E1L52 = CARRY(E1_count_1Mhz[2] & (!E1L32));
+
+
+--E1L94 is clk_div:inst15|LessThan~195
+--operation mode is normal
+
+E1L94 = !E1_count_1Mhz[2] # !E1_count_1Mhz[1] # !E1_count_1Mhz[0] # !E1_count_1Mhz[3];
+
+
+--E1L05 is clk_div:inst15|LessThan~196
+--operation mode is normal
+
+E1L05 = E1_count_1Mhz[6] # E1_count_1Mhz[5] & (E1_count_1Mhz[4] # !E1L94);
+
+
+--K1L021 is FINAL:inst|display:U4|reduce_nor~1533
+--operation mode is normal
+
+K1L021 = K1_row_address[0] & !K1_row_address[1] & K1L401 & !K1_row_address[5];
+
+
+--K1L49 is FINAL:inst|display:U4|reduce_nor~40
+--operation mode is normal
+
+K1L49 = !K1_row_address[3] & !K1_row_address[2] & K1L901 & K1L701;
+
+
+--K1L79 is FINAL:inst|display:U4|reduce_nor~105
+--operation mode is normal
+
+K1L79 = K1_col_address[2] # K1_col_address[1] # K1_col_address[0] # !K1L371;
+
+
+--K1L723 is FINAL:inst|display:U4|RGB~8151
+--operation mode is normal
+
+K1L723 = G1_paddle_2[2] & G1_paddle_2[3] & K1_row_address[3] & K1L512;
+
+
+--K1L823 is FINAL:inst|display:U4|RGB~8152
+--operation mode is normal
+
+K1L823 = K1_row_address[3] # K1_row_address[2] # !K1L801 & !K1L212;
+
+
+--K1L923 is FINAL:inst|display:U4|RGB~8153
+--operation mode is normal
+
+K1L923 = K1_row_address[1] & K1_row_address[0] & K1_row_address[2] & !K1_row_address[3] # !K1_row_address[1] & (!K1_row_address[2] & K1_row_address[3]);
+
+
+--K1L341 is FINAL:inst|display:U4|RGB~256
+--operation mode is normal
+
+K1L341 = K1_row_address[3] & K1L901 & K1_row_address[2];
+
+
+--K1L033 is FINAL:inst|display:U4|RGB~8154
+--operation mode is normal
+
+K1L033 = G1_paddle_2[1] & !G1_paddle_2[0] & (K1L98 # !K1L271);
+
+
+--K1L133 is FINAL:inst|display:U4|RGB~8155
+--operation mode is normal
+
+K1L133 = G1_paddle_2[0] & G1_paddle_2[1] & K1L901 & K1L862;
+
+
+--K1L233 is FINAL:inst|display:U4|RGB~8156
+--operation mode is normal
+
+K1L233 = !K1_row_address[3] & (K1_row_address[2] $ K1_row_address[1]);
+
+
+--K1L831 is FINAL:inst|display:U4|RGB~227
+--operation mode is normal
+
+K1L831 = G1_paddle_1[3] & !G1_paddle_1[2] & K1L282 & K1L452;
+
+
+--K1L031 is FINAL:inst|display:U4|RGB~142
+--operation mode is normal
+
+K1L031 = K1_row_address[3] & !K1_row_address[2] & K1L021 # !K1L742;
+
+
+--K1L741 is FINAL:inst|display:U4|RGB~290
+--operation mode is normal
+
+K1L741 = G1_paddle_2[0] & !G1_paddle_2[1] & K1L252 & K1L921;
+
+
+--K1L521 is FINAL:inst|display:U4|RGB~101
+--operation mode is normal
+
+K1L521 = !G1_paddle_1[0] & !G1_paddle_1[1] & K1L412 & K1L972;
+
+
+--K1L333 is FINAL:inst|display:U4|RGB~8157
+--operation mode is normal
+
+K1L333 = G1_paddle_1[5] & !G1_paddle_1[4] & !K1L78 & K1L892;
+
+
+--K1L631 is FINAL:inst|display:U4|RGB~179
+--operation mode is normal
+
+K1L631 = G1_paddle_1[0] & !G1_paddle_1[1] & K1L531 & K1L492;
+
+
+--K1L433 is FINAL:inst|display:U4|RGB~8158
+--operation mode is normal
+
+K1L433 = G1_paddle_1[3] & !G1_paddle_1[2] & K1L752 & K1L211;
+
+
+--K1L74 is FINAL:inst|display:U4|comb~1
+--operation mode is normal
+
+K1L74 = K1L323 # K1L291 & !K1L651 # !K1L302;
+
+
+--K1L15 is FINAL:inst|display:U4|comb~62
+--operation mode is normal
+
+K1L15 = !K1L323 & (K1L651 # !K1L302 # !K1L291);
+
+
+--C1L09 is LCD_Display:inst2|Next_Char[4]~1419
+--operation mode is normal
+
+C1L09 = J1_HEXOUT[126] & !C1_CHAR_COUNT[4] & C1L98;
+
+
+--C1L88 is LCD_Display:inst2|Next_Char[3]~1420
+--operation mode is normal
+
+C1L88 = J1_HEXOUT[126] & !C1_CHAR_COUNT[4] & C1L68;
+
+
+--J1L413 is FINAL:inst|PING:U3|reduce_nor~541
+--operation mode is normal
+
+J1L413 = G1_paddle_2[5] & (J1L791 $ !J1L14) # !G1_paddle_2[5] & (J1L791 $ !J1L14 # !J1L07);
+
+
+--F1L73 is keyboard:inst16|scan_code[7]~8
+--operation mode is normal
+
+F1L73 = RESETN & F1_READ_CHAR & (!F1L32);
+
+
+--J1L422 is FINAL:inst|PING:U3|HEXOUT[126]~442
+--operation mode is normal
+
+J1L422 = J1L473 & (J1_STATE.idle_state_1 # J1_STATE.idle_state_2);
+
+
+--F1L84 is keyboard:inst16|SHIFTIN[7]~1
+--operation mode is normal
+
+F1L84 = RESETN & F1_READ_CHAR & (F1L32);
+
+
+--K1L533 is FINAL:inst|display:U4|RGB~8159
+--operation mode is normal
+
+K1L533 = K1_row_address[2] & !K1_row_address[3] & (!K1_row_address[1]);
+
+
+--K1L633 is FINAL:inst|display:U4|RGB~8160
+--operation mode is normal
+
+K1L633 = !K1_row_address[3] & K1_row_address[2];
+
+
+--K1L121 is FINAL:inst|display:U4|reduce_nor~1534
+--operation mode is normal
+
+K1L121 = K1_row_address[3] & (!K1_row_address[2]);
+
+
+--K1L733 is FINAL:inst|display:U4|RGB~8161
+--operation mode is normal
+
+K1L733 = K1_row_address[2] # !K1L021 & !K1L011 # !K1_row_address[3];
+
+
+--K1L721 is FINAL:inst|display:U4|RGB~112
+--operation mode is normal
+
+K1L721 = K1L061 & !K1_row_address[6] & K1_row_address[4] & K1_row_address[2];
+
+
+--K1L061 is FINAL:inst|display:U4|RGB~7965
+--operation mode is normal
+
+K1L061 = !K1_row_address[5] & !K1_row_address[3] & !K1_row_address[7];
+
+
+--K1L833 is FINAL:inst|display:U4|RGB~8162
+--operation mode is normal
+
+K1L833 = K1L161 & K1_row_address[4] & !K1_row_address[2] & K1_row_address[3];
+
+
+--K1L161 is FINAL:inst|display:U4|RGB~7977
+--operation mode is normal
+
+K1L161 = !K1_row_address[5] & !K1_row_address[7] & !K1_row_address[6];
+
+
+--CLK48 is CLK48
+--operation mode is input
+
+CLK48 = INPUT();
+
+
+--RESETN is RESETN
+--operation mode is input
+
+RESETN = INPUT();
+
+
+--sw4 is sw4
+--operation mode is input
+
+sw4 = INPUT();
+
+
+--pin_name is pin_name
+--operation mode is input
+
+pin_name = INPUT();
+
+
+--PS2DATA is PS2DATA
+--operation mode is input
+
+PS2DATA = INPUT();
+
+
+--PS2CLK is PS2CLK
+--operation mode is input
+
+PS2CLK = INPUT();
+
+
+--HSYNC is HSYNC
+--operation mode is output
+
+HSYNC = OUTPUT(K1_Horiz_sync);
+
+
+--VSYNC is VSYNC
+--operation mode is output
+
+VSYNC = OUTPUT(K1_Vert_sync);
+
+
+--R is R
+--operation mode is output
+
+R = OUTPUT(K1_RED);
+
+
+--G is G
+--operation mode is output
+
+G = OUTPUT(K1_GREEN);
+
+
+--B is B
+--operation mode is output
+
+B = OUTPUT(K1_BLUE);
+
+
+--LCD_RS is LCD_RS
+--operation mode is output
+
+LCD_RS = OUTPUT(C1_LCD_RS);
+
+
+--LCD_E is LCD_E
+--operation mode is output
+
+LCD_E = OUTPUT(!C1_LCD_E);
+
+
+--LCD_RW is LCD_RW
+--operation mode is output
+
+LCD_RW = OUTPUT(!C1_LCD_RW);
+
+
+--DATA_BUS[7] is DATA_BUS[7]
+--operation mode is output
+
+DATA_BUS[7]_tri_out = TRI(C1_DATA_BUS_VALUE[7], C1_LCD_RW);
+DATA_BUS[7] = OUTPUT(DATA_BUS[7]_tri_out);
+
+
+--DATA_BUS[6] is DATA_BUS[6]
+--operation mode is output
+
+DATA_BUS[6]_tri_out = TRI(C1_DATA_BUS_VALUE[6], C1_LCD_RW);
+DATA_BUS[6] = OUTPUT(DATA_BUS[6]_tri_out);
+
+
+--DATA_BUS[5] is DATA_BUS[5]
+--operation mode is output
+
+DATA_BUS[5]_tri_out = TRI(!C1_DATA_BUS_VALUE[5], C1_LCD_RW);
+DATA_BUS[5] = OUTPUT(DATA_BUS[5]_tri_out);
+
+
+--DATA_BUS[4] is DATA_BUS[4]
+--operation mode is output
+
+DATA_BUS[4]_tri_out = TRI(!C1_DATA_BUS_VALUE[4], C1_LCD_RW);
+DATA_BUS[4] = OUTPUT(DATA_BUS[4]_tri_out);
+
+
+--DATA_BUS[3] is DATA_BUS[3]
+--operation mode is output
+
+DATA_BUS[3]_tri_out = TRI(!C1_DATA_BUS_VALUE[3], C1_LCD_RW);
+DATA_BUS[3] = OUTPUT(DATA_BUS[3]_tri_out);
+
+
+--DATA_BUS[2] is DATA_BUS[2]
+--operation mode is output
+
+DATA_BUS[2]_tri_out = TRI(C1_DATA_BUS_VALUE[2], C1_LCD_RW);
+DATA_BUS[2] = OUTPUT(DATA_BUS[2]_tri_out);
+
+
+--DATA_BUS[1] is DATA_BUS[1]
+--operation mode is output
+
+DATA_BUS[1]_tri_out = TRI(C1_DATA_BUS_VALUE[1], C1_LCD_RW);
+DATA_BUS[1] = OUTPUT(DATA_BUS[1]_tri_out);
+
+
+--DATA_BUS[0] is DATA_BUS[0]
+--operation mode is output
+
+DATA_BUS[0]_tri_out = TRI(C1_DATA_BUS_VALUE[0], C1_LCD_RW);
+DATA_BUS[0] = OUTPUT(DATA_BUS[0]_tri_out);
+
+

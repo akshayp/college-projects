@@ -1,0 +1,86 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 10.163 ns
+From           : RESETN
+To             : LCD_Display:inst2|CHAR_COUNT[2]
+From Clock     : 
+To Clock       : CLK48
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 33.467 ns
+From           : FINAL:inst|PING:U3|SCORE22[1]~reg0
+To             : G
+From Clock     : CLK48
+To Clock       : 
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -1.981 ns
+From           : RESETN
+To             : keyboard:inst16|INCNT[0]
+From Clock     : 
+To Clock       : CLK48
+Failed Paths   : 0
+
+Type           : Clock Setup: 'CLK48'
+Slack          : 4.041 ns
+Required Time  : 48.00 MHz ( period = 20.833 ns )
+Actual Time    : 59.55 MHz ( period = 16.792 ns )
+From           : FINAL:inst|PING:U3|CURRENT_ROW[4]
+To             : FINAL:inst|PING:U3|b[1]
+From Clock     : CLK48
+To Clock       : CLK48
+Failed Paths   : 0
+
+Type           : Clock Setup: 'VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component|_clk0'
+Slack          : 31.818 ns
+Required Time  : 25.20 MHz ( period = 39.681 ns )
+Actual Time    : 127.18 MHz ( period = 7.863 ns )
+From           : FINAL:inst|display:U4|Horiz_Count[1]
+To             : FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|ram_block1a8~porta_address_reg0
+From Clock     : VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component|_clk0
+To Clock       : VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component|_clk0
+Failed Paths   : 0
+
+Type           : Clock Hold: 'CLK48'
+Slack          : 0.862 ns
+Required Time  : 48.00 MHz ( period = 20.833 ns )
+Actual Time    : N/A
+From           : clk_div:inst15|clock_1Mhz_int
+To             : clk_div:inst15|clock_1Mhz_reg
+From Clock     : CLK48
+To Clock       : CLK48
+Failed Paths   : 0
+
+Type           : Clock Hold: 'VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component|_clk0'
+Slack          : 1.045 ns
+Required Time  : 25.20 MHz ( period = 39.681 ns )
+Actual Time    : N/A
+From           : FINAL:inst|display:U4|row_count[1]
+To             : FINAL:inst|display:U4|row_count[1]
+From Clock     : VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component|_clk0
+To Clock       : VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component|_clk0
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+

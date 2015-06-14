@@ -1,0 +1,1238 @@
+Analysis & Synthesis report for design
+Sun Dec 03 15:49:48 2006
+Version 5.0 Build 168 06/22/2005 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Analysis & Synthesis Source Files Read
+  5. Analysis & Synthesis Resource Usage Summary
+  6. Analysis & Synthesis Resource Utilization by Entity
+  7. Analysis & Synthesis RAM Summary
+  8. State Machine - |design|LCD_Display:inst2|state
+  9. State Machine - |design|LCD_Display:inst2|next_command
+ 10. State Machine - |design|FINAL:inst|PING:U3|STATE
+ 11. State Machine - |design|FINAL:inst|bat:U1|state
+ 12. User-Specified and Inferred Latches
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component
+ 17. Parameter Settings for Inferred Entity Instance: FINAL:inst|display:U4|altsyncram:RGB_rtl_0
+ 18. Analysis & Synthesis Equations
+ 19. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2005 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic       
+functions, and any output files any of the foregoing           
+(including device programming or simulation files), and any    
+associated documentation or information are expressly subject  
+to the terms and conditions of the Altera Program License      
+Subscription Agreement, Altera MegaCore Function License       
+Agreement, or other applicable license agreement, including,   
+without limitation, that your use is for the sole purpose of   
+programming logic devices manufactured by Altera and sold by   
+Altera or its authorized distributors.  Please refer to the    
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                               ;
++-----------------------------+----------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Sun Dec 03 15:49:48 2006        ;
+; Quartus II Version          ; 5.0 Build 168 06/22/2005 SP 1 SJ Web Edition ;
+; Revision Name               ; design                                       ;
+; Top-level Entity Name       ; design                                       ;
+; Family                      ; Cyclone                                      ;
+; Total logic elements        ; 943                                          ;
+; Total pins                  ; 22                                           ;
+; Total virtual pins          ; 0                                            ;
+; Total memory bits           ; 2,304                                        ;
+; Total PLLs                  ; 1                                            ;
++-----------------------------+----------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                     ;
++--------------------------------------------------------------------+--------------+---------------+
+; Option                                                             ; Setting      ; Default Value ;
++--------------------------------------------------------------------+--------------+---------------+
+; Device                                                             ; EP1C12Q240C8 ;               ;
+; Top-level entity name                                              ; design       ; design        ;
+; Family name                                                        ; Cyclone      ; Stratix       ;
+; Use smart compilation                                              ; Off          ; Off           ;
+; Restructure Multiplexers                                           ; Auto         ; Auto          ;
+; Create Debugging Nodes for IP Cores                                ; off          ; off           ;
+; Preserve fewer node names                                          ; On           ; On            ;
+; Disable OpenCore Plus hardware evaluation                          ; Off          ; Off           ;
+; Verilog Version                                                    ; Verilog_2001 ; Verilog_2001  ;
+; VHDL Version                                                       ; VHDL93       ; VHDL93        ;
+; State Machine Processing                                           ; Auto         ; Auto          ;
+; Extract Verilog State Machines                                     ; On           ; On            ;
+; Extract VHDL State Machines                                        ; On           ; On            ;
+; Add Pass-Through Logic to Inferred RAMs                            ; On           ; On            ;
+; NOT Gate Push-Back                                                 ; On           ; On            ;
+; Power-Up Don't Care                                                ; On           ; On            ;
+; Remove Redundant Logic Cells                                       ; Off          ; Off           ;
+; Remove Duplicate Registers                                         ; On           ; On            ;
+; Ignore CARRY Buffers                                               ; Off          ; Off           ;
+; Ignore CASCADE Buffers                                             ; Off          ; Off           ;
+; Ignore GLOBAL Buffers                                              ; Off          ; Off           ;
+; Ignore ROW GLOBAL Buffers                                          ; Off          ; Off           ;
+; Ignore LCELL Buffers                                               ; Off          ; Off           ;
+; Ignore SOFT Buffers                                                ; On           ; On            ;
+; Limit AHDL Integers to 32 Bits                                     ; Off          ; Off           ;
+; Optimization Technique -- Cyclone                                  ; Balanced     ; Balanced      ;
+; Carry Chain Length -- Stratix/Stratix GX/Cyclone/MAX II/Cyclone II ; 70           ; 70            ;
+; Auto Carry Chains                                                  ; On           ; On            ;
+; Auto Open-Drain Pins                                               ; On           ; On            ;
+; Remove Duplicate Logic                                             ; On           ; On            ;
+; Perform WYSIWYG Primitive Resynthesis                              ; Off          ; Off           ;
+; Perform gate-level register retiming                               ; Off          ; Off           ;
+; Allow register retiming to trade off Tsu/Tco with Fmax             ; On           ; On            ;
+; Auto ROM Replacement                                               ; On           ; On            ;
+; Auto RAM Replacement                                               ; On           ; On            ;
+; Auto Shift Register Replacement                                    ; On           ; On            ;
+; Auto Clock Enable Replacement                                      ; On           ; On            ;
+; Allows Synchronous Control Signal Usage in Normal Mode Logic Cells ; On           ; On            ;
+; Auto RAM Block Balancing                                           ; On           ; On            ;
+; Auto Resource Sharing                                              ; Off          ; Off           ;
+; Allow Any RAM Size For Recognition                                 ; Off          ; Off           ;
+; Allow Any ROM Size For Recognition                                 ; Off          ; Off           ;
+; Allow Any Shift Register Size For Recognition                      ; Off          ; Off           ;
+; Maximum Number of M512 Memory Blocks                               ; -1           ; -1            ;
+; Maximum Number of M4K Memory Blocks                                ; -1           ; -1            ;
+; Maximum Number of M-RAM Memory Blocks                              ; -1           ; -1            ;
+; Ignore translate_off and translate_on Synthesis Directives         ; Off          ; Off           ;
+; Show Parameter Settings Tables in Synthesis Report                 ; On           ; On            ;
++--------------------------------------------------------------------+--------------+---------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                             ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                   ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------+
+; LCD_Display.vhd                  ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/LCD_Display.vhd                           ;
+; KEYBOARD.VHD                     ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/KEYBOARD.VHD                              ;
+; CLK_DIV.VHD                      ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/CLK_DIV.VHD                               ;
+; bat.vhd                          ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/bat.vhd                                   ;
+; display.vhd                      ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/display.vhd                               ;
+; final.vhd                        ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/final.vhd                                 ;
+; ping.vhd                         ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/ping.vhd                                  ;
+; Random.vhd                       ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/Random.vhd                                ;
+; VGA_SYNC.VHD                     ; yes             ; User VHDL File               ; C:/Lime/design-lcd/design-lcd/design/VGA_SYNC.VHD                              ;
+; design.bdf                       ; yes             ; Other                        ; C:/Lime/design-lcd/design-lcd/design/design.bdf                                ;
+; video_PLL.vhd                    ; yes             ; Other                        ; C:/Lime/design-lcd/design-lcd/design/video_PLL.vhd                             ;
+; altpll.tdf                       ; yes             ; Megafunction                 ; c:/program files/altera/quatrus2/libraries/megafunctions/altpll.tdf            ;
+; aglobal50.inc                    ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/aglobal50.inc         ;
+; stratix_pll.inc                  ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/stratix_pll.inc       ;
+; stratixii_pll.inc                ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/stratixii_pll.inc     ;
+; cycloneii_pll.inc                ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/cycloneii_pll.inc     ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/program files/altera/quatrus2/libraries/megafunctions/altsyncram.tdf        ;
+; stratix_ram_block.inc            ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/stratix_ram_block.inc ;
+; lpm_mux.inc                      ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/lpm_mux.inc           ;
+; lpm_decode.inc                   ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/lpm_decode.inc        ;
+; altsyncram.inc                   ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/altsyncram.inc        ;
+; a_rdenreg.inc                    ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/a_rdenreg.inc         ;
+; altrom.inc                       ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/altrom.inc            ;
+; altram.inc                       ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/altram.inc            ;
+; altdpram.inc                     ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/altdpram.inc          ;
+; altqpram.inc                     ; yes             ; Other                        ; c:/program files/altera/quatrus2/libraries/megafunctions/altqpram.inc          ;
+; db/altsyncram_uuj.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Lime/design-lcd/design-lcd/design/db/altsyncram_uuj.tdf                     ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------+
+
+
++---------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary ;
++-----------------------------------+---------+
+; Resource                          ; Usage   ;
++-----------------------------------+---------+
+; Total logic elements              ; 943     ;
+; Total combinational functions     ; 854     ;
+;     -- Total 4-input functions    ; 434     ;
+;     -- Total 3-input functions    ; 145     ;
+;     -- Total 2-input functions    ; 161     ;
+;     -- Total 1-input functions    ; 102     ;
+;     -- Total 0-input functions    ; 12      ;
+; Combinational cells for routing   ; 0       ;
+; Total registers                   ; 259     ;
+; Total logic cells in carry chains ; 160     ;
+; I/O pins                          ; 22      ;
+; Total memory bits                 ; 2304    ;
+; Total PLLs                        ; 1       ;
+; Maximum fan-out node              ; RESETN  ;
+; Maximum fan-out                   ; 112     ;
+; Total fan-out                     ; 3565    ;
+; Average fan-out                   ; 3.66    ;
++-----------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                     ;
++---------------------------------------------+-------------+--------------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+----------------------------------------------------------------------------------+
+; Compilation Hierarchy Node                  ; Logic Cells ; LC Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                              ;
++---------------------------------------------+-------------+--------------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+----------------------------------------------------------------------------------+
+; |design                                     ; 943 (2)     ; 259          ; 2304        ; 22   ; 0            ; 684 (2)      ; 89 (0)            ; 170 (0)          ; 160 (0)         ; |design                                                                          ;
+;    |FINAL:inst|                             ; 739 (0)     ; 129          ; 2304        ; 0    ; 0            ; 610 (0)      ; 42 (0)            ; 87 (0)           ; 128 (0)         ; |design|FINAL:inst                                                               ;
+;       |PING:U3|                             ; 317 (317)   ; 57           ; 0           ; 0    ; 0            ; 260 (260)    ; 12 (12)           ; 45 (45)          ; 80 (80)         ; |design|FINAL:inst|PING:U3                                                       ;
+;       |bat:U1|                              ; 74 (74)     ; 28           ; 0           ; 0    ; 0            ; 46 (46)      ; 22 (22)           ; 6 (6)            ; 12 (12)         ; |design|FINAL:inst|bat:U1                                                        ;
+;       |display:U4|                          ; 348 (348)   ; 44           ; 2304        ; 0    ; 0            ; 304 (304)    ; 8 (8)             ; 36 (36)          ; 36 (36)         ; |design|FINAL:inst|display:U4                                                    ;
+;          |altsyncram:RGB_rtl_0|             ; 0 (0)       ; 0            ; 2304        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |design|FINAL:inst|display:U4|altsyncram:RGB_rtl_0                               ;
+;             |altsyncram_uuj:auto_generated| ; 0 (0)       ; 0            ; 2304        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |design|FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated ;
+;    |LCD_Display:inst2|                      ; 114 (114)   ; 60           ; 0           ; 0    ; 0            ; 54 (54)      ; 3 (3)             ; 57 (57)          ; 25 (25)         ; |design|LCD_Display:inst2                                                        ;
+;    |VGA_SYNC:inst6|                         ; 0 (0)       ; 0            ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |design|VGA_SYNC:inst6                                                           ;
+;       |video_PLL:video_PLL_inst|            ; 0 (0)       ; 0            ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |design|VGA_SYNC:inst6|video_PLL:video_PLL_inst                                  ;
+;          |altpll:altpll_component|          ; 0 (0)       ; 0            ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |design|VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component          ;
+;    |clk_div:inst15|                         ; 43 (43)     ; 36           ; 0           ; 0    ; 0            ; 7 (7)        ; 18 (18)           ; 18 (18)          ; 7 (7)           ; |design|clk_div:inst15                                                           ;
+;    |keyboard:inst16|                        ; 45 (45)     ; 34           ; 0           ; 0    ; 0            ; 11 (11)      ; 26 (26)           ; 8 (8)            ; 0 (0)           ; |design|keyboard:inst16                                                          ;
++---------------------------------------------+-------------+--------------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+----------------------------------------------------------------------------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                       ;
++-------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------------+
+; Name                                                                                ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF             ;
++-------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------------+
+; FINAL:inst|display:U4|altsyncram:RGB_rtl_0|altsyncram_uuj:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 256          ; 9            ; --           ; --           ; 2304 ; design0.rtl.mif ;
++-------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |design|LCD_Display:inst2|state                                                                                                                                                                                                        ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+; Name                ; state.display_clear ; state.display_off ; state.reset3 ; state.reset2 ; state.hold ; state.drop_lcd_e ; state.return_home ; state.line2 ; state.print_string ; state.mode_set ; state.display_on ; state.func_set ; state.reset1 ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+; state.reset1        ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 0            ;
+; state.func_set      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 1              ; 1            ;
+; state.display_on    ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 1                ; 0              ; 1            ;
+; state.mode_set      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 1              ; 0                ; 0              ; 1            ;
+; state.print_string  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 1                  ; 0              ; 0                ; 0              ; 1            ;
+; state.line2         ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 1           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.return_home   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 1                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.drop_lcd_e    ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 1                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.hold          ; 0                   ; 0                 ; 0            ; 0            ; 1          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.reset2        ; 0                   ; 0                 ; 0            ; 1            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.reset3        ; 0                   ; 0                 ; 1            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.display_off   ; 0                   ; 1                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.display_clear ; 1                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |design|LCD_Display:inst2|next_command                                                                                                                                                                                                                                                                                                   ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+-------------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+; Name                       ; next_command.display_clear ; next_command.display_off ; next_command.reset3 ; next_command.hold ; next_command.reset1 ; next_command.drop_lcd_e ; next_command.return_home ; next_command.line2 ; next_command.print_string ; next_command.mode_set ; next_command.display_on ; next_command.func_set ; next_command.reset2 ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+-------------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+; next_command.reset2        ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 0                   ;
+; next_command.func_set      ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 1                     ; 1                   ;
+; next_command.display_on    ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 1                       ; 0                     ; 1                   ;
+; next_command.mode_set      ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 1                     ; 0                       ; 0                     ; 1                   ;
+; next_command.print_string  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 1                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.line2         ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 1                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.return_home   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 1                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.drop_lcd_e    ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 1                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.reset1        ; 0                          ; 0                        ; 0                   ; 0                 ; 1                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.hold          ; 0                          ; 0                        ; 0                   ; 1                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.reset3        ; 0                          ; 0                        ; 1                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.display_off   ; 0                          ; 1                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.display_clear ; 1                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                       ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+-------------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |design|FINAL:inst|PING:U3|STATE                                                                                                                                                                                                                                     ;
++---------------------------+--------------------+--------------------+-------------------+-------------------+--------------------+--------------------+------------------------+------------------------+---------------------------+---------------------------+--------------------+
+; Name                      ; STATE.idle_state_2 ; STATE.idle_state_1 ; STATE.score_inc_2 ; STATE.score_inc_1 ; STATE.loop_state_2 ; STATE.loop_state_1 ; STATE.position_state_2 ; STATE.position_state_1 ; STATE.step_decide_state_2 ; STATE.step_decide_state_1 ; STATE.serve_decide ;
++---------------------------+--------------------+--------------------+-------------------+-------------------+--------------------+--------------------+------------------------+------------------------+---------------------------+---------------------------+--------------------+
+; STATE.serve_decide        ; 0                  ; 0                  ; 0                 ; 0                 ; 0                  ; 0                  ; 0                      ; 0                      ; 0                         ; 0                         ; 0                  ;
+; STATE.step_decide_state_1 ; 0                  ; 0                  ; 0                 ; 0                 ; 0                  ; 0                  ; 0                      ; 0                      ; 0                         ; 1                         ; 1                  ;
+; STATE.step_decide_state_2 ; 0                  ; 0                  ; 0                 ; 0                 ; 0                  ; 0                  ; 0                      ; 0                      ; 1                         ; 0                         ; 1                  ;
+; STATE.position_state_1    ; 0                  ; 0                  ; 0                 ; 0                 ; 0                  ; 0                  ; 0                      ; 1                      ; 0                         ; 0                         ; 1                  ;
+; STATE.position_state_2    ; 0                  ; 0                  ; 0                 ; 0                 ; 0                  ; 0                  ; 1                      ; 0                      ; 0                         ; 0                         ; 1                  ;
+; STATE.loop_state_1        ; 0                  ; 0                  ; 0                 ; 0                 ; 0                  ; 1                  ; 0                      ; 0                      ; 0                         ; 0                         ; 1                  ;
+; STATE.loop_state_2        ; 0                  ; 0                  ; 0                 ; 0                 ; 1                  ; 0                  ; 0                      ; 0                      ; 0                         ; 0                         ; 1                  ;
+; STATE.score_inc_1         ; 0                  ; 0                  ; 0                 ; 1                 ; 0                  ; 0                  ; 0                      ; 0                      ; 0                         ; 0                         ; 1                  ;
+; STATE.score_inc_2         ; 0                  ; 0                  ; 1                 ; 0                 ; 0                  ; 0                  ; 0                      ; 0                      ; 0                         ; 0                         ; 1                  ;
+; STATE.idle_state_1        ; 0                  ; 1                  ; 0                 ; 0                 ; 0                  ; 0                  ; 0                      ; 0                      ; 0                         ; 0                         ; 1                  ;
+; STATE.idle_state_2        ; 1                  ; 0                  ; 0                 ; 0                 ; 0                  ; 0                  ; 0                      ; 0                      ; 0                         ; 0                         ; 1                  ;
++---------------------------+--------------------+--------------------+-------------------+-------------------+--------------------+--------------------+------------------------+------------------------+---------------------------+---------------------------+--------------------+
+
+
++------------------------------------------------------------------------+
+; State Machine - |design|FINAL:inst|bat:U1|state                        ;
++------------------+------------------+-----------------+----------------+
+; Name             ; state.wait_ready ; state.read_data ; state.read_low ;
++------------------+------------------+-----------------+----------------+
+; state.read_low   ; 0                ; 0               ; 0              ;
+; state.read_data  ; 0                ; 1               ; 1              ;
+; state.wait_ready ; 1                ; 0               ; 1              ;
++------------------+------------------+-----------------+----------------+
+
+
++---------------------------------------------------+
+; User-Specified and Inferred Latches               ;
++-----------------------------------------------+---+
+; Latch Name                                    ;   ;
++-----------------------------------------------+---+
+; FINAL:inst|display:U4|RED                     ;   ;
+; FINAL:inst|display:U4|GREEN                   ;   ;
+; FINAL:inst|display:U4|BLUE                    ;   ;
+; Number of user-specified and inferred latches ; 3 ;
++-----------------------------------------------+---+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 259   ;
+; Number of registers using Synchronous Clear  ; 56    ;
+; Number of registers using Synchronous Load   ; 11    ;
+; Number of registers using Asynchronous Clear ; 94    ;
+; Number of registers using Asynchronous Load  ; 12    ;
+; Number of registers using Clock Enable       ; 171   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; LCD_Display:inst2|LCD_E                 ; 1       ;
+; LCD_Display:inst2|LCD_RW                ; 9       ;
+; FINAL:inst|PING:U3|CURRENT_COLUMN[5]    ; 6       ;
+; FINAL:inst|PING:U3|CURRENT_ROW[5]       ; 9       ;
+; LCD_Display:inst2|DATA_BUS_VALUE[5]     ; 1       ;
+; LCD_Display:inst2|DATA_BUS_VALUE[4]     ; 1       ;
+; LCD_Display:inst2|DATA_BUS_VALUE[3]     ; 2       ;
+; FINAL:inst|bat:U1|pdl_2[5]              ; 9       ;
+; FINAL:inst|bat:U1|pdl_1[5]              ; 8       ;
+; FINAL:inst|PING:U3|HEXOUT[125]          ; 1       ;
+; FINAL:inst|PING:U3|PREVIOUS_ROW[5]      ; 5       ;
+; Total number of inverted registers = 11 ;         ;
++-----------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |design|LCD_Display:inst2|CLK_COUNT_400HZ[1] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |design|FINAL:inst|display:U4|col_count[0]   ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |design|FINAL:inst|bat:U1|pdl_2[4]           ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |design|FINAL:inst|bat:U1|pdl_1[0]           ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |design|FINAL:inst|display:U4|row_address[2] ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |design|FINAL:inst|PING:U3|HEXOUT[126]       ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |design|FINAL:inst|display:U4|row_count[0]   ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |design|FINAL:inst|PING:U3|PREVIOUS_ROW[6]   ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |design|keyboard:inst16|READ_CHAR            ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |design|keyboard:inst16|INCNT[0]             ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |design|FINAL:inst|PING:U3|b[2]              ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |design|FINAL:inst|PING:U3|CURRENT_COLUMN[6] ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |design|FINAL:inst|PING:U3|a[2]              ;
+; 7:1                ; 5 bits    ; 20 LEs        ; 15 LEs               ; 5 LEs                  ; Yes        ; |design|FINAL:inst|PING:U3|CURRENT_ROW[1]    ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |design|FINAL:inst|bat:U1|paddle_2[5]        ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |design|FINAL:inst|bat:U1|paddle_1[1]        ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |design|FINAL:inst|PING:U3|HEXOUT[117]       ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |design|LCD_Display:inst2|DATA_BUS_VALUE[4]  ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |design|LCD_Display:inst2|state~20           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |design|LCD_Display:inst2|next_command~12    ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |design|FINAL:inst|PING:U3|CURRENT_ROW~24    ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |design|FINAL:inst|PING:U3|CURRENT_ROW~87    ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; No         ; |design|FINAL:inst|PING:U3|CURRENT_ROW~57    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component ;
++-------------------------------+-------------------+----------------------------------------------------------+
+; Parameter Name                ; Value             ; Type                                                     ;
++-------------------------------+-------------------+----------------------------------------------------------+
+; OPERATION_MODE                ; NORMAL            ; Untyped                                                  ;
+; PLL_TYPE                      ; AUTO              ; Untyped                                                  ;
+; QUALIFY_CONF_DONE             ; OFF               ; Untyped                                                  ;
+; COMPENSATE_CLOCK              ; CLK0              ; Untyped                                                  ;
+; SCAN_CHAIN                    ; LONG              ; Untyped                                                  ;
+; PRIMARY_CLOCK                 ; INCLK0            ; Untyped                                                  ;
+; INCLK0_INPUT_FREQUENCY        ; 20833             ; Integer                                                  ;
+; INCLK1_INPUT_FREQUENCY        ; 0                 ; Untyped                                                  ;
+; GATE_LOCK_SIGNAL              ; NO                ; Untyped                                                  ;
+; GATE_LOCK_COUNTER             ; 0                 ; Untyped                                                  ;
+; LOCK_HIGH                     ; 1                 ; Untyped                                                  ;
+; LOCK_LOW                      ; 1                 ; Untyped                                                  ;
+; VALID_LOCK_MULTIPLIER         ; 1                 ; Untyped                                                  ;
+; INVALID_LOCK_MULTIPLIER       ; 5                 ; Untyped                                                  ;
+; SWITCH_OVER_ON_LOSSCLK        ; OFF               ; Untyped                                                  ;
+; SWITCH_OVER_ON_GATED_LOCK     ; OFF               ; Untyped                                                  ;
+; ENABLE_SWITCH_OVER_COUNTER    ; OFF               ; Untyped                                                  ;
+; SKIP_VCO                      ; OFF               ; Untyped                                                  ;
+; SWITCH_OVER_COUNTER           ; 0                 ; Untyped                                                  ;
+; SWITCH_OVER_TYPE              ; AUTO              ; Untyped                                                  ;
+; FEEDBACK_SOURCE               ; EXTCLK0           ; Untyped                                                  ;
+; BANDWIDTH                     ; 0                 ; Untyped                                                  ;
+; BANDWIDTH_TYPE                ; AUTO              ; Untyped                                                  ;
+; SPREAD_FREQUENCY              ; 0                 ; Untyped                                                  ;
+; DOWN_SPREAD                   ; 0                 ; Untyped                                                  ;
+; SELF_RESET_ON_GATED_LOSS_LOCK ; OFF               ; Untyped                                                  ;
+; CLK5_MULTIPLY_BY              ; 1                 ; Untyped                                                  ;
+; CLK4_MULTIPLY_BY              ; 1                 ; Untyped                                                  ;
+; CLK3_MULTIPLY_BY              ; 1                 ; Untyped                                                  ;
+; CLK2_MULTIPLY_BY              ; 1                 ; Untyped                                                  ;
+; CLK1_MULTIPLY_BY              ; 1                 ; Untyped                                                  ;
+; CLK0_MULTIPLY_BY              ; 1007              ; Integer                                                  ;
+; CLK5_DIVIDE_BY                ; 1                 ; Untyped                                                  ;
+; CLK4_DIVIDE_BY                ; 1                 ; Untyped                                                  ;
+; CLK3_DIVIDE_BY                ; 1                 ; Untyped                                                  ;
+; CLK2_DIVIDE_BY                ; 1                 ; Untyped                                                  ;
+; CLK1_DIVIDE_BY                ; 1                 ; Untyped                                                  ;
+; CLK0_DIVIDE_BY                ; 1920              ; Integer                                                  ;
+; CLK5_PHASE_SHIFT              ; 0                 ; Untyped                                                  ;
+; CLK4_PHASE_SHIFT              ; 0                 ; Untyped                                                  ;
+; CLK3_PHASE_SHIFT              ; 0                 ; Untyped                                                  ;
+; CLK2_PHASE_SHIFT              ; 0                 ; Untyped                                                  ;
+; CLK1_PHASE_SHIFT              ; 0                 ; Untyped                                                  ;
+; CLK0_PHASE_SHIFT              ; 0                 ; Untyped                                                  ;
+; CLK5_TIME_DELAY               ; 0                 ; Untyped                                                  ;
+; CLK4_TIME_DELAY               ; 0                 ; Untyped                                                  ;
+; CLK3_TIME_DELAY               ; 0                 ; Untyped                                                  ;
+; CLK2_TIME_DELAY               ; 0                 ; Untyped                                                  ;
+; CLK1_TIME_DELAY               ; 0                 ; Untyped                                                  ;
+; CLK0_TIME_DELAY               ; 0                 ; Untyped                                                  ;
+; CLK5_DUTY_CYCLE               ; 50                ; Untyped                                                  ;
+; CLK4_DUTY_CYCLE               ; 50                ; Untyped                                                  ;
+; CLK3_DUTY_CYCLE               ; 50                ; Untyped                                                  ;
+; CLK2_DUTY_CYCLE               ; 50                ; Untyped                                                  ;
+; CLK1_DUTY_CYCLE               ; 50                ; Untyped                                                  ;
+; CLK0_DUTY_CYCLE               ; 50                ; Integer                                                  ;
+; EXTCLK3_MULTIPLY_BY           ; 1                 ; Untyped                                                  ;
+; EXTCLK2_MULTIPLY_BY           ; 1                 ; Untyped                                                  ;
+; EXTCLK1_MULTIPLY_BY           ; 1                 ; Untyped                                                  ;
+; EXTCLK0_MULTIPLY_BY           ; 1                 ; Untyped                                                  ;
+; EXTCLK3_DIVIDE_BY             ; 1                 ; Untyped                                                  ;
+; EXTCLK2_DIVIDE_BY             ; 1                 ; Untyped                                                  ;
+; EXTCLK1_DIVIDE_BY             ; 1                 ; Untyped                                                  ;
+; EXTCLK0_DIVIDE_BY             ; 1                 ; Untyped                                                  ;
+; EXTCLK3_PHASE_SHIFT           ; 0                 ; Untyped                                                  ;
+; EXTCLK2_PHASE_SHIFT           ; 0                 ; Untyped                                                  ;
+; EXTCLK1_PHASE_SHIFT           ; 0                 ; Untyped                                                  ;
+; EXTCLK0_PHASE_SHIFT           ; 0                 ; Untyped                                                  ;
+; EXTCLK3_TIME_DELAY            ; 0                 ; Untyped                                                  ;
+; EXTCLK2_TIME_DELAY            ; 0                 ; Untyped                                                  ;
+; EXTCLK1_TIME_DELAY            ; 0                 ; Untyped                                                  ;
+; EXTCLK0_TIME_DELAY            ; 0                 ; Untyped                                                  ;
+; EXTCLK3_DUTY_CYCLE            ; 50                ; Untyped                                                  ;
+; EXTCLK2_DUTY_CYCLE            ; 50                ; Untyped                                                  ;
+; EXTCLK1_DUTY_CYCLE            ; 50                ; Untyped                                                  ;
+; EXTCLK0_DUTY_CYCLE            ; 50                ; Untyped                                                  ;
+; VCO_MULTIPLY_BY               ; 0                 ; Untyped                                                  ;
+; VCO_DIVIDE_BY                 ; 0                 ; Untyped                                                  ;
+; SCLKOUT0_PHASE_SHIFT          ; 0                 ; Untyped                                                  ;
+; SCLKOUT1_PHASE_SHIFT          ; 0                 ; Untyped                                                  ;
+; VCO_MIN                       ; 0                 ; Untyped                                                  ;
+; VCO_MAX                       ; 0                 ; Untyped                                                  ;
+; VCO_CENTER                    ; 0                 ; Untyped                                                  ;
+; PFD_MIN                       ; 0                 ; Untyped                                                  ;
+; PFD_MAX                       ; 0                 ; Untyped                                                  ;
+; M_INITIAL                     ; 0                 ; Untyped                                                  ;
+; M                             ; 0                 ; Untyped                                                  ;
+; N                             ; 1                 ; Untyped                                                  ;
+; M2                            ; 1                 ; Untyped                                                  ;
+; N2                            ; 1                 ; Untyped                                                  ;
+; SS                            ; 1                 ; Untyped                                                  ;
+; C0_HIGH                       ; 0                 ; Untyped                                                  ;
+; C1_HIGH                       ; 0                 ; Untyped                                                  ;
+; C2_HIGH                       ; 0                 ; Untyped                                                  ;
+; C3_HIGH                       ; 0                 ; Untyped                                                  ;
+; C4_HIGH                       ; 0                 ; Untyped                                                  ;
+; C5_HIGH                       ; 0                 ; Untyped                                                  ;
+; C0_LOW                        ; 0                 ; Untyped                                                  ;
+; C1_LOW                        ; 0                 ; Untyped                                                  ;
+; C2_LOW                        ; 0                 ; Untyped                                                  ;
+; C3_LOW                        ; 0                 ; Untyped                                                  ;
+; C4_LOW                        ; 0                 ; Untyped                                                  ;
+; C5_LOW                        ; 0                 ; Untyped                                                  ;
+; C0_INITIAL                    ; 0                 ; Untyped                                                  ;
+; C1_INITIAL                    ; 0                 ; Untyped                                                  ;
+; C2_INITIAL                    ; 0                 ; Untyped                                                  ;
+; C3_INITIAL                    ; 0                 ; Untyped                                                  ;
+; C4_INITIAL                    ; 0                 ; Untyped                                                  ;
+; C5_INITIAL                    ; 0                 ; Untyped                                                  ;
+; C0_MODE                       ; BYPASS            ; Untyped                                                  ;
+; C1_MODE                       ; BYPASS            ; Untyped                                                  ;
+; C2_MODE                       ; BYPASS            ; Untyped                                                  ;
+; C3_MODE                       ; BYPASS            ; Untyped                                                  ;
+; C4_MODE                       ; BYPASS            ; Untyped                                                  ;
+; C5_MODE                       ; BYPASS            ; Untyped                                                  ;
+; C0_PH                         ; 0                 ; Untyped                                                  ;
+; C1_PH                         ; 0                 ; Untyped                                                  ;
+; C2_PH                         ; 0                 ; Untyped                                                  ;
+; C3_PH                         ; 0                 ; Untyped                                                  ;
+; C4_PH                         ; 0                 ; Untyped                                                  ;
+; C5_PH                         ; 0                 ; Untyped                                                  ;
+; L0_HIGH                       ; 1                 ; Untyped                                                  ;
+; L1_HIGH                       ; 1                 ; Untyped                                                  ;
+; G0_HIGH                       ; 1                 ; Untyped                                                  ;
+; G1_HIGH                       ; 1                 ; Untyped                                                  ;
+; G2_HIGH                       ; 1                 ; Untyped                                                  ;
+; G3_HIGH                       ; 1                 ; Untyped                                                  ;
+; E0_HIGH                       ; 1                 ; Untyped                                                  ;
+; E1_HIGH                       ; 1                 ; Untyped                                                  ;
+; E2_HIGH                       ; 1                 ; Untyped                                                  ;
+; E3_HIGH                       ; 1                 ; Untyped                                                  ;
+; L0_LOW                        ; 1                 ; Untyped                                                  ;
+; L1_LOW                        ; 1                 ; Untyped                                                  ;
+; G0_LOW                        ; 1                 ; Untyped                                                  ;
+; G1_LOW                        ; 1                 ; Untyped                                                  ;
+; G2_LOW                        ; 1                 ; Untyped                                                  ;
+; G3_LOW                        ; 1                 ; Untyped                                                  ;
+; E0_LOW                        ; 1                 ; Untyped                                                  ;
+; E1_LOW                        ; 1                 ; Untyped                                                  ;
+; E2_LOW                        ; 1                 ; Untyped                                                  ;
+; E3_LOW                        ; 1                 ; Untyped                                                  ;
+; L0_INITIAL                    ; 1                 ; Untyped                                                  ;
+; L1_INITIAL                    ; 1                 ; Untyped                                                  ;
+; G0_INITIAL                    ; 1                 ; Untyped                                                  ;
+; G1_INITIAL                    ; 1                 ; Untyped                                                  ;
+; G2_INITIAL                    ; 1                 ; Untyped                                                  ;
+; G3_INITIAL                    ; 1                 ; Untyped                                                  ;
+; E0_INITIAL                    ; 1                 ; Untyped                                                  ;
+; E1_INITIAL                    ; 1                 ; Untyped                                                  ;
+; E2_INITIAL                    ; 1                 ; Untyped                                                  ;
+; E3_INITIAL                    ; 1                 ; Untyped                                                  ;
+; L0_MODE                       ; BYPASS            ; Untyped                                                  ;
+; L1_MODE                       ; BYPASS            ; Untyped                                                  ;
+; G0_MODE                       ; BYPASS            ; Untyped                                                  ;
+; G1_MODE                       ; BYPASS            ; Untyped                                                  ;
+; G2_MODE                       ; BYPASS            ; Untyped                                                  ;
+; G3_MODE                       ; BYPASS            ; Untyped                                                  ;
+; E0_MODE                       ; BYPASS            ; Untyped                                                  ;
+; E1_MODE                       ; BYPASS            ; Untyped                                                  ;
+; E2_MODE                       ; BYPASS            ; Untyped                                                  ;
+; E3_MODE                       ; BYPASS            ; Untyped                                                  ;
+; L0_PH                         ; 0                 ; Untyped                                                  ;
+; L1_PH                         ; 0                 ; Untyped                                                  ;
+; G0_PH                         ; 0                 ; Untyped                                                  ;
+; G1_PH                         ; 0                 ; Untyped                                                  ;
+; G2_PH                         ; 0                 ; Untyped                                                  ;
+; G3_PH                         ; 0                 ; Untyped                                                  ;
+; E0_PH                         ; 0                 ; Untyped                                                  ;
+; E1_PH                         ; 0                 ; Untyped                                                  ;
+; E2_PH                         ; 0                 ; Untyped                                                  ;
+; E3_PH                         ; 0                 ; Untyped                                                  ;
+; M_PH                          ; 0                 ; Untyped                                                  ;
+; C1_USE_CASC_IN                ; 0                 ; Untyped                                                  ;
+; C2_USE_CASC_IN                ; 0                 ; Untyped                                                  ;
+; C3_USE_CASC_IN                ; 0                 ; Untyped                                                  ;
+; C4_USE_CASC_IN                ; 0                 ; Untyped                                                  ;
+; C5_USE_CASC_IN                ; 0                 ; Untyped                                                  ;
+; CLK0_COUNTER                  ; G0                ; Untyped                                                  ;
+; CLK1_COUNTER                  ; G0                ; Untyped                                                  ;
+; CLK2_COUNTER                  ; G0                ; Untyped                                                  ;
+; CLK3_COUNTER                  ; G0                ; Untyped                                                  ;
+; CLK4_COUNTER                  ; G0                ; Untyped                                                  ;
+; CLK5_COUNTER                  ; G0                ; Untyped                                                  ;
+; L0_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; L1_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; G0_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; G1_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; G2_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; G3_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; E0_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; E1_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; E2_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; E3_TIME_DELAY                 ; 0                 ; Untyped                                                  ;
+; M_TIME_DELAY                  ; 0                 ; Untyped                                                  ;
+; N_TIME_DELAY                  ; 0                 ; Untyped                                                  ;
+; EXTCLK3_COUNTER               ; E3                ; Untyped                                                  ;
+; EXTCLK2_COUNTER               ; E2                ; Untyped                                                  ;
+; EXTCLK1_COUNTER               ; E1                ; Untyped                                                  ;
+; EXTCLK0_COUNTER               ; E0                ; Untyped                                                  ;
+; ENABLE0_COUNTER               ; L0                ; Untyped                                                  ;
+; ENABLE1_COUNTER               ; L0                ; Untyped                                                  ;
+; CHARGE_PUMP_CURRENT           ; 2                 ; Untyped                                                  ;
+; LOOP_FILTER_R                 ;  1.000000         ; Untyped                                                  ;
+; LOOP_FILTER_C                 ; 5                 ; Untyped                                                  ;
+; VCO_POST_SCALE                ; 0                 ; Untyped                                                  ;
+; CLK2_OUTPUT_FREQUENCY         ; 0                 ; Untyped                                                  ;
+; CLK1_OUTPUT_FREQUENCY         ; 0                 ; Untyped                                                  ;
+; CLK0_OUTPUT_FREQUENCY         ; 0                 ; Untyped                                                  ;
+; INTENDED_DEVICE_FAMILY        ; Cyclone           ; Untyped                                                  ;
+; PORT_CLKENA0                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKENA1                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKENA2                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKENA3                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKENA4                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKENA5                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLKENA0               ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLKENA1               ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLKENA2               ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLKENA3               ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLK0                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLK1                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLK2                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_EXTCLK3                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKBAD0                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKBAD1                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLK0                     ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLK1                     ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLK2                     ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLK3                     ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLK4                     ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLK5                     ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCANDATA                 ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCANDATAOUT              ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCANDONE                 ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCLKOUT1                 ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCLKOUT0                 ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_ACTIVECLOCK              ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKLOSS                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_INCLK1                   ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_INCLK0                   ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_FBIN                     ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_PLLENA                   ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_CLKSWITCH                ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_ARESET                   ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_PFDENA                   ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCANCLK                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCANACLR                 ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCANREAD                 ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_SCANWRITE                ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_ENABLE0                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; PORT_ENABLE1                  ; PORT_CONNECTIVITY ; Untyped                                                  ;
+; M_TEST_SOURCE                 ; 5                 ; Untyped                                                  ;
+; C0_TEST_SOURCE                ; 5                 ; Untyped                                                  ;
+; C1_TEST_SOURCE                ; 5                 ; Untyped                                                  ;
+; C2_TEST_SOURCE                ; 5                 ; Untyped                                                  ;
+; C3_TEST_SOURCE                ; 5                 ; Untyped                                                  ;
+; C4_TEST_SOURCE                ; 5                 ; Untyped                                                  ;
+; C5_TEST_SOURCE                ; 5                 ; Untyped                                                  ;
+; DEVICE_FAMILY                 ; Cyclone           ; Untyped                                                  ;
+; AUTO_CARRY_CHAINS             ; ON                ; AUTO_CARRY                                               ;
+; IGNORE_CARRY_BUFFERS          ; OFF               ; IGNORE_CARRY                                             ;
+; AUTO_CASCADE_CHAINS           ; ON                ; AUTO_CASCADE                                             ;
+; IGNORE_CASCADE_BUFFERS        ; OFF               ; IGNORE_CASCADE                                           ;
++-------------------------------+-------------------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: FINAL:inst|display:U4|altsyncram:RGB_rtl_0 ;
++------------------------------------+-----------------+--------------------------------------+
+; Parameter Name                     ; Value           ; Type                                 ;
++------------------------------------+-----------------+--------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8               ; Untyped                              ;
+; AUTO_CARRY_CHAINS                  ; ON              ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS               ; OFF             ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS                ; ON              ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS             ; OFF             ; IGNORE_CASCADE                       ;
+; OPERATION_MODE                     ; ROM             ; Untyped                              ;
+; WIDTH_A                            ; 9               ; Untyped                              ;
+; WIDTHAD_A                          ; 8               ; Untyped                              ;
+; NUMWORDS_A                         ; 256             ; Untyped                              ;
+; OUTDATA_REG_A                      ; UNREGISTERED    ; Untyped                              ;
+; ADDRESS_ACLR_A                     ; NONE            ; Untyped                              ;
+; OUTDATA_ACLR_A                     ; NONE            ; Untyped                              ;
+; WRCONTROL_ACLR_A                   ; NONE            ; Untyped                              ;
+; INDATA_ACLR_A                      ; NONE            ; Untyped                              ;
+; BYTEENA_ACLR_A                     ; NONE            ; Untyped                              ;
+; WIDTH_B                            ; 1               ; Untyped                              ;
+; WIDTHAD_B                          ; 1               ; Untyped                              ;
+; NUMWORDS_B                         ; 1               ; Untyped                              ;
+; INDATA_REG_B                       ; CLOCK1          ; Untyped                              ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1          ; Untyped                              ;
+; RDCONTROL_REG_B                    ; CLOCK1          ; Untyped                              ;
+; ADDRESS_REG_B                      ; CLOCK1          ; Untyped                              ;
+; OUTDATA_REG_B                      ; UNREGISTERED    ; Untyped                              ;
+; BYTEENA_REG_B                      ; CLOCK1          ; Untyped                              ;
+; INDATA_ACLR_B                      ; NONE            ; Untyped                              ;
+; WRCONTROL_ACLR_B                   ; NONE            ; Untyped                              ;
+; ADDRESS_ACLR_B                     ; NONE            ; Untyped                              ;
+; OUTDATA_ACLR_B                     ; NONE            ; Untyped                              ;
+; RDCONTROL_ACLR_B                   ; NONE            ; Untyped                              ;
+; BYTEENA_ACLR_B                     ; NONE            ; Untyped                              ;
+; WIDTH_BYTEENA_A                    ; 1               ; Untyped                              ;
+; WIDTH_BYTEENA_B                    ; 1               ; Untyped                              ;
+; RAM_BLOCK_TYPE                     ; AUTO            ; Untyped                              ;
+; BYTE_SIZE                          ; 8               ; Untyped                              ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE       ; Untyped                              ;
+; INIT_FILE                          ; design0.rtl.mif ; Untyped                              ;
+; INIT_FILE_LAYOUT                   ; PORT_A          ; Untyped                              ;
+; MAXIMUM_DEPTH                      ; 0               ; Untyped                              ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL          ; Untyped                              ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL          ; Untyped                              ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL          ; Untyped                              ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL          ; Untyped                              ;
+; DEVICE_FAMILY                      ; Cyclone         ; Untyped                              ;
+; CBXI_PARAMETER                     ; altsyncram_uuj  ; Untyped                              ;
++------------------------------------+-----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------+
+; Analysis & Synthesis Equations ;
++--------------------------------+
+The equations can be found in C:/Lime/design-lcd/design-lcd/design/design.map.eqn.
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 5.0 Build 168 06/22/2005 Service Pack 1 SJ Web Edition
+    Info: Processing started: Sun Dec 03 15:49:17 2006
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off design -c design
+Info: Found 2 design units, including 1 entities, in source file LCD_Display.vhd
+    Info: Found design unit 1: LCD_Display-a
+    Info: Found entity 1: LCD_Display
+Info: Found 2 design units, including 1 entities, in source file KEYBOARD.VHD
+    Info: Found design unit 1: keyboard-a
+    Info: Found entity 1: keyboard
+Info: Found 2 design units, including 1 entities, in source file CLK_DIV.VHD
+    Info: Found design unit 1: clk_div-a
+    Info: Found entity 1: clk_div
+Warning: Can't analyze file -- file //ecewinsrv1/ECE_Root/Users/Students/gth727q/Profile/Desktop/booksoft/CHAP10/video_PLL.vhd is missing
+Info: Found 2 design units, including 1 entities, in source file bat.vhd
+    Info: Found design unit 1: bat-position
+    Info: Found entity 1: bat
+Warning: Verilog HDL or VHDL warning at display.vhd(48): Unconverted VHDL-2029: two visible identifiers match To_StdLogicVector because the actual at position 0 has an ambiguous type; it could be bit_vector or std_ulogic_vector - assuming bit_vector
+Warning: Verilog HDL or VHDL warning at display.vhd(50): Unconverted VHDL-2029: two visible identifiers match To_StdLogicVector because the actual at position 0 has an ambiguous type; it could be bit_vector or std_ulogic_vector - assuming bit_vector
+Warning: Verilog HDL or VHDL warning at display.vhd(62): Unconverted VHDL-2029: two visible identifiers match To_StdLogicVector because the actual at position 0 has an ambiguous type; it could be bit_vector or std_ulogic_vector - assuming bit_vector
+Warning: Verilog HDL or VHDL warning at display.vhd(64): Unconverted VHDL-2029: two visible identifiers match To_StdLogicVector because the actual at position 0 has an ambiguous type; it could be bit_vector or std_ulogic_vector - assuming bit_vector
+Info: Found 2 design units, including 1 entities, in source file display.vhd
+    Info: Found design unit 1: display-NEW1
+    Info: Found entity 1: display
+Info: Found 2 design units, including 1 entities, in source file final.vhd
+    Info: Found design unit 1: FINAL-NEW1
+    Info: Found entity 1: FINAL
+Info: Found 2 design units, including 1 entities, in source file ping.vhd
+    Info: Found design unit 1: PING-ALG
+    Info: Found entity 1: PING
+Info: Found 2 design units, including 1 entities, in source file Random.vhd
+    Info: Found design unit 1: random-behave
+    Info: Found entity 1: random
+Info: Found 2 design units, including 1 entities, in source file VGA_SYNC.VHD
+    Info: Found design unit 1: VGA_SYNC-a
+    Info: Found entity 1: VGA_SYNC
+Info: Using design file design.bdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: design
+Info: Elaborating entity "design" for the top level hierarchy
+Warning: Port "DATA_BUS" of type LCD_Display and instance "inst2" is missing source signal
+Info: Elaborating entity "FINAL" for hierarchy "FINAL:inst"
+Info: Elaborating entity "bat" for hierarchy "FINAL:inst|bat:U1"
+Info: (10035) Verilog HDL or VHDL information at bat.vhd(19): object "clock_enable" declared but not used
+Info: Elaborating entity "random" for hierarchy "FINAL:inst|random:U2"
+Info: (10035) Verilog HDL or VHDL information at Random.vhd(12): object "ranvar_2" declared but not used
+Warning: VHDL Process Statement warning at Random.vhd(24): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(27): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(30): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(33): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(36): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(39): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(42): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(45): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(48): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(51): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(54): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(57): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(60): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(63): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(66): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(69): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(72): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(75): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(78): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(81): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(84): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(87): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(90): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(93): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(96): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(99): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(102): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(105): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(108): signal "ranvar_1" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at Random.vhd(14): signal or variable "ranvar_1" may not be assigned a new value in every possible path through the Process Statement. Signal or variable "ranvar_1" holds its previous value in every path with no new value assignment, which may create a combinational loop in the current design.
+Info: Elaborating entity "PING" for hierarchy "FINAL:inst|PING:U3"
+Info: Elaborating entity "display" for hierarchy "FINAL:inst|display:U4"
+Warning: VHDL Process Statement warning at display.vhd(107): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(107): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(111): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(111): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(128): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(128): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(138): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(138): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(147): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(147): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(155): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(155): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(159): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(159): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(163): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(163): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(167): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(167): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(171): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(171): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(175): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(175): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(179): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(179): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(186): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(186): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(190): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(190): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(194): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(194): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(198): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(198): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(202): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(202): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(206): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(206): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(210): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(210): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(217): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(217): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(218): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(218): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(221): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(221): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(222): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(222): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(223): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(223): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(224): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(224): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(225): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(225): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(226): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(226): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(227): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(227): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(228): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(228): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(229): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(229): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(230): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(230): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(231): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(231): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(232): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(232): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(233): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(233): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(234): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(234): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(235): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(235): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(236): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(236): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(237): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(237): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(238): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(238): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(239): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(239): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(240): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(240): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(241): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(241): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(242): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(242): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(243): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(243): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(244): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(244): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(245): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(245): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(246): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(246): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(247): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(247): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(248): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(248): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(249): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(249): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(250): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(250): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(251): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(251): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(252): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(252): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(253): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(253): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(254): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(254): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(255): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(255): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(256): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(256): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(257): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(257): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(258): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(258): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(259): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(259): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(260): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(260): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(261): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(261): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(262): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(262): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(263): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(263): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(264): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(264): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(265): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(265): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(266): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(266): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(267): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(267): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(268): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(268): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(269): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(269): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(270): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(270): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(271): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(271): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(272): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(272): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(273): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(273): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(274): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(274): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(275): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(275): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(276): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(276): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(277): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(277): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(278): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(278): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(279): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(279): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(280): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(280): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(281): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(281): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(282): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(282): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(283): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(283): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(284): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(284): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(285): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(285): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(286): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(286): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(287): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(287): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(288): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(288): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(289): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(289): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(290): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(290): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(291): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(291): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(292): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(292): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(293): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(293): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(294): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(294): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(295): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(295): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(296): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(296): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(297): signal "row_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(297): signal "col_address" is read inside the Process Statement but isn't in the Process Statement's sensivitity list
+Warning: VHDL Process Statement warning at display.vhd(104): signal or variable "R" may not be assigned a new value in every possible path through the Process Statement. Signal or variable "R" holds its previous value in every path with no new value assignment, which may create a combinational loop in the current design.
+Warning: VHDL Process Statement warning at display.vhd(104): signal or variable "G" may not be assigned a new value in every possible path through the Process Statement. Signal or variable "G" holds its previous value in every path with no new value assignment, which may create a combinational loop in the current design.
+Warning: VHDL Process Statement warning at display.vhd(104): signal or variable "B" may not be assigned a new value in every possible path through the Process Statement. Signal or variable "B" holds its previous value in every path with no new value assignment, which may create a combinational loop in the current design.
+Info: Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:inst6"
+Info: Using design file video_PLL.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: video_PLL-SYN
+    Info: Found entity 1: video_PLL
+Info: Elaborating entity "video_PLL" for hierarchy "VGA_SYNC:inst6|video_PLL:video_PLL_inst"
+Info: Found 1 design units, including 1 entities, in source file ../../../../program files/altera/quatrus2/libraries/megafunctions/altpll.tdf
+    Info: Found entity 1: altpll
+Info: Elaborating entity "altpll" for hierarchy "VGA_SYNC:inst6|video_PLL:video_PLL_inst|altpll:altpll_component"
+Info: Elaborating entity "clk_div" for hierarchy "clk_div:inst15"
+Info: Elaborating entity "keyboard" for hierarchy "keyboard:inst16"
+Info: (10035) Verilog HDL or VHDL information at KEYBOARD.VHD(17): object "INFLAG" declared but not used
+Info: Elaborating entity "LCD_Display" for hierarchy "LCD_Display:inst2"
+Info: (10035) Verilog HDL or VHDL information at LCD_Display.vhd(63): object "Line1_chars" declared but not used
+Info: (10035) Verilog HDL or VHDL information at LCD_Display.vhd(63): object "Line2_chars" declared but not used
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[127]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[123]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[122]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[121]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[120]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[119]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[116]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[113]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[112]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[111]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[108]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[107]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[106]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[105]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[103]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[98]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[97]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[95]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[92]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[91]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[89]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[87]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[83]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[82]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[80]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[79]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[78]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[76]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[75]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[74]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[73]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[72]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[71]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[70]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[67]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[66]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[63]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[62]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[60]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[59]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[58]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[57]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[56]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[55]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[51]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[47]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[44]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[42]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[41]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[39]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[36]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[32]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[31]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[27]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[26]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[23]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[22]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[20]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[19]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[18]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[17]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[15]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[14]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[12]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[11]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[10]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[9]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[7]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[6]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[4]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[3]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[2]" with stuck data_in port to stuck value GND
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[1]" with stuck data_in port to stuck value GND
+Info: Duplicate registers merged to single register
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[100]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[99]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[96]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[94]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[90]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[88]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[86]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[84]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[81]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[68]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[54]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[52]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[50]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[49]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[48]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[46]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[43]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[40]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[38]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[35]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[34]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[33]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[30]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[28]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[25]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[24]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[16]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[8]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[0]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[124]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[118]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[115]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[114]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[110]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[104]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[102]" merged to single register "FINAL:inst|PING:U3|HEXOUT[126]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[53]" merged to single register "FINAL:inst|PING:U3|HEXOUT[125]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[85]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[109]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[101]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[93]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[77]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[69]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[61]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[45]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[37]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[29]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[21]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[13]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+    Info: Duplicate register "FINAL:inst|PING:U3|HEXOUT[5]" merged to single register "FINAL:inst|PING:U3|HEXOUT[117]"
+Info: Power-up level of register "FINAL:inst|PING:U3|HEXOUT[117]" is not specified -- using power-up level of High to minimize register
+Warning: Reduced register "FINAL:inst|PING:U3|HEXOUT[117]" with stuck data_in port to stuck value VCC
+Warning: Created node "FINAL:inst|display:U4|RGB~773" as a ROM by generating altsyncram megafunction to implement register logic with M512 or M4K memory block. Power-up state differs from the original design.
+Info: State machine "|design|LCD_Display:inst2|state" contains 13 states and 0 state bits
+Info: State machine "|design|LCD_Display:inst2|next_command" contains 13 states and 0 state bits
+Info: State machine "|design|FINAL:inst|PING:U3|STATE" contains 11 states and 0 state bits
+Info: State machine "|design|FINAL:inst|bat:U1|state" contains 3 states and 0 state bits
+Info: Selected Auto state machine encoding method for state machine "|design|LCD_Display:inst2|state"
+Info: Encoding result for state machine "|design|LCD_Display:inst2|state"
+    Info: Completed encoding using 13 state bits
+        Info: Encoded state bit "LCD_Display:inst2|state.display_clear"
+        Info: Encoded state bit "LCD_Display:inst2|state.display_off"
+        Info: Encoded state bit "LCD_Display:inst2|state.reset3"
+        Info: Encoded state bit "LCD_Display:inst2|state.reset2"
+        Info: Encoded state bit "LCD_Display:inst2|state.hold"
+        Info: Encoded state bit "LCD_Display:inst2|state.drop_lcd_e"
+        Info: Encoded state bit "LCD_Display:inst2|state.return_home"
+        Info: Encoded state bit "LCD_Display:inst2|state.line2"
+        Info: Encoded state bit "LCD_Display:inst2|state.print_string"
+        Info: Encoded state bit "LCD_Display:inst2|state.mode_set"
+        Info: Encoded state bit "LCD_Display:inst2|state.display_on"
+        Info: Encoded state bit "LCD_Display:inst2|state.func_set"
+        Info: Encoded state bit "LCD_Display:inst2|state.reset1"
+    Info: State "|design|LCD_Display:inst2|state.reset1" uses code string "0000000000000"
+    Info: State "|design|LCD_Display:inst2|state.func_set" uses code string "0000000000011"
+    Info: State "|design|LCD_Display:inst2|state.display_on" uses code string "0000000000101"
+    Info: State "|design|LCD_Display:inst2|state.mode_set" uses code string "0000000001001"
+    Info: State "|design|LCD_Display:inst2|state.print_string" uses code string "0000000010001"
+    Info: State "|design|LCD_Display:inst2|state.line2" uses code string "0000000100001"
+    Info: State "|design|LCD_Display:inst2|state.return_home" uses code string "0000001000001"
+    Info: State "|design|LCD_Display:inst2|state.drop_lcd_e" uses code string "0000010000001"
+    Info: State "|design|LCD_Display:inst2|state.hold" uses code string "0000100000001"
+    Info: State "|design|LCD_Display:inst2|state.reset2" uses code string "0001000000001"
+    Info: State "|design|LCD_Display:inst2|state.reset3" uses code string "0010000000001"
+    Info: State "|design|LCD_Display:inst2|state.display_off" uses code string "0100000000001"
+    Info: State "|design|LCD_Display:inst2|state.display_clear" uses code string "1000000000001"
+Info: Selected Auto state machine encoding method for state machine "|design|LCD_Display:inst2|next_command"
+Info: Encoding result for state machine "|design|LCD_Display:inst2|next_command"
+    Info: Completed encoding using 13 state bits
+        Info: Encoded state bit "LCD_Display:inst2|next_command.display_clear"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.display_off"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.reset3"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.hold"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.reset1"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.drop_lcd_e"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.return_home"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.line2"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.print_string"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.mode_set"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.display_on"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.func_set"
+        Info: Encoded state bit "LCD_Display:inst2|next_command.reset2"
+    Info: State "|design|LCD_Display:inst2|next_command.reset2" uses code string "0000000000000"
+    Info: State "|design|LCD_Display:inst2|next_command.func_set" uses code string "0000000000011"
+    Info: State "|design|LCD_Display:inst2|next_command.display_on" uses code string "0000000000101"
+    Info: State "|design|LCD_Display:inst2|next_command.mode_set" uses code string "0000000001001"
+    Info: State "|design|LCD_Display:inst2|next_command.print_string" uses code string "0000000010001"
+    Info: State "|design|LCD_Display:inst2|next_command.line2" uses code string "0000000100001"
+    Info: State "|design|LCD_Display:inst2|next_command.return_home" uses code string "0000001000001"
+    Info: State "|design|LCD_Display:inst2|next_command.drop_lcd_e" uses code string "0000010000001"
+    Info: State "|design|LCD_Display:inst2|next_command.reset1" uses code string "0000100000001"
+    Info: State "|design|LCD_Display:inst2|next_command.hold" uses code string "0001000000001"
+    Info: State "|design|LCD_Display:inst2|next_command.reset3" uses code string "0010000000001"
+    Info: State "|design|LCD_Display:inst2|next_command.display_off" uses code string "0100000000001"
+    Info: State "|design|LCD_Display:inst2|next_command.display_clear" uses code string "1000000000001"
+Info: Selected Auto state machine encoding method for state machine "|design|FINAL:inst|PING:U3|STATE"
+Info: Encoding result for state machine "|design|FINAL:inst|PING:U3|STATE"
+    Info: Completed encoding using 11 state bits
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.idle_state_2"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.idle_state_1"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.score_inc_2"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.score_inc_1"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.loop_state_2"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.loop_state_1"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.position_state_2"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.position_state_1"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.step_decide_state_2"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.step_decide_state_1"
+        Info: Encoded state bit "FINAL:inst|PING:U3|STATE.serve_decide"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.serve_decide" uses code string "00000000000"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.step_decide_state_1" uses code string "00000000011"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.step_decide_state_2" uses code string "00000000101"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.position_state_1" uses code string "00000001001"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.position_state_2" uses code string "00000010001"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.loop_state_1" uses code string "00000100001"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.loop_state_2" uses code string "00001000001"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.score_inc_1" uses code string "00010000001"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.score_inc_2" uses code string "00100000001"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.idle_state_1" uses code string "01000000001"
+    Info: State "|design|FINAL:inst|PING:U3|STATE.idle_state_2" uses code string "10000000001"
+Info: Selected Auto state machine encoding method for state machine "|design|FINAL:inst|bat:U1|state"
+Info: Encoding result for state machine "|design|FINAL:inst|bat:U1|state"
+    Info: Completed encoding using 3 state bits
+        Info: Encoded state bit "FINAL:inst|bat:U1|state.wait_ready"
+        Info: Encoded state bit "FINAL:inst|bat:U1|state.read_data"
+        Info: Encoded state bit "FINAL:inst|bat:U1|state.read_low"
+    Info: State "|design|FINAL:inst|bat:U1|state.read_low" uses code string "000"
+    Info: State "|design|FINAL:inst|bat:U1|state.read_data" uses code string "011"
+    Info: State "|design|FINAL:inst|bat:U1|state.wait_ready" uses code string "101"
+Warning: Reduced register "LCD_Display:inst2|next_command.drop_lcd_e" with stuck data_in port to stuck value GND
+Warning: Reduced register "LCD_Display:inst2|next_command.hold" with stuck data_in port to stuck value GND
+Warning: Reduced register "LCD_Display:inst2|next_command.reset1" with stuck data_in port to stuck value GND
+Info: Inferred 1 megafunctions from design logic
+    Info: Inferred altsyncram megafunction (OPERATION_MODE=ROM, NUMWORDS_A=256, WIDTH_A=9) from the following design logic: "FINAL:inst|display:U4|RGB~773"
+Info: Found 1 design units, including 1 entities, in source file ../../../../program files/altera/quatrus2/libraries/megafunctions/altsyncram.tdf
+    Info: Found entity 1: altsyncram
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_uuj.tdf
+    Info: Found entity 1: altsyncram_uuj
+Warning: Latch FINAL:inst|display:U4|GREEN has unsafe behavior
+    Warning: Ports ENA and PRE on the latch are fed by the same signal FINAL:inst|display:U4|RGB~488
+Warning: Latch FINAL:inst|display:U4|BLUE has unsafe behavior
+    Warning: Ports ENA and PRE on the latch are fed by the same signal FINAL:inst|display:U4|RGB~488
+Info: Registers with preset signals will power-up high
+Info: Found the following redundant logic cells in design
+    Info: Logic cell "FINAL:inst|PING:U3|add~3967"
+Info: Implemented 975 device resources after synthesis - the final resource count might be different
+    Info: Implemented 6 input pins
+    Info: Implemented 16 output pins
+    Info: Implemented 943 logic cells
+    Info: Implemented 9 RAM segments
+    Info: Implemented 1 ClockLock PLLs
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 317 warnings
+    Info: Processing ended: Sun Dec 03 15:49:48 2006
+    Info: Elapsed time: 00:00:32
+
+

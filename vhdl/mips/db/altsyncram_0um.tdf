@@ -1,0 +1,172 @@
+--altsyncram ADDRESS_ACLR_A="NONE" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" DEVICE_FAMILY="Cyclone II" INIT_FILE="format.mif" NUMWORDS_A=60 OPERATION_MODE="ROM" OUTDATA_ACLR_A="NONE" OUTDATA_REG_A="UNREGISTERED" WIDTH_A=6 WIDTHAD_A=6 address_a clock0 q_a
+--VERSION_BEGIN 5.0 cbx_altsyncram 2005:03:24:13:58:56:SJ cbx_cycloneii 2004:12:20:14:28:52:SJ cbx_lpm_add_sub 2005:04:12:13:30:42:SJ cbx_lpm_compare 2004:11:30:11:30:40:SJ cbx_lpm_decode 2004:12:13:14:19:12:SJ cbx_lpm_mux 2004:12:13:14:16:38:SJ cbx_mgl 2005:05:19:13:51:58:SJ cbx_stratix 2005:06:02:09:53:04:SJ cbx_stratixii 2004:12:22:13:27:12:SJ cbx_util_mgl 2005:04:04:13:50:06:SJ  VERSION_END
+
+
+--  Copyright (C) 1988-2005 Altera Corporation
+--  Your use of Altera Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Altera Program License 
+--  Subscription Agreement, Altera MegaCore Function License 
+--  Agreement, or other applicable license agreement, including, 
+--  without limitation, that your use is for the sole purpose of 
+--  programming logic devices manufactured by Altera and sold by 
+--  Altera or its authorized distributors.  Please refer to the 
+--  applicable agreement for further details.
+
+
+PARAMETERS
+(
+	PORT_A_ADDRESS_WIDTH = 1,
+	PORT_A_BYTE_ENABLE_MASK_WIDTH = 1,
+	PORT_A_DATA_WIDTH = 1,
+	PORT_B_ADDRESS_WIDTH = 1,
+	PORT_B_BYTE_ENABLE_MASK_WIDTH = 1,
+	PORT_B_DATA_WIDTH = 1
+);
+FUNCTION cycloneii_ram_block (clk0, clk1, clr0, clr1, ena0, ena1, portaaddr[PORT_A_ADDRESS_WIDTH-1..0], portaaddrstall, portabyteenamasks[PORT_A_BYTE_ENABLE_MASK_WIDTH-1..0], portadatain[PORT_A_DATA_WIDTH-1..0], portawe, portbaddr[PORT_B_ADDRESS_WIDTH-1..0], portbaddrstall, portbbyteenamasks[PORT_B_BYTE_ENABLE_MASK_WIDTH-1..0], portbdatain[PORT_B_DATA_WIDTH-1..0], portbrewe)
+WITH ( 	CONNECTIVITY_CHECKING,	DATA_INTERLEAVE_OFFSET_IN_BITS,	DATA_INTERLEAVE_WIDTH_IN_BITS,	INIT_FILE,	INIT_FILE_LAYOUT,	LOGICAL_RAM_NAME,	mem_init0,	mem_init1,	MIXED_PORT_FEED_THROUGH_MODE,	OPERATION_MODE,	PORT_A_ADDRESS_WIDTH,	PORT_A_BYTE_ENABLE_MASK_WIDTH,	PORT_A_BYTE_SIZE,	PORT_A_DATA_OUT_CLEAR,	PORT_A_DATA_OUT_CLOCK,	PORT_A_DATA_WIDTH,	PORT_A_DISABLE_CE_ON_INPUT_REGISTERS,	PORT_A_DISABLE_CE_ON_OUTPUT_REGISTERS,	PORT_A_FIRST_ADDRESS,	PORT_A_FIRST_BIT_NUMBER,	PORT_A_LAST_ADDRESS,	PORT_A_LOGICAL_RAM_DEPTH,	PORT_A_LOGICAL_RAM_WIDTH,	PORT_B_ADDRESS_CLOCK,	PORT_B_ADDRESS_WIDTH,	PORT_B_BYTE_ENABLE_CLOCK,	PORT_B_BYTE_ENABLE_MASK_WIDTH,	PORT_B_BYTE_SIZE,	PORT_B_DATA_IN_CLOCK,	PORT_B_DATA_OUT_CLEAR,	PORT_B_DATA_OUT_CLOCK,	PORT_B_DATA_WIDTH,	PORT_B_DISABLE_CE_ON_INPUT_REGISTERS,	PORT_B_DISABLE_CE_ON_OUTPUT_REGISTERS,	PORT_B_FIRST_ADDRESS,	PORT_B_FIRST_BIT_NUMBER,	PORT_B_LAST_ADDRESS,	PORT_B_LOGICAL_RAM_DEPTH,	PORT_B_LOGICAL_RAM_WIDTH,	PORT_B_READ_ENABLE_WRITE_ENABLE_CLOCK,	RAM_BLOCK_TYPE) 
+RETURNS ( portadataout[PORT_A_DATA_WIDTH-1..0], portbdataout[PORT_B_DATA_WIDTH-1..0]);
+
+--synthesis_resources = M4K 1 
+SUBDESIGN altsyncram_0um
+( 
+	address_a[5..0]	:	input;
+	clock0	:	input;
+	q_a[5..0]	:	output;
+) 
+VARIABLE 
+	ram_block1a0 : cycloneii_ram_block
+		WITH (
+			CONNECTIVITY_CHECKING = "OFF",
+			INIT_FILE = "format.mif",
+			INIT_FILE_LAYOUT = "port_a",
+			LOGICAL_RAM_NAME = "ALTSYNCRAM",
+			OPERATION_MODE = "rom",
+			PORT_A_ADDRESS_WIDTH = 6,
+			PORT_A_DATA_OUT_CLEAR = "none",
+			PORT_A_DATA_OUT_CLOCK = "none",
+			PORT_A_DATA_WIDTH = 1,
+			PORT_A_DISABLE_CE_ON_INPUT_REGISTERS = "off",
+			PORT_A_DISABLE_CE_ON_OUTPUT_REGISTERS = "off",
+			PORT_A_FIRST_ADDRESS = 0,
+			PORT_A_FIRST_BIT_NUMBER = 0,
+			PORT_A_LAST_ADDRESS = 59,
+			PORT_A_LOGICAL_RAM_DEPTH = 60,
+			PORT_A_LOGICAL_RAM_WIDTH = 6,
+			RAM_BLOCK_TYPE = "auto"
+		);
+	ram_block1a1 : cycloneii_ram_block
+		WITH (
+			CONNECTIVITY_CHECKING = "OFF",
+			INIT_FILE = "format.mif",
+			INIT_FILE_LAYOUT = "port_a",
+			LOGICAL_RAM_NAME = "ALTSYNCRAM",
+			OPERATION_MODE = "rom",
+			PORT_A_ADDRESS_WIDTH = 6,
+			PORT_A_DATA_OUT_CLEAR = "none",
+			PORT_A_DATA_OUT_CLOCK = "none",
+			PORT_A_DATA_WIDTH = 1,
+			PORT_A_DISABLE_CE_ON_INPUT_REGISTERS = "off",
+			PORT_A_DISABLE_CE_ON_OUTPUT_REGISTERS = "off",
+			PORT_A_FIRST_ADDRESS = 0,
+			PORT_A_FIRST_BIT_NUMBER = 1,
+			PORT_A_LAST_ADDRESS = 59,
+			PORT_A_LOGICAL_RAM_DEPTH = 60,
+			PORT_A_LOGICAL_RAM_WIDTH = 6,
+			RAM_BLOCK_TYPE = "auto"
+		);
+	ram_block1a2 : cycloneii_ram_block
+		WITH (
+			CONNECTIVITY_CHECKING = "OFF",
+			INIT_FILE = "format.mif",
+			INIT_FILE_LAYOUT = "port_a",
+			LOGICAL_RAM_NAME = "ALTSYNCRAM",
+			OPERATION_MODE = "rom",
+			PORT_A_ADDRESS_WIDTH = 6,
+			PORT_A_DATA_OUT_CLEAR = "none",
+			PORT_A_DATA_OUT_CLOCK = "none",
+			PORT_A_DATA_WIDTH = 1,
+			PORT_A_DISABLE_CE_ON_INPUT_REGISTERS = "off",
+			PORT_A_DISABLE_CE_ON_OUTPUT_REGISTERS = "off",
+			PORT_A_FIRST_ADDRESS = 0,
+			PORT_A_FIRST_BIT_NUMBER = 2,
+			PORT_A_LAST_ADDRESS = 59,
+			PORT_A_LOGICAL_RAM_DEPTH = 60,
+			PORT_A_LOGICAL_RAM_WIDTH = 6,
+			RAM_BLOCK_TYPE = "auto"
+		);
+	ram_block1a3 : cycloneii_ram_block
+		WITH (
+			CONNECTIVITY_CHECKING = "OFF",
+			INIT_FILE = "format.mif",
+			INIT_FILE_LAYOUT = "port_a",
+			LOGICAL_RAM_NAME = "ALTSYNCRAM",
+			OPERATION_MODE = "rom",
+			PORT_A_ADDRESS_WIDTH = 6,
+			PORT_A_DATA_OUT_CLEAR = "none",
+			PORT_A_DATA_OUT_CLOCK = "none",
+			PORT_A_DATA_WIDTH = 1,
+			PORT_A_DISABLE_CE_ON_INPUT_REGISTERS = "off",
+			PORT_A_DISABLE_CE_ON_OUTPUT_REGISTERS = "off",
+			PORT_A_FIRST_ADDRESS = 0,
+			PORT_A_FIRST_BIT_NUMBER = 3,
+			PORT_A_LAST_ADDRESS = 59,
+			PORT_A_LOGICAL_RAM_DEPTH = 60,
+			PORT_A_LOGICAL_RAM_WIDTH = 6,
+			RAM_BLOCK_TYPE = "auto"
+		);
+	ram_block1a4 : cycloneii_ram_block
+		WITH (
+			CONNECTIVITY_CHECKING = "OFF",
+			INIT_FILE = "format.mif",
+			INIT_FILE_LAYOUT = "port_a",
+			LOGICAL_RAM_NAME = "ALTSYNCRAM",
+			OPERATION_MODE = "rom",
+			PORT_A_ADDRESS_WIDTH = 6,
+			PORT_A_DATA_OUT_CLEAR = "none",
+			PORT_A_DATA_OUT_CLOCK = "none",
+			PORT_A_DATA_WIDTH = 1,
+			PORT_A_DISABLE_CE_ON_INPUT_REGISTERS = "off",
+			PORT_A_DISABLE_CE_ON_OUTPUT_REGISTERS = "off",
+			PORT_A_FIRST_ADDRESS = 0,
+			PORT_A_FIRST_BIT_NUMBER = 4,
+			PORT_A_LAST_ADDRESS = 59,
+			PORT_A_LOGICAL_RAM_DEPTH = 60,
+			PORT_A_LOGICAL_RAM_WIDTH = 6,
+			RAM_BLOCK_TYPE = "auto"
+		);
+	ram_block1a5 : cycloneii_ram_block
+		WITH (
+			CONNECTIVITY_CHECKING = "OFF",
+			INIT_FILE = "format.mif",
+			INIT_FILE_LAYOUT = "port_a",
+			LOGICAL_RAM_NAME = "ALTSYNCRAM",
+			OPERATION_MODE = "rom",
+			PORT_A_ADDRESS_WIDTH = 6,
+			PORT_A_DATA_OUT_CLEAR = "none",
+			PORT_A_DATA_OUT_CLOCK = "none",
+			PORT_A_DATA_WIDTH = 1,
+			PORT_A_DISABLE_CE_ON_INPUT_REGISTERS = "off",
+			PORT_A_DISABLE_CE_ON_OUTPUT_REGISTERS = "off",
+			PORT_A_FIRST_ADDRESS = 0,
+			PORT_A_FIRST_BIT_NUMBER = 5,
+			PORT_A_LAST_ADDRESS = 59,
+			PORT_A_LOGICAL_RAM_DEPTH = 60,
+			PORT_A_LOGICAL_RAM_WIDTH = 6,
+			RAM_BLOCK_TYPE = "auto"
+		);
+
+BEGIN 
+	ram_block1a[5..0].clk0 = clock0;
+	ram_block1a[0].portaaddr[] = ( address_a[5..0]);
+	ram_block1a[1].portaaddr[] = ( address_a[5..0]);
+	ram_block1a[2].portaaddr[] = ( address_a[5..0]);
+	ram_block1a[3].portaaddr[] = ( address_a[5..0]);
+	ram_block1a[4].portaaddr[] = ( address_a[5..0]);
+	ram_block1a[5].portaaddr[] = ( address_a[5..0]);
+	q_a[] = ( ram_block1a[5..0].portadataout[0..0]);
+END;
+--VALID FILE

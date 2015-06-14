@@ -1,0 +1,13 @@
+Flow Status : Successful - Sun Dec 03 15:49:48 2006
+Quartus II Version : 5.0 Build 168 06/22/2005 SP 1 SJ Web Edition
+Revision Name : design
+Top-level Entity Name : design
+Family : Cyclone
+Device : EP1C12Q240C8
+Timing Models : Final
+Met timing requirements : N/A
+Total logic elements : 943
+Total pins : 22
+Total virtual pins : 0
+Total memory bits : 2,304
+Total PLLs : 1

@@ -1,0 +1,105 @@
+# Copyright (C) 1991-2005 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic       
+# functions, and any output files any of the foregoing           
+# (including device programming or simulation files), and any    
+# associated documentation or information are expressly subject  
+# to the terms and conditions of the Altera Program License      
+# Subscription Agreement, Altera MegaCore Function License       
+# Agreement, or other applicable license agreement, including,   
+# without limitation, that your use is for the sole purpose of   
+# programming logic devices manufactured by Altera and sold by   
+# Altera or its authorized distributors.  Please refer to the    
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		MIPS_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+# Project-Wide Assignments
+# ========================
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name FLOW_DISABLE_ASSEMBLER ON
+set_global_assignment -name INCREMENTAL_COMPILATION OFF
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 4.2
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:36:31  DECEMBER 14, 2004"
+set_global_assignment -name LAST_QUARTUS_VERSION 7.1
+set_global_assignment -name VHDL_FILE CONTROL.VHD
+set_global_assignment -name VHDL_FILE DMEMORY.VHD
+set_global_assignment -name VHDL_FILE execute.vhd
+set_global_assignment -name VHDL_FILE IDECODE.VHD
+set_global_assignment -name VHDL_FILE IFETCH.VHD
+set_global_assignment -name VHDL_FILE MIPS.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE MIPS.vwf
+set_global_assignment -name VHDL_FILE EXECUTE.vhd
+
+# Analysis & Synthesis Assignments
+# ================================
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE FASTEST
+set_global_assignment -name FAMILY Cyclone
+set_global_assignment -name TOP_LEVEL_ENTITY MIPS
+set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
+
+# Fitter Assignments
+# ==================
+set_global_assignment -name DEVICE EP1C20F400C6
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
+set_global_assignment -name OPTIMIZE_TIMING OFF
+set_global_assignment -name OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING OFF
+set_global_assignment -name FIT_ONLY_ONE_ATTEMPT ON
+set_global_assignment -name FITTER_EFFORT "FAST FIT"
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+
+# Assembler Assignments
+# =====================
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+
+# Simulator Assignments
+# =====================
+set_global_assignment -name SETUP_HOLD_DETECTION ON
+set_global_assignment -name GLITCH_INTERVAL "1 ns"
+
+# SignalTap II Assignments
+# ========================
+set_global_assignment -name ENABLE_SIGNALTAP off
+
+# LogicLock Region Assignments
+# ============================
+set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT OFF
+
+# Power Estimation Assignments
+# ============================
+set_global_assignment -name POWER_USE_INPUT_FILE "SIGNAL ACTIVITY FILE"
+set_global_assignment -name POWER_INPUT_SAF_NAME MIPS.saf
+
+# ------------------
+# start CLOCK(clock)
+
+	# Timing Assignments
+	# ==================
+	set_global_assignment -name FMAX_REQUIREMENT "10.0 MHz" -section_id clock
+set_global_assignment -name DUTY_CYCLE 50 -section_id clock
+
+# end CLOCK(clock)
+# ----------------
+
+# ------------------
+# start ENTITY(MIPS)
+
+	# Timing Assignments
+	# ==================
+	set_instance_assignment -name CLOCK_SETTINGS clock -to clock
+
+# end ENTITY(MIPS)
+# ----------------
+
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"

@@ -1,0 +1,1078 @@
+Project Information                              c:\booksoft\chap13\ifetch.rpt
+
+MAX+plus II Compiler Report File
+Version 10.1 06/12/2001
+Compiled: 09/09/2002 12:34:20
+
+Copyright (C) 1988-2001 Altera Corporation
+Any megafunction design, and related net list (encrypted or decrypted),
+support information, device programming or simulation file, and any other
+associated documentation or information provided by Altera or a partner
+under Altera's Megafunction Partnership Program may be used only to
+program PLD devices (but not masked PLD devices) from Altera.  Any other
+use of such megafunction design, net list, support information, device
+programming or simulation file, or any other related documentation or
+information is prohibited for any other purpose, including, but not
+limited to modification, reverse engineering, de-compiling, or use with
+any other silicon devices, unless such use is explicitly licensed under
+a separate agreement with Altera or a megafunction partner.  Title to
+the intellectual property, including patents, copyrights, trademarks,
+trade secrets, or maskworks, embodied in any such megafunction design,
+net list, support information, device programming or simulation file, or
+any other related documentation or information provided by Altera or a
+megafunction partner, remains with Altera, the megafunction partner, or
+their respective licensors.  No other licenses, including any licenses
+needed under any third party's intellectual property, are provided herein.
+
+
+
+***** Project compilation was successful
+
+
+IFETCH
+
+
+** DEVICE SUMMARY **
+
+Chip/                     Input Output Bidir  Memory  Memory  			 LCs
+POF       Device          Pins  Pins   Pins   Bits % Utilized  LCs  % Utilized
+
+ifetch    EPF10K20TC144-3  12     48     0    8192      66 %    21       1  %
+
+User Pins:                 12     48     0  
+
+
+
+Project Information                              c:\booksoft\chap13\ifetch.rpt
+
+** EMBEDDED ARRAYS **
+
+
+|LPM_ROM:inst_memory|altrom:srom|content: MEMORY (
+               width        =   32;
+               depth        =  256;
+               segmentsize  =  256;
+               mode         = MEM_READONLY#MEM_INITIALIZED;
+               file         = "program.mif";
+         )
+         OF SEGMENTS (
+               |LPM_ROM:inst_memory|altrom:srom|segment0_31,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_30,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_29,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_28,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_27,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_26,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_25,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_24,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_23,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_22,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_21,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_20,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_19,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_18,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_17,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_16,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_15,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_14,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_13,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_12,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_11,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_10,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_9,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_8,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_7,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_6,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_5,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_4,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_3,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_2,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_1,
+               |LPM_ROM:inst_memory|altrom:srom|segment0_0
+);
+
+
+
+
+Project Information                              c:\booksoft\chap13\ifetch.rpt
+
+** FILE HIERARCHY **
+
+
+
+|lpm_add_sub:435|
+|lpm_add_sub:435|addcore:adder|
+|lpm_add_sub:435|altshift:result_ext_latency_ffs|
+|lpm_add_sub:435|altshift:carry_ext_latency_ffs|
+|lpm_add_sub:435|altshift:oflow_ext_latency_ffs|
+|lpm_rom:inst_memory|
+|lpm_rom:inst_memory|altrom:srom|
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+***** Logic for device 'ifetch' compiled without errors.
+
+
+
+
+Device: EPF10K20TC144-3
+
+FLEX 10K Configuration Scheme: Passive Serial
+
+Device Options:
+    User-Supplied Start-Up Clock               = OFF
+    Auto-Restart Configuration on Frame Error  = OFF
+    Release Clears Before Tri-States           = OFF
+    Enable Chip_Wide Reset                     = OFF
+    Enable Chip-Wide Output Enable             = OFF
+    Enable INIT_DONE Output                    = OFF
+    JTAG User Code                             = 7f
+    MultiVolt I/O                              = OFF
+
+                                                                                P P          
+                    I                                                           C C          
+                    n                       I       I                           _ _          
+                    s A                     n       n   A A       A     A       p p          
+                    t d                     s       s   d d       d     d       l l          
+                    r d                     t       t   d d       d     d       u u          
+                    u _ R R R   R R R R   R r R R   r   _ _     R _     _ R R   s s R   R    
+                    c r E E E   E E E E   E u E E   u   r r     E r P P r E E   _ _ E P E P  
+                    t e S S S   S S S S   S c S S   c G e e B V S e C C e S S   4 4 S C S C  
+                    i s E E E G E E E E V E t E E G t N s s r C E s _ _ s E E V _ _ E _ E _  
+                    o u R R R N R R R R C R i R R N i D u u a C R u o o u R R C o o R o R o  
+                    n l V V V D V V V V C V o V V D o I l l n I V l u u l V V C u u V u V u  
+                    3 t E E E I E E E E I E n E E I n N t t c N E t t t t E E I t t E t E t  
+                    1 0 D D D O D D D D O D 2 D D O 6 T 7 6 h T D 4 3 5 3 D D O 6 7 D 7 D 0  
+                  --------------------------------------------------------------------------_ 
+                 / 144 142 140 138 136 134 132 130 128 126 124 122 120 118 116 114 112 110   |_ 
+                /    143 141 139 137 135 133 131 129 127 125 123 121 119 117 115 113 111 109    | 
+          #TCK |  1                                                                         108 | ^DATA0 
+    ^CONF_DONE |  2                                                                         107 | ^DCLK 
+         ^nCEO |  3                                                                         106 | ^nCE 
+          #TDO |  4                                                                         105 | #TDI 
+         VCCIO |  5                                                                         104 | GNDIO 
+        VCCINT |  6                                                                         103 | GNDINT 
+   Add_result5 |  7                                                                         102 | PC_plus_4_out4 
+   Add_result2 |  8                                                                         101 | Instruction16 
+ Instruction23 |  9                                                                         100 | PC_out1 
+  Instruction3 | 10                                                                          99 | RESERVED 
+      RESERVED | 11                                                                          98 | Instruction14 
+ Instruction24 | 12                                                                          97 | Instruction1 
+ Instruction12 | 13                                                                          96 | Instruction4 
+  Instruction8 | 14                                                                          95 | Instruction7 
+         GNDIO | 15                                                                          94 | VCCIO 
+        GNDINT | 16                                                                          93 | VCCINT 
+      RESERVED | 17                                                                          92 | Instruction13 
+ Instruction20 | 18                                                                          91 | Instruction9 
+ Instruction17 | 19                             EPF10K20TC144-3                              90 | Instruction11 
+ Instruction19 | 20                                                                          89 | Instruction10 
+ Instruction18 | 21                                                                          88 | Instruction15 
+ Instruction22 | 22                                                                          87 | PC_out2 
+ Instruction21 | 23                                                                          86 | RESERVED 
+         VCCIO | 24                                                                          85 | GNDIO 
+        VCCINT | 25                                                                          84 | GNDINT 
+      RESERVED | 26                                                                          83 | Instruction5 
+      RESERVED | 27                                                                          82 | PC_plus_4_out5 
+      RESERVED | 28                                                                          81 | RESERVED 
+      RESERVED | 29                                                                          80 | Instruction26 
+ Instruction28 | 30                                                                          79 | Instruction29 
+ Instruction27 | 31                                                                          78 | Instruction0 
+ Instruction25 | 32                                                                          77 | ^MSEL0 
+ Instruction30 | 33                                                                          76 | ^MSEL1 
+          #TMS | 34                                                                          75 | VCCINT 
+      ^nSTATUS | 35                                                                          74 | ^nCONFIG 
+      RESERVED | 36                                                                          73 | RESERVED 
+               |      38  40  42  44  46  48  50  52  54  56  58  60  62  64  66  68  70  72  _| 
+                \   37  39  41  43  45  47  49  51  53  55  57  59  61  63  65  67  69  71   | 
+                 \--------------------------------------------------------------------------- 
+                    R P R G R R R R V R R R R G R V V r c Z G G P R V R A R R G P P R P V P  
+                    E C E N E E E E C E E E E N E C C e l e N N C E C E d E E N C C E C C C  
+                    S _ S D S S S S C S S S S D S C C s o r D D _ S C S d S S D _ _ S _ C _  
+                    E p E I E E E E I E E E E I E I I e c o I I p E I E _ E E I p o E p I o  
+                    R l R O R R R R O R R R R O R N N t k   N N l R O R r R R O l u R l O u  
+                    V u V   V V V V   V V V V   V T T       T T u V   V e V V   u t V u   t  
+                    E s E   E E E E   E E E E   E               s E   E s E E   s 4 E s   6  
+                    D _ D   D D D D   D D D D   D               _ D   D u D D   _   D _      
+                      4                                         4       l       4     4      
+                      _                                         _       t       _     _      
+                      o                                         o       1       o     o      
+                      u                                         u               u     u      
+                      t                                         t               t     t      
+                      1                                         0               2     3      
+
+
+N.C. = No Connect. This pin has no internal connection to the device.
+VCCINT = Dedicated power pin, which MUST be connected to VCC (5.0 volts).
+VCCIO = Dedicated power pin, which MUST be connected to VCC (5.0 volts).
+GNDINT = Dedicated ground pin or unused dedicated input, which MUST be connected to GND.
+GNDIO = Dedicated ground pin, which MUST be connected to GND.
+RESERVED = Unused I/O pin, which MUST be left unconnected.
+
+^ = Dedicated configuration pin.
++ = Reserved configuration pin, which is tri-stated during user mode.
+* = Reserved configuration pin, which drives out in user mode.
+PDn = Power Down pin. 
+@ = Special-purpose pin. 
+# = JTAG Boundary-Scan Testing/In-System Programming or Configuration Pin. The JTAG inputs TMS and TDI should be tied to VCC and TCK should be tied to GND when not in use.
+& = JTAG pin used for I/O. When used as user I/O, JTAG pins must be kept stable before and during configuration.  JTAG pin stability prevents accidental loading of JTAG instructions.
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+** RESOURCE USAGE **
+
+Logic                Column       Row                                   
+Array                Interconnect Interconnect         Clears/     External  
+Block   Logic Cells  Driven       Driven       Clocks  Presets   Interconnect
+A2       4/ 8( 50%)   1/ 8( 12%)   4/ 8( 50%)    1/2    0/2       5/22( 22%)   
+A3       8/ 8(100%)   5/ 8( 62%)   1/ 8( 12%)    1/2    0/2       7/22( 31%)   
+A7       8/ 8(100%)   6/ 8( 75%)   2/ 8( 25%)    1/2    0/2       7/22( 31%)   
+D6       1/ 8( 12%)   1/ 8( 12%)   0/ 8(  0%)    0/2    0/2       2/22(  9%)   
+
+
+Embedded             Column       Row                                   
+Array     Embedded   Interconnect Interconnect         Read/      External  
+Block     Cells      Driven       Driven       Clocks  Write    Interconnect
+B25      8/8 (100%)   5/8 ( 62%)   7/8 ( 87%)    0/2    2/2       8/22( 36%)   
+C25      8/8 (100%)   3/8 ( 37%)   6/8 ( 75%)    0/2    2/2       8/22( 36%)   
+D25      8/8 (100%)   2/8 ( 25%)   6/8 ( 75%)    0/2    2/2       8/22( 36%)   
+F25      8/8 (100%)   1/8 ( 12%)   8/8 (100%)    0/2    2/2       8/22( 36%)   
+
+
+Total dedicated input pins used:                 6/6      (100%)
+Total I/O pins used:                            54/96     ( 56%)
+Total logic cells used:                         21/1152   (  1%)
+Total embedded cells used:                      32/48     ( 66%)
+Total EABs used:                                 4/6      ( 66%)
+Average fan-in:                                 3.33/4    ( 83%)
+Total fan-in:                                  70/4608    (  1%)
+
+Total input pins required:                      12
+Total input I/O cell registers required:         0
+Total output pins required:                     48
+Total output I/O cell registers required:        0
+Total buried I/O cell registers required:        0
+Total bidirectional pins required:               0
+Total reserved pins required                     0
+Total logic cells required:                     21
+Total flipflops required:                       11
+Total packed registers required:                 0
+Total logic cells in carry chains:               0
+Total number of carry chains:                    0
+Total logic cells in cascade chains:             0
+Total number of cascade chains:                  0
+Total single-pin Clock Enables required:         0
+Total single-pin Output Enables required:        0
+
+Synthesized logic cells:                         1/1152   (  0%)
+
+Logic Cell and Embedded Cell Counts
+
+Column:  01  02  03  04  05  06  07  08  09  10  11  12  EA  13  14  15  16  17  18  19  20  21  22  23  24  Total(LC/EC)
+ A:      0   4   8   0   0   0   8   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0     20/0  
+ B:      0   0   0   0   0   0   0   0   0   0   0   0   8   0   0   0   0   0   0   0   0   0   0   0   0      0/8  
+ C:      0   0   0   0   0   0   0   0   0   0   0   0   8   0   0   0   0   0   0   0   0   0   0   0   0      0/8  
+ D:      0   0   0   0   0   1   0   0   0   0   0   0   8   0   0   0   0   0   0   0   0   0   0   0   0      1/8  
+ E:      0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0      0/0  
+ F:      0   0   0   0   0   0   0   0   0   0   0   0   8   0   0   0   0   0   0   0   0   0   0   0   0      0/8  
+
+Total:   0   4   8   0   0   1   8   0   0   0   0   0  32   0   0   0   0   0   0   0   0   0   0   0   0     21/32 
+
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+** INPUTS **
+
+                                                    Fan-In    Fan-Out
+ Pin     LC     EC   Row  Col  Primitive    Code      INP  FBK  OUT  FBK  Name
+ 143      -     -    A    --      INPUT                0    0    0    2  Add_result0
+  63      -     -    -    10      INPUT                0    0    0    1  Add_result1
+   8      -     -    A    --      INPUT                0    0    0    1  Add_result2
+ 118      -     -    -    06      INPUT                0    0    0    1  Add_result3
+ 121      -     -    -    10      INPUT                0    0    0    1  Add_result4
+   7      -     -    A    --      INPUT                0    0    0    1  Add_result5
+ 125      -     -    -    --      INPUT                0    0    0    1  Add_result6
+ 126      -     -    -    --      INPUT                0    0    0    1  Add_result7
+ 124      -     -    -    --      INPUT                0    0    0    1  Branch
+  55      -     -    -    --      INPUT  G             0    0    0    0  clock
+  54      -     -    -    --      INPUT                0    0    0   11  reset
+  56      -     -    -    --      INPUT                0    0    0    1  Zero
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+@ = Uses single-pin Clock Enable
+& = Uses single-pin Output Enable
+G = Global Source. Fan-out destinations counted here do not include destinations
+that are driven using global routing resources. Refer to the Auto Global Signals,
+Clock Signals, Clear Signals, Synchronous Load Signals, and Synchronous Clear Signals
+Sections of this Report File for information on which signals' fan-outs are used as
+Clock, Clear, Preset, Output Enable, and synchronous Load signals.
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+** OUTPUTS **
+
+       Fed By Fed By                                Fan-In    Fan-Out
+ Pin     LC     EC   Row  Col  Primitive    Code      INP  FBK  OUT  FBK  Name
+  78      -     -    F    --     OUTPUT                0    1    0    0  Instruction0
+  97      -     -    B    --     OUTPUT                0    1    0    0  Instruction1
+ 132      -     -    -    16     OUTPUT                0    1    0    0  Instruction2
+  10      -     -    B    --     OUTPUT                0    1    0    0  Instruction3
+  96      -     -    B    --     OUTPUT                0    1    0    0  Instruction4
+  83      -     -    E    --     OUTPUT                0    1    0    0  Instruction5
+ 128      -     -    -    13     OUTPUT                0    1    0    0  Instruction6
+  95      -     -    B    --     OUTPUT                0    1    0    0  Instruction7
+  14      -     -    C    --     OUTPUT                0    1    0    0  Instruction8
+  91      -     -    C    --     OUTPUT                0    1    0    0  Instruction9
+  89      -     -    C    --     OUTPUT                0    1    0    0  Instruction10
+  90      -     -    C    --     OUTPUT                0    1    0    0  Instruction11
+  13      -     -    C    --     OUTPUT                0    1    0    0  Instruction12
+  92      -     -    C    --     OUTPUT                0    1    0    0  Instruction13
+  98      -     -    B    --     OUTPUT                0    1    0    0  Instruction14
+  88      -     -    D    --     OUTPUT                0    1    0    0  Instruction15
+ 101      -     -    A    --     OUTPUT                0    1    0    0  Instruction16
+  19      -     -    D    --     OUTPUT                0    1    0    0  Instruction17
+  21      -     -    D    --     OUTPUT                0    1    0    0  Instruction18
+  20      -     -    D    --     OUTPUT                0    1    0    0  Instruction19
+  18      -     -    D    --     OUTPUT                0    1    0    0  Instruction20
+  23      -     -    D    --     OUTPUT                0    1    0    0  Instruction21
+  22      -     -    D    --     OUTPUT                0    1    0    0  Instruction22
+   9      -     -    B    --     OUTPUT                0    1    0    0  Instruction23
+  12      -     -    C    --     OUTPUT                0    1    0    0  Instruction24
+  32      -     -    F    --     OUTPUT                0    1    0    0  Instruction25
+  80      -     -    F    --     OUTPUT                0    1    0    0  Instruction26
+  31      -     -    F    --     OUTPUT                0    1    0    0  Instruction27
+  30      -     -    F    --     OUTPUT                0    1    0    0  Instruction28
+  79      -     -    F    --     OUTPUT                0    1    0    0  Instruction29
+  33      -     -    F    --     OUTPUT                0    1    0    0  Instruction30
+ 144      -     -    A    --     OUTPUT                0    1    0    0  Instruction31
+ 109      -     -    A    --     OUTPUT                0    1    0    0  PC_out0
+ 100      -     -    A    --     OUTPUT                0    1    0    0  PC_out1
+  87      -     -    E    --     OUTPUT                0    1    0    0  PC_out2
+ 120      -     -    -    08     OUTPUT                0    1    0    0  PC_out3
+  68      -     -    -    07     OUTPUT                0    1    0    0  PC_out4
+ 119      -     -    -    07     OUTPUT                0    1    0    0  PC_out5
+  72      -     -    -    03     OUTPUT                0    1    0    0  PC_out6
+ 111      -     -    -    01     OUTPUT                0    1    0    0  PC_out7
+  59      -     -    -    12     OUTPUT                0    0    0    0  PC_plus_4_out0
+  38      -     -    -    22     OUTPUT                0    0    0    0  PC_plus_4_out1
+  67      -     -    -    08     OUTPUT                0    1    0    0  PC_plus_4_out2
+  70      -     -    -    05     OUTPUT                0    1    0    0  PC_plus_4_out3
+ 102      -     -    A    --     OUTPUT                0    1    0    0  PC_plus_4_out4
+  82      -     -    E    --     OUTPUT                0    1    0    0  PC_plus_4_out5
+ 114      -     -    -    04     OUTPUT                0    1    0    0  PC_plus_4_out6
+ 113      -     -    -    03     OUTPUT                0    1    0    0  PC_plus_4_out7
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+@ = Uses single-pin Clock Enable
+& = Uses single-pin Output Enable
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+** BURIED LOGIC **
+
+                                                    Fan-In    Fan-Out
+ IOC     LC     EC   Row  Col  Primitive    Code      INP  FBK  OUT  FBK  Name
+   -      7     -    A    07       AND2                0    4    0    4  |LPM_ADD_SUB:435|addcore:adder|:83
+   -      5     -    A    03       AND2                0    3    0    1  |LPM_ADD_SUB:435|addcore:adder|:91
+   -      2     -    D    06        OR2                0    2    1    1  |LPM_ADD_SUB:435|addcore:adder|:107
+   -      3     -    A    07        OR2                0    3    1    1  |LPM_ADD_SUB:435|addcore:adder|:108
+   -      8     -    A    07        OR2                0    4    1    1  |LPM_ADD_SUB:435|addcore:adder|:109
+   -      6     -    A    03        OR2                0    2    1    1  |LPM_ADD_SUB:435|addcore:adder|:110
+   -      1     -    A    03        OR2                0    3    1    1  |LPM_ADD_SUB:435|addcore:adder|:111
+   -      8     -    A    03        OR2                0    4    0    1  |LPM_ADD_SUB:435|addcore:adder|:112
+   -      7     -    A    03        OR2                0    3    0    1  |LPM_ADD_SUB:435|addcore:adder|:113
+   -      -     3    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_0
+   -      -     1    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_1
+   -      -     2    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_2
+   -      -     3    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_3
+   -      -     6    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_4
+   -      -     5    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_5
+   -      -     4    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_6
+   -      -     7    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_7
+   -      -     8    B    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_8
+   -      -     5    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_9
+   -      -     6    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_10
+   -      -     7    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_11
+   -      -     1    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_12
+   -      -     4    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_13
+   -      -     3    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_14
+   -      -     8    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_15
+   -      -     2    C    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_16
+   -      -     8    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_17
+   -      -     1    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_18
+   -      -     6    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_19
+   -      -     4    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_20
+   -      -     2    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_21
+   -      -     5    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_22
+   -      -     7    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_23
+   -      -     3    D    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_24
+   -      -     6    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_25
+   -      -     1    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_26
+   -      -     4    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_27
+   -      -     2    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_28
+   -      -     5    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_29
+   -      -     8    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_30
+   -      -     7    F    --   MEM_SGMT                0    8    1    0  |LPM_ROM:inst_memory|altrom:srom|segment0_31
+   -      2     -    A    03       DFFE   +            2    2    0   33  PC9 (:61)
+   -      4     -    A    03       DFFE   +            2    2    0   34  PC8 (:62)
+   -      4     -    A    02       DFFE   +            2    2    1   35  PC7 (:63)
+   -      3     -    A    03       DFFE   +            2    2    1   36  PC6 (:64)
+   -      4     -    A    07       DFFE   +            2    2    1   34  PC5 (:65)
+   -      6     -    A    07       DFFE   +            2    2    1   35  PC4 (:66)
+   -      5     -    A    07       DFFE   +            2    2    1   36  PC3 (:67)
+   -      1     -    A    07       DFFE   +s           2    1    1    0  PC2~1 (~68~1)
+   -      2     -    A    07       DFFE   +            2    1    1   36  PC2 (:68)
+   -      6     -    A    02       DFFE   +            1    0    1    0  PC1 (:69)
+   -      1     -    A    02       DFFE   +            1    0    1    0  PC0 (:70)
+   -      2     -    A    02       AND2                2    0    0    9  :484
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+p = Packed register
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+** FASTTRACK INTERCONNECT UTILIZATION **
+
+Row FastTrack Interconnect:
+
+          Global         Left Half-      Right Half-
+         FastTrack       FastTrack       FastTrack 
+Row     Interconnect    Interconnect    Interconnect    Input Pins     Output Pins     Bidir Pins
+A:       4/ 96(  4%)    11/ 48( 22%)     1/ 48(  2%)    3/16( 18%)      5/16( 31%)     0/16(  0%)
+B:       9/ 96(  9%)     9/ 48( 18%)     0/ 48(  0%)    0/16(  0%)      6/16( 37%)     0/16(  0%)
+C:       8/ 96(  8%)     8/ 48( 16%)     0/ 48(  0%)    0/16(  0%)      7/16( 43%)     0/16(  0%)
+D:       7/ 96(  7%)     8/ 48( 16%)     0/ 48(  0%)    0/16(  0%)      7/16( 43%)     0/16(  0%)
+E:       1/ 96(  1%)     2/ 48(  4%)     0/ 48(  0%)    0/16(  0%)      3/16( 18%)     0/16(  0%)
+F:       8/ 96(  8%)     8/ 48( 16%)     0/ 48(  0%)    0/16(  0%)      7/16( 43%)     0/16(  0%)
+
+
+Column FastTrack Interconnect:
+
+         FastTrack                                 
+Column  Interconnect    Input Pins     Output Pins     Bidir Pins
+01:      1/24(  4%)     0/4(  0%)      1/4( 25%)       0/4(  0%)
+02:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+03:      4/24( 16%)     0/4(  0%)      2/4( 50%)       0/4(  0%)
+04:      1/24(  4%)     0/4(  0%)      1/4( 25%)       0/4(  0%)
+05:      1/24(  4%)     0/4(  0%)      1/4( 25%)       0/4(  0%)
+06:      1/24(  4%)     1/4( 25%)      0/4(  0%)       0/4(  0%)
+07:      2/24(  8%)     0/4(  0%)      2/4( 50%)       0/4(  0%)
+08:      4/24( 16%)     0/4(  0%)      2/4( 50%)       0/4(  0%)
+09:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+10:      3/24( 12%)     2/4( 50%)      0/4(  0%)       0/4(  0%)
+11:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+12:      0/24(  0%)     0/4(  0%)      1/4( 25%)       0/4(  0%)
+13:      1/24(  4%)     0/4(  0%)      1/4( 25%)       0/4(  0%)
+14:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+15:      1/24(  4%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+16:      1/24(  4%)     0/4(  0%)      1/4( 25%)       0/4(  0%)
+17:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+18:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+19:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+20:      1/24(  4%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+21:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+22:      1/24(  4%)     0/4(  0%)      1/4( 25%)       0/4(  0%)
+23:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+24:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+EA:      5/24( 20%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+** CLOCK SIGNALS **
+
+Type     Fan-out       Name
+INPUT       11         clock
+
+
+Device-Specific Information:                     c:\booksoft\chap13\ifetch.rpt
+ifetch
+
+** EQUATIONS **
+
+Add_result0 : INPUT;
+Add_result1 : INPUT;
+Add_result2 : INPUT;
+Add_result3 : INPUT;
+Add_result4 : INPUT;
+Add_result5 : INPUT;
+Add_result6 : INPUT;
+Add_result7 : INPUT;
+Branch   : INPUT;
+clock    : INPUT;
+reset    : INPUT;
+Zero     : INPUT;
+
+-- Node name is 'Instruction0' 
+-- Equation name is 'Instruction0', type is output 
+Instruction0 =  _EC3_F;
+
+-- Node name is 'Instruction1' 
+-- Equation name is 'Instruction1', type is output 
+Instruction1 =  _EC1_B;
+
+-- Node name is 'Instruction2' 
+-- Equation name is 'Instruction2', type is output 
+Instruction2 =  _EC2_B;
+
+-- Node name is 'Instruction3' 
+-- Equation name is 'Instruction3', type is output 
+Instruction3 =  _EC3_B;
+
+-- Node name is 'Instruction4' 
+-- Equation name is 'Instruction4', type is output 
+Instruction4 =  _EC6_B;
+
+-- Node name is 'Instruction5' 
+-- Equation name is 'Instruction5', type is output 
+Instruction5 =  _EC5_B;
+
+-- Node name is 'Instruction6' 
+-- Equation name is 'Instruction6', type is output 
+Instruction6 =  _EC4_B;
+
+-- Node name is 'Instruction7' 
+-- Equation name is 'Instruction7', type is output 
+Instruction7 =  _EC7_B;
+
+-- Node name is 'Instruction8' 
+-- Equation name is 'Instruction8', type is output 
+Instruction8 =  _EC8_B;
+
+-- Node name is 'Instruction9' 
+-- Equation name is 'Instruction9', type is output 
+Instruction9 =  _EC5_C;
+
+-- Node name is 'Instruction10' 
+-- Equation name is 'Instruction10', type is output 
+Instruction10 =  _EC6_C;
+
+-- Node name is 'Instruction11' 
+-- Equation name is 'Instruction11', type is output 
+Instruction11 =  _EC7_C;
+
+-- Node name is 'Instruction12' 
+-- Equation name is 'Instruction12', type is output 
+Instruction12 =  _EC1_C;
+
+-- Node name is 'Instruction13' 
+-- Equation name is 'Instruction13', type is output 
+Instruction13 =  _EC4_C;
+
+-- Node name is 'Instruction14' 
+-- Equation name is 'Instruction14', type is output 
+Instruction14 =  _EC3_C;
+
+-- Node name is 'Instruction15' 
+-- Equation name is 'Instruction15', type is output 
+Instruction15 =  _EC8_C;
+
+-- Node name is 'Instruction16' 
+-- Equation name is 'Instruction16', type is output 
+Instruction16 =  _EC2_C;
+
+-- Node name is 'Instruction17' 
+-- Equation name is 'Instruction17', type is output 
+Instruction17 =  _EC8_D;
+
+-- Node name is 'Instruction18' 
+-- Equation name is 'Instruction18', type is output 
+Instruction18 =  _EC1_D;
+
+-- Node name is 'Instruction19' 
+-- Equation name is 'Instruction19', type is output 
+Instruction19 =  _EC6_D;
+
+-- Node name is 'Instruction20' 
+-- Equation name is 'Instruction20', type is output 
+Instruction20 =  _EC4_D;
+
+-- Node name is 'Instruction21' 
+-- Equation name is 'Instruction21', type is output 
+Instruction21 =  _EC2_D;
+
+-- Node name is 'Instruction22' 
+-- Equation name is 'Instruction22', type is output 
+Instruction22 =  _EC5_D;
+
+-- Node name is 'Instruction23' 
+-- Equation name is 'Instruction23', type is output 
+Instruction23 =  _EC7_D;
+
+-- Node name is 'Instruction24' 
+-- Equation name is 'Instruction24', type is output 
+Instruction24 =  _EC3_D;
+
+-- Node name is 'Instruction25' 
+-- Equation name is 'Instruction25', type is output 
+Instruction25 =  _EC6_F;
+
+-- Node name is 'Instruction26' 
+-- Equation name is 'Instruction26', type is output 
+Instruction26 =  _EC1_F;
+
+-- Node name is 'Instruction27' 
+-- Equation name is 'Instruction27', type is output 
+Instruction27 =  _EC4_F;
+
+-- Node name is 'Instruction28' 
+-- Equation name is 'Instruction28', type is output 
+Instruction28 =  _EC2_F;
+
+-- Node name is 'Instruction29' 
+-- Equation name is 'Instruction29', type is output 
+Instruction29 =  _EC5_F;
+
+-- Node name is 'Instruction30' 
+-- Equation name is 'Instruction30', type is output 
+Instruction30 =  _EC8_F;
+
+-- Node name is 'Instruction31' 
+-- Equation name is 'Instruction31', type is output 
+Instruction31 =  _EC7_F;
+
+-- Node name is 'PC_out0' 
+-- Equation name is 'PC_out0', type is output 
+PC_out0  =  PC0;
+
+-- Node name is 'PC_out1' 
+-- Equation name is 'PC_out1', type is output 
+PC_out1  =  PC1;
+
+-- Node name is 'PC_out2' 
+-- Equation name is 'PC_out2', type is output 
+PC_out2  =  PC2;
+
+-- Node name is 'PC_out3' 
+-- Equation name is 'PC_out3', type is output 
+PC_out3  =  PC3;
+
+-- Node name is 'PC_out4' 
+-- Equation name is 'PC_out4', type is output 
+PC_out4  =  PC4;
+
+-- Node name is 'PC_out5' 
+-- Equation name is 'PC_out5', type is output 
+PC_out5  =  PC5;
+
+-- Node name is 'PC_out6' 
+-- Equation name is 'PC_out6', type is output 
+PC_out6  =  PC6;
+
+-- Node name is 'PC_out7' 
+-- Equation name is 'PC_out7', type is output 
+PC_out7  =  PC7;
+
+-- Node name is 'PC_plus_4_out0' 
+-- Equation name is 'PC_plus_4_out0', type is output 
+PC_plus_4_out0 =  GND;
+
+-- Node name is 'PC_plus_4_out1' 
+-- Equation name is 'PC_plus_4_out1', type is output 
+PC_plus_4_out1 =  GND;
+
+-- Node name is 'PC_plus_4_out2' 
+-- Equation name is 'PC_plus_4_out2', type is output 
+PC_plus_4_out2 = !_LC1_A7;
+
+-- Node name is 'PC_plus_4_out3' 
+-- Equation name is 'PC_plus_4_out3', type is output 
+PC_plus_4_out3 =  _LC2_D6;
+
+-- Node name is 'PC_plus_4_out4' 
+-- Equation name is 'PC_plus_4_out4', type is output 
+PC_plus_4_out4 =  _LC3_A7;
+
+-- Node name is 'PC_plus_4_out5' 
+-- Equation name is 'PC_plus_4_out5', type is output 
+PC_plus_4_out5 =  _LC8_A7;
+
+-- Node name is 'PC_plus_4_out6' 
+-- Equation name is 'PC_plus_4_out6', type is output 
+PC_plus_4_out6 =  _LC6_A3;
+
+-- Node name is 'PC_plus_4_out7' 
+-- Equation name is 'PC_plus_4_out7', type is output 
+PC_plus_4_out7 =  _LC1_A3;
+
+-- Node name is ':70' = 'PC0' 
+-- Equation name is 'PC0', location is LC1_A2, type is buried.
+PC0      = DFFE( _EQ001, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ001 =  PC0 & !reset;
+
+-- Node name is ':69' = 'PC1' 
+-- Equation name is 'PC1', location is LC6_A2, type is buried.
+PC1      = DFFE( _EQ002, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ002 =  PC1 & !reset;
+
+-- Node name is '~68~1' = 'PC2~1' 
+-- Equation name is '~68~1', location is LC1_A7, type is buried.
+-- synthesized logic cell 
+_LC1_A7  = DFFE( _EQ003, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ003 = !_LC1_A7 & !_LC2_A2 & !reset
+         #  Add_result0 &  _LC2_A2 & !reset;
+
+-- Node name is ':68' = 'PC2' 
+-- Equation name is 'PC2', location is LC2_A7, type is buried.
+PC2      = DFFE( _EQ004, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ004 = !_LC2_A2 & !PC2 & !reset
+         #  Add_result0 &  _LC2_A2 & !reset;
+
+-- Node name is ':67' = 'PC3' 
+-- Equation name is 'PC3', location is LC5_A7, type is buried.
+PC3      = DFFE( _EQ005, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ005 = !_LC2_A2 &  _LC2_D6 & !reset
+         #  Add_result1 &  _LC2_A2 & !reset;
+
+-- Node name is ':66' = 'PC4' 
+-- Equation name is 'PC4', location is LC6_A7, type is buried.
+PC4      = DFFE( _EQ006, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ006 = !_LC2_A2 &  _LC3_A7 & !reset
+         #  Add_result2 &  _LC2_A2 & !reset;
+
+-- Node name is ':65' = 'PC5' 
+-- Equation name is 'PC5', location is LC4_A7, type is buried.
+PC5      = DFFE( _EQ007, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ007 = !_LC2_A2 &  _LC8_A7 & !reset
+         #  Add_result3 &  _LC2_A2 & !reset;
+
+-- Node name is ':64' = 'PC6' 
+-- Equation name is 'PC6', location is LC3_A3, type is buried.
+PC6      = DFFE( _EQ008, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ008 = !_LC2_A2 &  _LC6_A3 & !reset
+         #  Add_result4 &  _LC2_A2 & !reset;
+
+-- Node name is ':63' = 'PC7' 
+-- Equation name is 'PC7', location is LC4_A2, type is buried.
+PC7      = DFFE( _EQ009, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ009 =  _LC1_A3 & !_LC2_A2 & !reset
+         #  Add_result5 &  _LC2_A2 & !reset;
+
+-- Node name is ':62' = 'PC8' 
+-- Equation name is 'PC8', location is LC4_A3, type is buried.
+PC8      = DFFE( _EQ010, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ010 = !_LC2_A2 &  _LC8_A3 & !reset
+         #  Add_result6 &  _LC2_A2 & !reset;
+
+-- Node name is ':61' = 'PC9' 
+-- Equation name is 'PC9', location is LC2_A3, type is buried.
+PC9      = DFFE( _EQ011, GLOBAL( clock),  VCC,  VCC,  VCC);
+  _EQ011 = !_LC2_A2 &  _LC7_A3 & !reset
+         #  Add_result7 &  _LC2_A2 & !reset;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:83' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC7_A7', type is buried 
+_LC7_A7  = LCELL( _EQ012);
+  _EQ012 =  PC2 &  PC3 &  PC4 &  PC5;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:91' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC5_A3', type is buried 
+_LC5_A3  = LCELL( _EQ013);
+  _EQ013 =  _LC7_A7 &  PC6 &  PC7;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:107' from file "addcore.tdf" line 316, column 45
+-- Equation name is '_LC2_D6', type is buried 
+_LC2_D6  = LCELL( _EQ014);
+  _EQ014 = !PC2 &  PC3
+         #  PC2 & !PC3;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:108' from file "addcore.tdf" line 316, column 45
+-- Equation name is '_LC3_A7', type is buried 
+_LC3_A7  = LCELL( _EQ015);
+  _EQ015 = !PC3 &  PC4
+         # !PC2 &  PC4
+         #  PC2 &  PC3 & !PC4;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:109' from file "addcore.tdf" line 316, column 45
+-- Equation name is '_LC8_A7', type is buried 
+_LC8_A7  = LCELL( _EQ016);
+  _EQ016 = !PC3 &  PC5
+         # !PC2 &  PC5
+         # !PC4 &  PC5
+         #  PC2 &  PC3 &  PC4 & !PC5;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:110' from file "addcore.tdf" line 316, column 45
+-- Equation name is '_LC6_A3', type is buried 
+_LC6_A3  = LCELL( _EQ017);
+  _EQ017 = !_LC7_A7 &  PC6
+         #  _LC7_A7 & !PC6;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:111' from file "addcore.tdf" line 316, column 45
+-- Equation name is '_LC1_A3', type is buried 
+_LC1_A3  = LCELL( _EQ018);
+  _EQ018 = !PC6 &  PC7
+         # !_LC7_A7 &  PC7
+         #  _LC7_A7 &  PC6 & !PC7;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:112' from file "addcore.tdf" line 316, column 45
+-- Equation name is '_LC8_A3', type is buried 
+_LC8_A3  = LCELL( _EQ019);
+  _EQ019 = !PC7 &  PC8
+         # !PC6 &  PC8
+         # !_LC7_A7 &  PC8
+         #  _LC7_A7 &  PC6 &  PC7 & !PC8;
+
+-- Node name is '|LPM_ADD_SUB:435|addcore:adder|:113' from file "addcore.tdf" line 316, column 45
+-- Equation name is '_LC7_A3', type is buried 
+_LC7_A3  = LCELL( _EQ020);
+  _EQ020 = !PC8 &  PC9
+         # !_LC5_A3 &  PC9
+         #  _LC5_A3 &  PC8 & !PC9;
+
+-- Node name is ':484' 
+-- Equation name is '_LC2_A2', type is buried 
+_LC2_A2  = LCELL( _EQ021);
+  _EQ021 =  Branch &  Zero;
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_0' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC3_F', type is memory 
+_EC3_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_1' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC1_B', type is memory 
+_EC1_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_2' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC2_B', type is memory 
+_EC2_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_3' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC3_B', type is memory 
+_EC3_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_4' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC6_B', type is memory 
+_EC6_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_5' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC5_B', type is memory 
+_EC5_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_6' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC4_B', type is memory 
+_EC4_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_7' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC7_B', type is memory 
+_EC7_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_8' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC8_B', type is memory 
+_EC8_B   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_9' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC5_C', type is memory 
+_EC5_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_10' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC6_C', type is memory 
+_EC6_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_11' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC7_C', type is memory 
+_EC7_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_12' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC1_C', type is memory 
+_EC1_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_13' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC4_C', type is memory 
+_EC4_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_14' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC3_C', type is memory 
+_EC3_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_15' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC8_C', type is memory 
+_EC8_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_16' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC2_C', type is memory 
+_EC2_C   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_17' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC8_D', type is memory 
+_EC8_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_18' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC1_D', type is memory 
+_EC1_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_19' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC6_D', type is memory 
+_EC6_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_20' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC4_D', type is memory 
+_EC4_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_21' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC2_D', type is memory 
+_EC2_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_22' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC5_D', type is memory 
+_EC5_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_23' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC7_D', type is memory 
+_EC7_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_24' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC3_D', type is memory 
+_EC3_D   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_25' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC6_F', type is memory 
+_EC6_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_26' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC1_F', type is memory 
+_EC1_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_27' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC4_F', type is memory 
+_EC4_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_28' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC2_F', type is memory 
+_EC2_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_29' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC5_F', type is memory 
+_EC5_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_30' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC8_F', type is memory 
+_EC8_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+-- Node name is '|LPM_ROM:inst_memory|altrom:srom|segment0_31' from file "altrom.tdf" line 92, column 11
+-- Equation name is '_EC7_F', type is memory 
+_EC7_F   = MEMORY_SEGMENT( VCC, VCC, VCC, GND, VCC, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, VCC, VCC, VCC,);
+
+
+
+Project Information                              c:\booksoft\chap13\ifetch.rpt
+
+** COMPILATION SETTINGS & TIMES **
+
+Processing Menu Commands
+------------------------
+
+Design Doctor                             = off
+
+Logic Synthesis:
+
+   Synthesis Type Used                    = Multi-Level
+
+   Default Synthesis Style                = NORMAL
+
+      Logic option settings in 'NORMAL' style for 'FLEX10K' family
+
+      CARRY_CHAIN                         = ignore
+      CARRY_CHAIN_LENGTH                  = 32
+      CASCADE_CHAIN                       = ignore
+      CASCADE_CHAIN_LENGTH                = 2
+      DECOMPOSE_GATES                     = on
+      DUPLICATE_LOGIC_EXTRACTION          = on
+      MINIMIZATION                        = full
+      MULTI_LEVEL_FACTORING               = on
+      NOT_GATE_PUSH_BACK                  = on
+      REDUCE_LOGIC                        = on
+      REFACTORIZATION                     = on
+      REGISTER_OPTIMIZATION               = on
+      RESYNTHESIZE_NETWORK                = on
+      SLOW_SLEW_RATE                      = off
+      SUBFACTOR_EXTRACTION                = on
+      IGNORE_SOFT_BUFFERS                 = on
+      USE_LPM_FOR_AHDL_OPERATORS          = off
+
+   Other logic synthesis settings:
+
+      Automatic Global Clock              = on
+      Automatic Global Clear              = on
+      Automatic Global Preset             = on
+      Automatic Global Output Enable      = on
+      Automatic Fast I/O                  = off
+      Automatic Register Packing          = off
+      Automatic Open-Drain Pins           = on
+      Automatic Implement in EAB          = off
+      Optimize                            = 5
+
+Default Timing Specifications: None
+
+Cut All Bidir Feedback Timing Paths       = on
+Cut All Clear & Preset Timing Paths       = on
+
+Ignore Timing Assignments                 = off
+
+Functional SNF Extractor                  = off
+
+Linked SNF Extractor                      = off
+Timing SNF Extractor                      = on
+Optimize Timing SNF                       = off
+Generate AHDL TDO File                    = off
+Fitter Settings                           = NORMAL
+Use Quartus Fitter                        = on
+Smart Recompile                           = off
+Total Recompile                           = off
+
+Interfaces Menu Commands
+------------------------
+
+EDIF Netlist Writer                       = off
+Verilog Netlist Writer                    = off
+VHDL Netlist Writer                       = off
+
+Compilation Times
+-----------------
+
+   Compiler Netlist Extractor             00:00:00
+   Database Builder                       00:00:00
+   Logic Synthesizer                      00:00:00
+   Partitioner                            00:00:01
+   Fitter                                 00:00:01
+   Timing SNF Extractor                   00:00:00
+   Assembler                              00:00:00
+   --------------------------             --------
+   Total Time                             00:00:02
+
+
+Memory Allocated
+-----------------
+
+Peak memory allocated during compilation  = 15,134K

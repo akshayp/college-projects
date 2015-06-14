@@ -1,0 +1,12 @@
+Fitter Status : Successful - Tue Mar 10 19:58:51 2009
+Quartus II Version : 7.1 Build 156 04/30/2007 SJ Full Version
+Revision Name : MIPS
+Top-level Entity Name : MIPS
+Family : Cyclone
+Device : EP1C20F400C6
+Timing Models : Final
+Total logic elements : 1,953 / 20,060 ( 10 % )
+Total pins : 276 / 301 ( 92 % )
+Total virtual pins : 0
+Total memory bits : 16,384 / 294,912 ( 6 % )
+Total PLLs : 0 / 2 ( 0 % )

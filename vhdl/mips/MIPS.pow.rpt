@@ -1,0 +1,65 @@
+PowerPlay Power Analyzer report for MIPS
+Tue Dec 14 22:33:51 2004
+Version 4.2 Build 156 11/29/2004 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. PowerPlay Power Analyzer Summary
+  3. PowerPlay Power Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
++---------------------------------------------------------------------------+
+; PowerPlay Power Analyzer Summary                                          ;
++---------------------------------+-----------------------------------------+
+; PowerPlay Power Analyzer Status ; Failed - Tue Dec 14 22:33:51 2004       ;
+; Quartus II Version              ; 4.2 Build 156 11/29/2004 SJ Web Edition ;
+; Revision Name                   ; MIPS                                    ;
+; Top-level Entity Name           ; MIPS                                    ;
+; Family                          ; Cyclone                                 ;
+; Device                          ; EP1C20F400C8                            ;
++---------------------------------+-----------------------------------------+
+
+
++-----------------------------------+
+; PowerPlay Power Analyzer Messages ;
++-----------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II PowerPlay Power Analyzer
+    Info: Version 4.2 Build 156 11/29/2004 SJ Web Edition
+    Info: Processing started: Tue Dec 14 22:33:50 2004
+Info: Command: quartus_pow --import_settings_files=on --export_settings_files=off MIPS -c MIPS
+Error: Signal Activity File MIPS.saf is specified, but the file was not found
+Error: Quartus II PowerPlay Power Analyzer was unsuccessful. 1 error, 0 warnings
+    Error: Processing ended: Tue Dec 14 22:33:51 2004
+    Error: Elapsed time: 00:00:01
+
+
